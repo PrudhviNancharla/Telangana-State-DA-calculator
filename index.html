@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="_c3ES9xMY6uPsoG8TjBxuVvnX7fr_-aokJNxaQY2mD4" />
+  <title>Telangana Govt DA Difference & Arrears Calculator • RPS 2020</title>
+  <meta name="description" content="Official Telangana State Government Employees DA Difference & Arrears Calculator for RPS 2020. Calculate 1 DA (37.31%), 2 DAs (40.04%), 3 DAs (41.86%), 4 DAs (44.59%), CPS PRAN 10% deduction and Net Cash. Formulated by Nancharla Prudhvi, Senior Accountant, District Treasury, Khammam.">
+  <meta name="keywords" content="Telangana DA calculator, TS DA difference, RPS 2020 DA arrears, Telangana DA 41.86, TS DA 37.31, TS DA 40.04, Telangana employees DA table, CPS PRAN 10%, Nancharla Prudhvi, Khammam Treasury">
+  <meta name="author" content="Nancharla Prudhvi, Senior Accountant, District Treasury, Khammam">
+  <!-- Social Media & WhatsApp Sharing Previews -->
+  <meta property="og:title" content="Telangana Govt DA Difference & Arrears Calculator • RPS 2020">
+  <meta property="og:description" content="Calculate TS Govt RPS-2020 DA Difference, 10% CPS PRAN deduction, 90% Net Cash & Cumulative Arrears with Increment support.">
+  <meta property="og:image" content="prudhvi.jpg">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header Section -->
+    <header class="app-header">
+      <span class="badge-top">GOVERNMENT OF TELANGANA</span>
+      <h1 class="app-title">DA Difference & Arrears Calculator</h1>
+      <p class="app-subtitle">
+        Interactive Pay & Dearness Allowance (DA) Difference Calculator • RPS 2020
+      </p>
+
+      <!-- Author Attribution Card with Photo (Top Section) -->
+      <div class="author-hero-card">
+        <div class="author-photo-wrapper">
+          <img src="prudhvi.jpg" alt="Nancharla Prudhvi" class="author-photo">
+          <span class="author-badge-check" title="Official Contributor">✓</span>
+        </div>
+        <div class="author-details">
+          <span class="author-prep-title">DA Difference Tables Formulated &amp; Prepared By</span>
+          <div class="author-name">NANCHARLA PRUDHVI</div>
+          <div class="author-designation">Senior Accountant, District Treasury, Khammam</div>
+        </div>
+      </div>
+
+      <div class="badge-rates">
+        <span class="rate-pill">New DA: <strong id="headerNewDaDisplay">41.86%</strong></span>
+        <span class="rate-pill">Drawn DA: <strong id="headerDrawnDaDisplay">33.67%</strong></span>
+        <span class="rate-pill highlight">Net DA Increase: <strong id="headerDiffDisplay">+8.19%</strong></span>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="calculator-grid">
+
+      <!-- LEFT COLUMN: Input & Selection Controls -->
+      <div class="card calculator-card">
+        <h2 class="card-title">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 100 2h.01a1 1 0 100-2H10zm-4-1a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm0-4a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm4 0a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm4 0a1 1 0 011-1h.01a1 1 0 110 2H14a1 1 0 01-1-1zm-8 8a1 1 0 100 2h.01a1 1 0 100-2H6z" clip-rule="evenodd"/>
+          </svg>
+          Select & Customize
+        </h2>
+
+        <!-- 1. Basic Pay Selection -->
+        <div class="form-group">
+          <label class="form-label" for="basicSelect">
+            1. Select Basic Pay:
+            <span class="form-sublabel">RPS 2020 Master Scales (₹19,000 to ₹1,58,380)</span>
+          </label>
+
+          <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search basic pay (e.g. 19000, 31040, 62110)...">
+          </div>
+
+          <select id="basicSelect" class="select-control">
+            <!-- Dynamically populated via app.js -->
+          </select>
+
+          <!-- Custom Basic Pay Toggle / Input -->
+          <div style="margin-top: 10px;">
+            <label style="font-size: 0.82rem; color: #475569; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="customPayCheck">
+              <span>Enter Custom Basic Pay manually</span>
+            </label>
+            <div id="customPayWrapper" style="display: none; margin-top: 6px;">
+              <input type="number" id="customPayInput" class="input-control" placeholder="Enter basic pay amount (₹)" min="1000" step="10">
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Telangana State Cumulative DA (Drawn DA Fixed at 33.67%) -->
+        <div class="form-group da-rates-section">
+          <label class="form-label">
+            2. Telangana State Cumulative DA (RPS-2020):
+            <span class="form-sublabel">Select New DA • Drawn DA is fixed at July 2023 (33.67%)</span>
+          </label>
+
+          <!-- Fixed Drawn DA Baseline Banner -->
+          <div class="fixed-drawn-banner">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-size: 0.76rem; color: #64748b; font-weight: 600; text-transform: uppercase;">Drawn DA (Fixed Baseline):</span>
+                <div style="font-size: 1.15rem; font-weight: 800; color: #0f172a;">33.67% <span style="font-size: 0.78rem; font-weight: 600; color: #047857;">(July 2023 • G.O.Ms.02)</span></div>
+              </div>
+              <span class="fixed-badge">FIXED</span>
+            </div>
+          </div>
+          <input type="hidden" id="customDrawnRate" value="33.67">
+
+          <!-- Quick DA Presets (From Table Blue Box) -->
+          <div class="preset-da-buttons" style="margin-top: 12px;">
+            <button type="button" class="da-preset-btn" data-new="37.31" data-preset="jan24">
+              1 DA - Jan-24 (+3.64%)<br><small>37.31% vs 33.67%</small>
+            </button>
+            <button type="button" class="da-preset-btn" data-new="40.04" data-preset="jul24">
+              2 DAs - Jul-24 (+6.37%)<br><small>40.04% vs 33.67%</small>
+            </button>
+            <button type="button" class="da-preset-btn active" data-new="41.86" data-preset="3da">
+              3 DAs - Jan-25 (+8.19%)<br><small>41.86% vs 33.67%</small>
+            </button>
+            <button type="button" class="da-preset-btn" data-new="44.59" data-preset="jul25">
+              4 DAs - Jul-25 (+10.92%)<br><small>44.59% vs 33.67%</small>
+            </button>
+          </div>
+
+          <!-- Select New Cumulative DA Dropdown -->
+          <div style="margin-top: 12px;">
+            <label class="rate-sublabel" for="newDaSelect" style="font-weight: 700; color: #1e293b;">Select New Cumulative DA:</label>
+            <select id="newDaSelect" class="select-control" style="font-size: 0.95rem; font-weight: 700;">
+              <!-- Populated from TS_CUMULATIVE_DA_TABLE -->
+            </select>
+          </div>
+
+          <!-- Editable New DA input -->
+          <div style="margin-top: 8px;">
+            <label class="rate-sublabel" style="font-size: 0.74rem;">Or Enter Custom New DA Rate (%):</label>
+            <input type="number" id="customNewRate" class="input-control rate-number-input" value="41.86" step="0.01" min="0" max="100" style="text-align: left; padding: 8px 12px;">
+          </div>
+
+          <div class="diff-indicator" style="margin-top: 10px;">
+            Telangana DA Difference: <strong id="calculatedDiffBadge">+8.19%</strong>
+            <span id="diffFormulaText" style="font-size: 0.74rem; color: #64748b; display: block; margin-top: 2px;">(41.86% - 33.67% = +8.19%)</span>
+          </div>
+
+          <!-- Collapsible Reference Table for TS Cumulative DAs -->
+          <div class="accordion" style="margin-top: 10px;">
+            <div class="accordion-header" id="tsTableToggle" style="font-size: 0.78rem;">
+              <span>📋 View Official TS Cumulative DA Table (RPS-2020)</span>
+              <span id="tsTableArrow">▼</span>
+            </div>
+            <div class="accordion-content" id="tsTableContent" style="padding: 10px; overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.75rem;">
+                <thead>
+                  <tr style="background: #f1f5f9; text-align: left;">
+                    <th style="padding: 4px 6px; border-bottom: 1px solid #cbd5e1;">Month</th>
+                    <th style="padding: 4px 6px; border-bottom: 1px solid #cbd5e1; text-align: right;">Incr DA</th>
+                    <th style="padding: 4px 6px; border-bottom: 1px solid #cbd5e1; text-align: right; color: #047857;">Cumulative DA</th>
+                    <th style="padding: 4px 6px; border-bottom: 1px solid #cbd5e1;">Remarks</th>
+                  </tr>
+                </thead>
+                <tbody id="tsCumulativeTableBody">
+                  <!-- Populated via app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Annual Grade Increment (AGI) Month -->
+        <div class="form-group increment-section">
+          <label class="form-label">
+            3. Annual Grade Increment (AGI) Month:
+            <span class="form-sublabel">Select your increment month to automatically apply salary step-up</span>
+          </label>
+
+          <!-- Quick Increment Month Buttons -->
+          <div class="incr-buttons scrollable-chips" id="incrChips">
+            <button type="button" class="chip-btn incr-btn active" data-month="none">No Increment</button>
+            <button type="button" class="chip-btn incr-btn" data-month="1">January</button>
+            <button type="button" class="chip-btn incr-btn" data-month="4">April</button>
+            <button type="button" class="chip-btn incr-btn" data-month="7">July</button>
+            <button type="button" class="chip-btn incr-btn" data-month="10">October</button>
+            <button type="button" class="chip-btn incr-btn" data-month="more">More...</button>
+          </div>
+
+          <!-- All 12 Months Dropdown -->
+          <div id="incrDropdownWrapper" style="display: none; margin-top: 8px;">
+            <select id="incrMonthSelect" class="select-control">
+              <option value="none">-- Select Increment Month --</option>
+              <option value="1">January (01/01)</option>
+              <option value="2">February (01/02)</option>
+              <option value="3">March (01/03)</option>
+              <option value="4">April (01/04)</option>
+              <option value="5">May (01/05)</option>
+              <option value="6">June (01/06)</option>
+              <option value="7">July (01/07)</option>
+              <option value="8">August (01/08)</option>
+              <option value="9">September (01/09)</option>
+              <option value="10">October (01/10)</option>
+              <option value="11">November (01/11)</option>
+              <option value="12">December (01/12)</option>
+            </select>
+          </div>
+
+          <!-- Increment Stage Info Card -->
+          <div class="incr-info-card" id="incrInfoCard" style="display: none;">
+            <div class="incr-info-header">
+              <span>RPS-2020 Increment Details</span>
+              <span class="incr-badge" id="infoIncrMonthBadge">July Increment</span>
+            </div>
+            <div class="incr-info-row">
+              <span>Pre-Increment Basic Pay:</span>
+              <strong id="infoPreBasic">₹19,000</strong>
+            </div>
+            <div class="incr-info-row">
+              <span>Annual Grade Increment (AGI):</span>
+              <strong id="infoAGI" style="color: #047857;">+₹640</strong>
+            </div>
+            <div class="incr-info-row highlight-next">
+              <span>Post-Increment Basic Pay:</span>
+              <strong id="infoPostBasic" style="color: #b45309;">₹19,640</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Employee Category Selection -->
+        <div class="form-group">
+          <label class="form-label">4. Employee Category:</label>
+          <div class="radio-group">
+            <label class="radio-card active" id="labelCps">
+              <input type="radio" name="employeeType" value="CPS" checked>
+              <span class="radio-title">CPS Employee</span>
+              <span class="radio-desc">10% to CPS PRAN Account & 90% Net Cash to Bank</span>
+            </label>
+            <label class="radio-card" id="labelGpf">
+              <input type="radio" name="employeeType" value="GPF">
+              <span class="radio-title">GPF Employee</span>
+              <span class="radio-desc">100% Total Amount to GPF / Net Cash</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 5. Duration / Months Selection -->
+        <div class="form-group">
+          <label class="form-label">5. Duration / Months (Arrears Period):</label>
+          <div class="month-selector scrollable-chips">
+            <button type="button" class="month-btn active" data-months="1">1 Month</button>
+            <button type="button" class="month-btn" data-months="3">3 Months</button>
+            <button type="button" class="month-btn" data-months="6">6 Months</button>
+            <button type="button" class="month-btn" data-months="12">12 Months</button>
+            <button type="button" class="month-btn" data-months="custom">Custom</button>
+          </div>
+          <div id="customMonthsWrapper" style="display: none; margin-top: 8px;">
+            <input type="number" id="customMonthsInput" class="input-control" value="1" min="1" max="120" placeholder="Enter number of months">
+          </div>
+
+          <!-- Months Split when Increment is active -->
+          <div id="incrMonthsSplitWrapper" style="display: none; margin-top: 10px; padding: 12px; background: #ecfdf5; border-radius: 8px; border: 1px solid #a7f3d0;">
+            <div style="font-size: 0.82rem; font-weight: 700; color: #065f46; margin-bottom: 6px; display: flex; justify-content: space-between;">
+              <span>Increment Period Division:</span>
+              <span id="incrSplitBadge" style="font-size: 0.75rem; color: #047857; font-weight: normal;"></span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <div>
+                <label style="font-size: 0.74rem; color: #334155; font-weight: 600;">Months at Pre-Increment Basic:</label>
+                <input type="number" id="preIncrMonthsInput" class="input-control" value="6" min="0" max="120" style="padding: 7px 10px; font-size: 0.92rem;">
+              </div>
+              <div>
+                <label style="font-size: 0.74rem; color: #334155; font-weight: 600;">Months at Post-Increment Basic:</label>
+                <input type="number" id="postIncrMonthsInput" class="input-control" value="6" min="0" max="120" style="padding: 7px 10px; font-size: 0.92rem;">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Dynamic Calculation Results -->
+      <div class="card results-card">
+        <h2 class="card-title">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+          </svg>
+          Calculation Summary & Statement
+        </h2>
+
+        <!-- Hero Banner Summary -->
+        <div class="results-banner">
+          <div class="banner-row">
+            <div>
+              <div class="banner-label">Monthly DA Difference (Per Month):</div>
+              <div class="banner-value" id="heroMonthlyDiff">₹1,556</div>
+              <div class="banner-subvalue" id="heroBasicDisplay">Basic Pay: ₹19,000 | DA Difference: +8.19%</div>
+            </div>
+            <div style="text-align: right;">
+              <div class="banner-label" id="heroNetLabel">Net Cash Payable (90%):</div>
+              <div class="banner-value" id="heroNetCash" style="color: #6ee7b7;">₹1,400</div>
+              <div class="banner-subvalue" id="heroDurationBadge">Per Month Amount</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 Metrics Box Grid -->
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-label">Basic Pay</div>
+            <div class="metric-val" id="metricBasic">₹19,000</div>
+            <div class="metric-footnote">Selected Basic Salary</div>
+          </div>
+
+          <div class="metric-box">
+            <div class="metric-label" id="lblMetricDrawn">Drawn DA (33.67%)</div>
+            <div class="metric-val" id="metricDrawnDA">₹6,397</div>
+            <div class="metric-footnote">Previously drawn/paid</div>
+          </div>
+
+          <div class="metric-box">
+            <div class="metric-label" id="lblMetricNew">New DA (41.86%)</div>
+            <div class="metric-val" id="metricNewDA">₹7,953</div>
+            <div class="metric-footnote">Revised enhanced DA</div>
+          </div>
+
+          <div class="metric-box highlight-diff">
+            <div class="metric-label" id="lblMetricDiff">Monthly DA Diff (8.19%)</div>
+            <div class="metric-val" id="metricDiff">₹1,556</div>
+            <div class="metric-footnote">Gross difference per mo</div>
+          </div>
+
+          <div class="metric-box highlight-cps" id="boxCPS">
+            <div class="metric-label" id="lblMetricCPS">To CPS Account (10%)</div>
+            <div class="metric-val" id="metricCPS">₹156</div>
+            <div class="metric-footnote" id="fnMetricCPS">PRAN Account credit</div>
+          </div>
+
+          <div class="metric-box highlight-net">
+            <div class="metric-label" id="lblMetricNet">Net Cash (90%)</div>
+            <div class="metric-val" id="metricNet">₹1,400</div>
+            <div class="metric-footnote" id="fnMetricNet">Credit to Bank Account</div>
+          </div>
+        </div>
+
+        <!-- Arrears Summary Box (Visible when months > 1) -->
+        <div class="arrears-summary-box" id="arrearsSummaryBox" style="display: none;">
+          <div class="arrears-header">
+            <span class="arrears-title">Total Cumulative Arrears</span>
+            <span class="arrears-badge" id="arrearsBadge">3 Months</span>
+          </div>
+          <div class="arrears-rows">
+            <div class="arrears-row" id="arrPreIncrRow" style="display: none; font-size: 0.82rem; color: #475569;">
+              <span id="arrPreIncrLabel">Pre-Incr Period (6 mo @ ₹19,000):</span>
+              <strong id="arrPreIncrVal">₹9,336</strong>
+            </div>
+            <div class="arrears-row" id="arrPostIncrRow" style="display: none; font-size: 0.82rem; color: #475569;">
+              <span id="arrPostIncrLabel">Post-Incr Period (6 mo @ ₹19,640):</span>
+              <strong id="arrPostIncrVal">₹9,648</strong>
+            </div>
+            <div class="arrears-row">
+              <span>Total Gross DA Arrears Difference:</span>
+              <strong id="arrTotalGross">₹4,668</strong>
+            </div>
+            <div class="arrears-row" id="arrCpsRow">
+              <span>Total Deduction to CPS PRAN (10%):</span>
+              <strong id="arrTotalCPS">₹468</strong>
+            </div>
+            <div class="arrears-row">
+              <span id="arrNetTitle">Total Net Cash Payable (90%):</span>
+              <strong id="arrTotalNet" style="color: #15803d; font-size: 1.15rem;">₹4,200</strong>
+            </div>
+          </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="action-buttons" style="margin-top: 20px;">
+          <button type="button" class="btn btn-primary" id="btnPrint">
+            🖨️ Print Statement / Save PDF
+          </button>
+          <button type="button" class="btn btn-secondary" id="btnCopy">
+            📋 Copy Statement Text
+          </button>
+          <button type="button" class="btn btn-secondary" id="btnReset">
+            🔄 Reset
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="app-footer">
+      <p>
+        Reference: <strong>Telangana Govt. DA Difference Table (Jan 24, July 24 & Jan 25)</strong>
+      </p>
+      <p style="margin-top: 4px; font-size: 0.78rem; color: #64748b;">
+        Official TS Revised Pay Scales 2020 (RPS-2020) Treasury Scale Formulations
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">✅ Copied to clipboard!</div>
+
+  <!-- Script Files -->
+  <script src="da-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
