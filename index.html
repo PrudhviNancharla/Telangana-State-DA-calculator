@@ -14,6 +14,44 @@
   <meta property="og:image" content="prudhvi.jpg">
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="style.css">
+  <script>
+    // Disable browser scroll restoration so mobile browsers do not override auto-scroll
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    function scrollToBasicPayMobile(instant) {
+      try {
+        if (window.location.hash && window.location.hash !== '#topBasicPayCard' && window.location.hash !== '#') {
+          return;
+        }
+        var target = document.getElementById('topBasicPayCard');
+        if (!target) return;
+        var rect = target.getBoundingClientRect();
+        var y = rect.top + (window.pageYOffset || document.documentElement.scrollTop || 0) - 8;
+        window.scrollTo({
+          top: y,
+          behavior: instant ? 'auto' : 'smooth'
+        });
+      } catch (e) {}
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      scrollToBasicPayMobile(true);
+      setTimeout(function() { scrollToBasicPayMobile(false); }, 80);
+      setTimeout(function() { scrollToBasicPayMobile(false); }, 250);
+      setTimeout(function() { scrollToBasicPayMobile(false); }, 600);
+    });
+
+    window.addEventListener('load', function() {
+      setTimeout(function() { scrollToBasicPayMobile(false); }, 100);
+      setTimeout(function() { scrollToBasicPayMobile(false); }, 400);
+    });
+
+    window.addEventListener('pageshow', function() {
+      setTimeout(function() { scrollToBasicPayMobile(false); }, 80);
+    });
+  </script>
 </head>
 <body>
   <div class="container">
@@ -26,15 +64,7 @@
         Jan-2024 to Sep-2026 Arrears Period (33 Months) • RPS 2020
       </p>
 
-      <!-- DA Rate Badges -->
-      <div class="badge-rates">
-        <span class="rate-pill">Drawn DA (Jul 23): <strong id="headerDrawnDaDisplay">33.67%</strong></span>
-        <span class="rate-pill" style="background: #ecfdf5; border-color: #a7f3d0; color: #065f46;">1st DA (Jan 24): <strong id="headerDa1Display">37.31% (+3.64%)</strong></span>
-        <span class="rate-pill" style="background: #eff6ff; border-color: #bfdbfe; color: #1e40af;">2nd DA (Jul 24): <strong id="headerDa2Display">40.04% (+2.73%)</strong></span>
-        <span class="rate-pill highlight">Total Hike (w.e.f Jul 24): <strong id="headerDiffDisplay">+6.37%</strong></span>
-      </div>
-
-      <!-- Author Attribution Card with Photo -->
+      <!-- Author Attribution Card with Photo (Placed Prominently Directly Above Select Basic Pay) -->
       <div class="author-hero-card">
         <div class="author-photo-wrapper">
           <img src="prudhvi.jpg" alt="Nancharla Prudhvi" class="author-photo" width="68" height="68" loading="eager">
@@ -47,6 +77,14 @@
           </div>
           <div class="author-designation">Senior Accountant, District Treasury, Khammam</div>
         </div>
+      </div>
+
+      <!-- DA Rate Badges -->
+      <div class="badge-rates">
+        <span class="rate-pill">Drawn DA (Jul 23): <strong id="headerDrawnDaDisplay">33.67%</strong></span>
+        <span class="rate-pill" style="background: #ecfdf5; border-color: #a7f3d0; color: #065f46;">1st DA (Jan 24): <strong id="headerDa1Display">37.31% (+3.64%)</strong></span>
+        <span class="rate-pill" style="background: #eff6ff; border-color: #bfdbfe; color: #1e40af;">2nd DA (Jul 24): <strong id="headerDa2Display">40.04% (+2.73%)</strong></span>
+        <span class="rate-pill highlight">Total Hike (w.e.f Jul 24): <strong id="headerDiffDisplay">+6.37%</strong></span>
       </div>
     </header>
 

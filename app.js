@@ -1520,8 +1520,14 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Scroll if near top of page (initial open)
-    if (window.scrollY < 260) {
+    try {
+      const rect = topBasicCard.getBoundingClientRect();
+      const targetY = rect.top + (window.pageYOffset || document.documentElement.scrollTop || 0) - 8;
+      window.scrollTo({
+        top: targetY,
+        behavior: behavior
+      });
+    } catch(e) {
       topBasicCard.scrollIntoView({ behavior: behavior, block: 'start' });
     }
 
@@ -1534,7 +1540,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Immediate triggers when link / program is opened
   setTimeout(() => focusSelectBasicPayOnOpen('auto'), 40);
-  setTimeout(() => focusSelectBasicPayOnOpen('smooth'), 200);
+  setTimeout(() => focusSelectBasicPayOnOpen('smooth'), 180);
   window.addEventListener('load', () => {
     setTimeout(() => focusSelectBasicPayOnOpen('smooth'), 120);
   });

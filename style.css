@@ -398,37 +398,72 @@ body {
 
 @media (max-width: 640px) {
   .app-header {
-    margin-bottom: 14px;
-    padding-bottom: 12px;
+    margin-bottom: 10px;
+    padding: 10px 8px 8px;
+  }
+  .badge-top {
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
   }
   .app-title {
-    font-size: 1.45rem;
-    margin-bottom: 4px;
+    font-size: 1.30rem;
+    margin-bottom: 3px;
+    line-height: 1.2;
   }
   .app-subtitle {
-    font-size: 0.84rem;
+    font-size: 0.78rem;
+    margin-bottom: 6px;
+  }
+  .badge-rates {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 6px;
+    padding: 4px 2px;
+    margin-top: 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .badge-rates::-webkit-scrollbar {
+    display: none;
+  }
+  .rate-pill {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    padding: 3px 8px;
   }
   .author-hero-card {
-    margin: 10px auto 8px;
-    padding: 6px 14px 6px 8px;
+    margin: 8px auto 6px;
+    padding: 5px 12px 5px 6px;
     gap: 10px;
   }
   .author-photo-wrapper {
-    width: 54px;
-    height: 54px;
+    width: 48px;
+    height: 48px;
   }
   .author-name {
-    font-size: 1.05rem;
+    font-size: 1.00rem;
   }
   .author-prep-title {
-    font-size: 0.66rem;
+    font-size: 0.62rem;
   }
   .author-designation {
-    font-size: 0.76rem;
+    font-size: 0.72rem;
   }
   .top-basic-pay-card {
-    padding: 14px 14px;
-    margin-bottom: 16px;
+    padding: 12px 10px;
+    margin-bottom: 14px;
+    border-width: 2px;
+  }
+  .top-pay-title {
+    font-size: 1.05rem;
+  }
+  .top-pay-guidance-banner {
+    font-size: 0.74rem;
+    padding: 6px 8px;
+    margin-bottom: 8px;
   }
   .top-pay-controls-grid {
     grid-template-columns: 1fr;
