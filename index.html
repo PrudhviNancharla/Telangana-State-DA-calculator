@@ -26,6 +26,14 @@
         Jan-2024 to Aug-2026 Arrears Period (32 Months) • RPS 2020
       </p>
 
+      <!-- DA Rate Badges -->
+      <div class="badge-rates">
+        <span class="rate-pill">Drawn DA (Jul 23): <strong id="headerDrawnDaDisplay">33.67%</strong></span>
+        <span class="rate-pill" style="background: #ecfdf5; border-color: #a7f3d0; color: #065f46;">1st DA (Jan 24): <strong id="headerDa1Display">37.31% (+3.64%)</strong></span>
+        <span class="rate-pill" style="background: #eff6ff; border-color: #bfdbfe; color: #1e40af;">2nd DA (Jul 24): <strong id="headerDa2Display">40.04% (+2.73%)</strong></span>
+        <span class="rate-pill highlight">Total Hike (w.e.f Jul 24): <strong id="headerDiffDisplay">+6.37%</strong></span>
+      </div>
+
       <!-- Author Attribution Card with Photo -->
       <div class="author-hero-card">
         <div class="author-photo-wrapper">
@@ -40,14 +48,82 @@
           <div class="author-designation">Senior Accountant, District Treasury, Khammam</div>
         </div>
       </div>
-
-      <div class="badge-rates">
-        <span class="rate-pill">Drawn DA (Jul 23): <strong id="headerDrawnDaDisplay">33.67%</strong></span>
-        <span class="rate-pill" style="background: #ecfdf5; border-color: #a7f3d0; color: #065f46;">1st DA (Jan 24): <strong id="headerDa1Display">37.31% (+3.64%)</strong></span>
-        <span class="rate-pill" style="background: #eff6ff; border-color: #bfdbfe; color: #1e40af;">2nd DA (Jul 24): <strong id="headerDa2Display">40.04% (+2.73%)</strong></span>
-        <span class="rate-pill highlight">Total Hike (w.e.f Jul 24): <strong id="headerDiffDisplay">+6.37%</strong></span>
-      </div>
     </header>
+
+    <!-- TOP BASIC PAY SELECTOR CARD (Directly below Nancharla Prudhvi's name) -->
+    <div class="card top-basic-pay-card" id="topBasicPayCard">
+      <div class="top-pay-header">
+        <div class="top-pay-title-group">
+          <h2 class="top-pay-title">
+            <span class="pay-icon">💰</span>
+            <span>Select Basic Pay / బేసిక్ పే ఎంచుకోండి</span>
+            <span class="badge-rps">RPS-2020 Scale</span>
+          </h2>
+          <span class="top-pay-sublabel">
+            September 2026 నాటి బేసిక్ పే ఎంచుకోండి (₹19,000 to ₹1,58,380) • 2025 &amp; 2024 బేసిక్ పేలు ఆటోమేటిక్‌గా వెనక్కి లెక్కించబడతాయి
+          </span>
+        </div>
+        <div class="top-pay-quick-jump">
+          <a href="#resultsCard" class="btn-jump-action primary">
+            📊 View Summary &amp; Net Arrears ↓
+          </a>
+        </div>
+      </div>
+
+      <!-- Telugu Guidance Note -->
+      <div class="top-pay-guidance-banner">
+        👉 <strong>సూచన:</strong> సెప్టెంబర్ 2026 లో ఉన్న మీ బేసిక్ పే ఎంచుకోండి. 2025 &amp; 2024 సంవత్సరాల బేసిక్ పేలు (1 &amp; 2 ఇంక్రిమెంట్లు వెనక్కి) ఆటోమేటిక్‌గా లెక్కించబడతాయి. కావాలనుకుంటే క్రింద వేరే బేసిక్ పేను కూడా నేరుగా ఎంటర్ చేయవచ్చు.
+      </div>
+
+      <!-- Search & Dropdown Controls Grid -->
+      <div class="top-pay-controls-grid">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search basic pay (e.g. 20280, 19640, 31040)...">
+        </div>
+        <div>
+          <select id="basicSelect" class="select-control top-basic-select">
+            <!-- Dynamically populated via app.js -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Custom Basic Pay Toggle / Input -->
+      <div class="top-pay-custom-wrapper">
+        <label class="custom-pay-toggle-label">
+          <input type="checkbox" id="customPayCheck">
+          <span>Enter Custom Basic Pay manually (మాన్యువల్‌గా ఎంటర్ చేయండి)</span>
+        </label>
+        <div id="customPayWrapper" style="display: none; margin-top: 6px;">
+          <input type="number" id="customPayInput" class="input-control" placeholder="Enter basic pay amount as of Sep-2026 (₹)" min="1000" step="10">
+        </div>
+      </div>
+
+      <!-- 3-Year Backward Pay Stages Display Card -->
+      <div id="backwardPayCard" class="backward-pay-card">
+        <div class="backward-pay-header">
+          <span>📅 3-Year Pay Progression (3 ఏళ్ల బేసిక్ పే వివరాలు):</span>
+          <span class="backward-pay-badge">RPS-2020 Stages</span>
+        </div>
+        <div class="backward-pay-grid">
+          <div class="pay-stage-item">
+            <div class="stage-label">2024 Basic Pay</div>
+            <div id="dispPay2024" class="stage-amount">₹19,000</div>
+            <div id="dispDecr2024" class="stage-note">2 ఇంక్రిమెంట్లు వెనక్కి</div>
+          </div>
+          <div class="pay-stage-item highlight-blue">
+            <div class="stage-label">2025 Basic Pay</div>
+            <div id="dispPay2025" class="stage-amount blue">₹19,640</div>
+            <div id="dispDecr2025" class="stage-note blue">1 ఇంక్రిమెంట్ వెనక్కి</div>
+          </div>
+          <div class="pay-stage-item highlight-green">
+            <div class="stage-label green">September 2026 Pay</div>
+            <div id="dispPay2026" class="stage-amount green">₹20,280</div>
+            <div class="stage-note green">ప్రస్తుత బేసిక్ పే (Active)</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Main Content Grid -->
     <div class="calculator-grid">
@@ -58,78 +134,13 @@
           <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 100 2h.01a1 1 0 100-2H10zm-4-1a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm0-4a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm4 0a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm4 0a1 1 0 011-1h.01a1 1 0 110 2H14a1 1 0 01-1-1zm-8 8a1 1 0 100 2h.01a1 1 0 100-2H6z" clip-rule="evenodd"/>
           </svg>
-          Select &amp; Customize
+          Additional Options &amp; Customization
         </h2>
 
-        <!-- Mobile Navigation: Jump to Summary -->
-        <div class="quick-jump-wrapper" style="margin-bottom: 14px;">
-          <a href="#resultsCard" class="btn-jump-action primary" style="width: 100%;">
-            📊 View Calculation Summary &amp; Statement ↑
-          </a>
-        </div>
-
-        <!-- 1. Basic Pay Selection -->
-        <div class="form-group">
-          <label class="form-label" for="basicSelect">
-            1. Select Basic Pay:
-            <span class="form-sublabel">September 2026 నాటి బేసిక్ పే ఎంటర్ చేయండి (RPS 2020: ₹19,000 to ₹1,58,380)</span>
-          </label>
-
-          <!-- Telugu Guidance Banner -->
-          <div style="margin-bottom: 8px; padding: 7px 10px; background: #ecfdf5; border-left: 4px solid #059669; border-radius: 4px; font-size: 0.78rem; color: #065f46; font-weight: 700; line-height: 1.4;">
-            👉 సెప్టెంబర్ 2026 లో ఉన్న బేసిక్ పే ఎంటర్ చేయండి / ఎంచుకోండి. (2025 &amp; 2024 బేసిక్ పేలు ఆటోమేటిక్‌గా వెనక్కి లెక్కించబడతాయి)
-          </div>
-
-          <div class="search-wrapper">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="Search basic pay (e.g. 20280, 19640, 31040)...">
-          </div>
-
-          <select id="basicSelect" class="select-control">
-            <!-- Dynamically populated via app.js -->
-          </select>
-
-          <!-- Custom Basic Pay Toggle / Input -->
-          <div style="margin-top: 10px;">
-            <label style="font-size: 0.82rem; color: #475569; display: flex; align-items: center; gap: 6px; cursor: pointer;">
-              <input type="checkbox" id="customPayCheck">
-              <span>Enter Custom Basic Pay manually</span>
-            </label>
-            <div id="customPayWrapper" style="display: none; margin-top: 6px;">
-              <input type="number" id="customPayInput" class="input-control" placeholder="Enter basic pay amount as of Sep-2026 (₹)" min="1000" step="10">
-            </div>
-          </div>
-
-          <!-- 3-Year Backward Pay Stages Display Card -->
-          <div id="backwardPayCard" style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; margin-top: 10px;">
-            <div style="font-size: 0.76rem; font-weight: 800; color: #0f172a; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
-              <span>📅 3-Year Pay Progression (3 ఏళ్ల బేసిక్ పే వివరాలు):</span>
-              <span style="font-size: 0.72rem; color: #047857; background: #ecfdf5; padding: 2px 8px; border-radius: 4px; font-weight: 700;">RPS-2020 Stages</span>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center;">
-              <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 6px 4px;">
-                <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">2024 Basic Pay</div>
-                <div id="dispPay2024" style="font-size: 0.98rem; font-weight: 800; color: #0f172a; margin: 2px 0;">₹19,000</div>
-                <div id="dispDecr2024" style="font-size: 0.68rem; color: #059669; font-weight: 600;">2 ఇంక్రిమెంట్లు వెనక్కి</div>
-              </div>
-              <div style="background: #ffffff; border: 1.5px solid #93c5fd; border-radius: 6px; padding: 6px 4px;">
-                <div style="font-size: 0.70rem; color: #0284c7; font-weight: 700;">2025 Basic Pay</div>
-                <div id="dispPay2025" style="font-size: 0.98rem; font-weight: 800; color: #0369a1; margin: 2px 0;">₹19,640</div>
-                <div id="dispDecr2025" style="font-size: 0.68rem; color: #0284c7; font-weight: 600;">1 ఇంక్రిమెంట్ వెనక్కి</div>
-              </div>
-              <div style="background: #ecfdf5; border: 1.5px solid #10b981; border-radius: 6px; padding: 6px 4px;">
-                <div style="font-size: 0.70rem; color: #047857; font-weight: 800;">September 2026 Pay</div>
-                <div id="dispPay2026" style="font-size: 0.98rem; font-weight: 800; color: #047857; margin: 2px 0;">₹20,280</div>
-                <div style="font-size: 0.68rem; color: #047857; font-weight: 700;">ప్రస్తుత బేసిక్ పే (Active)</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Telangana State 2 DAs Sanctioned (Jan-24 & Jul-24 • RPS-2020) -->
+        <!-- 1. Telangana State 2 DAs Sanctioned (Jan-24 & Jul-24 • RPS-2020) -->
         <div class="form-group da-rates-section">
           <label class="form-label">
-            2. Telangana State 2 DAs Sanctioned (Jan-24 &amp; Jul-24 • RPS-2020):
+            1. Telangana State 2 DAs Sanctioned (Jan-24 &amp; Jul-24 • RPS-2020):
             <span class="form-sublabel">1st DA Rate: 37.31% (+3.64%) • 2nd DA Rate: 40.04% (+2.73%) • Baseline Drawn DA: 33.67%</span>
           </label>
 
@@ -246,10 +257,10 @@
           </div>
         </div>
 
-        <!-- 3. Annual Grade Increment (AGI) Month -->
+        <!-- 2. Annual Grade Increment (AGI) Month -->
         <div class="form-group increment-section">
           <label class="form-label" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <span>3. Annual Grade Increment (AGI) Month:</span>
+            <span>2. Annual Grade Increment (AGI) Month:</span>
             <span id="activeIncrBadge" style="font-size: 0.74rem; font-weight: 700; color: #047857; background: #ecfdf5; padding: 2px 8px; border-radius: 6px;">No Increment</span>
           </label>
           <span class="form-sublabel" style="display: block; margin-bottom: 6px;">Scroll horizontally to select increment month (Jan-2024 to Aug-2026):</span>
@@ -374,10 +385,10 @@
           </div>
         </div>
 
-        <!-- 4. Automatic Advance Scheme (AAS) - 6/12/18/24 Years -->
+        <!-- 3. Automatic Advance Scheme (AAS) - 6/12/18/24 Years -->
         <div class="form-group aas-section" style="background: #f8faff; border: 1.5px solid #c7d2fe; border-radius: var(--radius-md); padding: 14px;">
           <label class="form-label" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <span style="color: #3730a3; font-weight: 800;">4. Automatic Advance Scheme (AAS - 6/12/18/24 Yrs):</span>
+            <span style="color: #3730a3; font-weight: 800;">3. Automatic Advance Scheme (AAS - 6/12/18/24 Yrs):</span>
             <span id="activeAasBadge" style="font-size: 0.74rem; font-weight: 700; color: #4338ca; background: #eef2ff; padding: 2px 8px; border-radius: 6px;">No AAS</span>
           </label>
           <span class="form-sublabel" style="display: block; margin-bottom: 6px; color: #4338ca; font-size: 0.76rem;">
@@ -541,9 +552,9 @@
           </div>
         </div>
 
-        <!-- 5. Employee Category Selection -->
+        <!-- 4. Employee Category Selection -->
         <div class="form-group">
-          <label class="form-label">5. Employee Category:</label>
+          <label class="form-label">4. Employee Category:</label>
           <div class="radio-group">
             <label class="radio-card active" id="labelCps">
               <input type="radio" name="employeeType" value="CPS" checked>
@@ -558,10 +569,10 @@
           </div>
         </div>
 
-        <!-- 6. Arrears Period & Duration (Jan-2024 to Aug-2026 = 32 Months) -->
+        <!-- 5. Arrears Period & Duration (Jan-2024 to Aug-2026 = 32 Months) -->
         <div class="form-group" id="durationSection">
           <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
-            <span>6. Arrears Period &amp; Duration (Months):</span>
+            <span>5. Arrears Period &amp; Duration (Months):</span>
             <span class="badge-optional" id="totalMonthsBadge" style="background: #e0f2fe; color: #0369a1; font-weight: 700; padding: 2px 10px; border-radius: 9999px; font-size: 0.78rem;">Jan 2024 to Aug 2026 (32 Months)</span>
           </label>
 
@@ -571,7 +582,7 @@
               <span>📅 Arrears Calculation Period:</span>
               <span id="periodDatesBadge" style="font-size: 0.74rem; color: #047857; font-weight: 700; background: #dcfce7; padding: 2px 8px; border-radius: 6px;">Jan-2024 to Aug-2026</span>
             </div>
-            <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="display: gap: 12px; align-items: center;">
               <div style="display: flex; align-items: center; gap: 6px; background: #ffffff; padding: 4px 10px; border-radius: 8px; border: 1.5px solid #10b981;">
                 <input type="number" id="monthsInput" value="32" min="1" max="120" style="width: 58px; font-weight: 800; font-size: 1.15rem; color: #065f46; border: none; outline: none; text-align: center;">
                 <span style="font-size: 0.82rem; color: #475569; font-weight: 700;">Months</span>
@@ -592,10 +603,10 @@
           </div>
         </div>
 
-        <!-- 7. Year-Wise Surrender Leave (2024, 2025, 2026) -->
+        <!-- 6. Year-Wise Surrender Leave (2024, 2025, 2026) -->
         <div class="form-group surrender-section" style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: var(--radius-md); padding: 14px;">
           <label class="form-label" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <span style="color: #78350f; font-weight: 800;">7. Surrender Leave (సరెండర్ లీవ్ - ఏడాదికి ఒకసారి):</span>
+            <span style="color: #78350f; font-weight: 800;">6. Surrender Leave (సరెండర్ లీవ్ - ఏడాదికి ఒకసారి):</span>
             <span id="activeSurrenderBadge" style="font-size: 0.74rem; font-weight: 700; color: #92400e; background: #fef3c7; padding: 2px 8px; border-radius: 6px;">No Surrender Leave</span>
           </label>
           <p style="font-size: 0.76rem; color: #78350f; margin-bottom: 10px;">

@@ -287,6 +287,224 @@ body {
   font-weight: 700;
 }
 
+/* ==========================================================================
+   Top Basic Pay Card - Placed Prominently Directly Below Nancharla Prudhvi
+   ========================================================================== */
+.top-basic-pay-card {
+  background: #ffffff;
+  border: 2px solid #10b981;
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  margin: 0 0 24px 0;
+  box-shadow: 0 4px 20px -2px rgba(16, 185, 129, 0.18), 0 2px 8px -1px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.top-basic-pay-card:hover {
+  box-shadow: 0 8px 26px -2px rgba(16, 185, 129, 0.25), 0 3px 10px -1px rgba(0, 0, 0, 0.08);
+}
+
+.top-pay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.top-pay-title-group {
+  flex: 1;
+  min-width: 260px;
+}
+
+.top-pay-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #064e3b;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px 0;
+}
+
+.top-pay-title .pay-icon {
+  font-size: 1.3rem;
+}
+
+.badge-rps {
+  font-size: 0.72rem;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.top-pay-sublabel {
+  font-size: 0.82rem;
+  color: #475569;
+  display: block;
+  line-height: 1.4;
+}
+
+.top-pay-quick-jump {
+  display: flex;
+  align-items: center;
+}
+
+.top-pay-guidance-banner {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: #ecfdf5;
+  border-left: 4px solid #059669;
+  border-radius: 6px;
+  font-size: 0.80rem;
+  color: #065f46;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.top-pay-controls-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+  .top-pay-controls-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+.top-basic-select {
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #059669;
+  background: #f0fdf4;
+  color: #064e3b;
+}
+
+.top-pay-custom-wrapper {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.custom-pay-toggle-label {
+  font-size: 0.82rem;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.backward-pay-card {
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.backward-pay-header {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backward-pay-badge {
+  font-size: 0.72rem;
+  color: #047857;
+  background: #ecfdf5;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.backward-pay-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  .backward-pay-grid {
+    gap: 6px;
+  }
+}
+
+.pay-stage-item {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 6px;
+}
+
+.pay-stage-item.highlight-blue {
+  border-color: #93c5fd;
+  background: #f8fafc;
+}
+
+.pay-stage-item.highlight-green {
+  border-color: #10b981;
+  background: #ecfdf5;
+}
+
+.stage-label {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.stage-label.green {
+  color: #047857;
+  font-weight: 800;
+}
+
+.stage-amount {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 3px 0;
+}
+
+.stage-amount.blue {
+  color: #0369a1;
+}
+
+.stage-amount.green {
+  color: #047857;
+}
+
+.stage-note {
+  font-size: 0.70rem;
+  color: #059669;
+  font-weight: 600;
+}
+
+.stage-note.blue {
+  color: #0284c7;
+}
+
+.stage-note.green {
+  color: #047857;
+  font-weight: 700;
+}
+
 /* Main Grid Layout */
 .calculator-grid {
   display: flex;
