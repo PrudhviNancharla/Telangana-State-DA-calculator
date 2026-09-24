@@ -1,7 +1,7 @@
 @echo off
-title Telangana 1st DA Calculator - Local Web Server
+title Telangana 2 DAs Calculator - Local Web Server
 echo ========================================================
-echo Telangana 1st DA Calculator - Local Web Server
+echo Telangana 2 DAs Calculator - Local Web Server
 echo Running at: http://localhost:5500/
 echo ========================================================
 echo.
