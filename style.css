@@ -435,13 +435,16 @@ body {
     padding: 3px 8px;
   }
   .author-hero-card {
-    margin: 8px auto 6px;
-    padding: 5px 12px 5px 6px;
-    gap: 10px;
+    margin: 6px auto 6px;
+    padding: 6px 14px 6px 8px;
+    gap: 12px;
+    max-width: 100%;
+    scroll-margin-top: 6px;
   }
   .author-photo-wrapper {
-    width: 48px;
-    height: 48px;
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
   }
   .author-name {
     font-size: 1.00rem;

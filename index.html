@@ -20,36 +20,36 @@
       history.scrollRestoration = 'manual';
     }
 
-    function scrollToBasicPayMobile(instant) {
+    function scrollToAuthorAndBasicPay(instant) {
       try {
-        if (window.location.hash && window.location.hash !== '#topBasicPayCard' && window.location.hash !== '#') {
+        if (window.location.hash && window.location.hash !== '#topBasicPayCard' && window.location.hash !== '#authorHeroCard' && window.location.hash !== '#') {
           return;
         }
-        var target = document.getElementById('topBasicPayCard');
+        var target = document.getElementById('authorHeroCard') || document.getElementById('topBasicPayCard');
         if (!target) return;
         var rect = target.getBoundingClientRect();
-        var y = rect.top + (window.pageYOffset || document.documentElement.scrollTop || 0) - 8;
+        var y = rect.top + (window.pageYOffset || document.documentElement.scrollTop || 0) - 6;
         window.scrollTo({
-          top: y,
+          top: Math.max(0, y),
           behavior: instant ? 'auto' : 'smooth'
         });
       } catch (e) {}
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-      scrollToBasicPayMobile(true);
-      setTimeout(function() { scrollToBasicPayMobile(false); }, 80);
-      setTimeout(function() { scrollToBasicPayMobile(false); }, 250);
-      setTimeout(function() { scrollToBasicPayMobile(false); }, 600);
+      scrollToAuthorAndBasicPay(true);
+      setTimeout(function() { scrollToAuthorAndBasicPay(false); }, 60);
+      setTimeout(function() { scrollToAuthorAndBasicPay(false); }, 200);
+      setTimeout(function() { scrollToAuthorAndBasicPay(false); }, 500);
     });
 
     window.addEventListener('load', function() {
-      setTimeout(function() { scrollToBasicPayMobile(false); }, 100);
-      setTimeout(function() { scrollToBasicPayMobile(false); }, 400);
+      setTimeout(function() { scrollToAuthorAndBasicPay(false); }, 80);
+      setTimeout(function() { scrollToAuthorAndBasicPay(false); }, 300);
     });
 
     window.addEventListener('pageshow', function() {
-      setTimeout(function() { scrollToBasicPayMobile(false); }, 80);
+      setTimeout(function() { scrollToAuthorAndBasicPay(false); }, 60);
     });
   </script>
 </head>
@@ -64,8 +64,16 @@
         Jan-2024 to Sep-2026 Arrears Period (33 Months) • RPS 2020
       </p>
 
-      <!-- Author Attribution Card with Photo (Placed Prominently Directly Above Select Basic Pay) -->
-      <div class="author-hero-card">
+      <!-- DA Rate Badges -->
+      <div class="badge-rates">
+        <span class="rate-pill">Drawn DA (Jul 23): <strong id="headerDrawnDaDisplay">33.67%</strong></span>
+        <span class="rate-pill" style="background: #ecfdf5; border-color: #a7f3d0; color: #065f46;">1st DA (Jan 24): <strong id="headerDa1Display">37.31% (+3.64%)</strong></span>
+        <span class="rate-pill" style="background: #eff6ff; border-color: #bfdbfe; color: #1e40af;">2nd DA (Jul 24): <strong id="headerDa2Display">40.04% (+2.73%)</strong></span>
+        <span class="rate-pill highlight">Total Hike (w.e.f Jul 24): <strong id="headerDiffDisplay">+6.37%</strong></span>
+      </div>
+
+      <!-- Author Attribution Card with Photo (Directly Above Select Basic Pay) -->
+      <div class="author-hero-card" id="authorHeroCard">
         <div class="author-photo-wrapper">
           <img src="prudhvi.jpg" alt="Nancharla Prudhvi" class="author-photo" width="68" height="68" loading="eager">
           <span class="author-badge-check" title="Official Contributor">✓</span>
@@ -78,17 +86,9 @@
           <div class="author-designation">Senior Accountant, District Treasury, Khammam</div>
         </div>
       </div>
-
-      <!-- DA Rate Badges -->
-      <div class="badge-rates">
-        <span class="rate-pill">Drawn DA (Jul 23): <strong id="headerDrawnDaDisplay">33.67%</strong></span>
-        <span class="rate-pill" style="background: #ecfdf5; border-color: #a7f3d0; color: #065f46;">1st DA (Jan 24): <strong id="headerDa1Display">37.31% (+3.64%)</strong></span>
-        <span class="rate-pill" style="background: #eff6ff; border-color: #bfdbfe; color: #1e40af;">2nd DA (Jul 24): <strong id="headerDa2Display">40.04% (+2.73%)</strong></span>
-        <span class="rate-pill highlight">Total Hike (w.e.f Jul 24): <strong id="headerDiffDisplay">+6.37%</strong></span>
-      </div>
     </header>
 
-    <!-- TOP BASIC PAY SELECTOR CARD (Directly below Nancharla Prudhvi's name) -->
+    <!-- TOP BASIC PAY SELECTOR CARD (Directly below Nancharla Prudhvi's photo & name) -->
     <div class="card top-basic-pay-card" id="topBasicPayCard">
       <div class="top-pay-header">
         <div class="top-pay-title-group">
@@ -163,12 +163,12 @@
       </div>
     </div>
 
-    <!-- Immediate Auto-Display Select Basic Pay on Screen Load -->
+    <!-- Immediate Auto-Display Author Photo & Select Basic Pay on Screen Load -->
     <script>
       (function() {
         try {
-          if (!window.location.hash || window.location.hash === '#topBasicPayCard') {
-            var el = document.getElementById('topBasicPayCard');
+          if (!window.location.hash || window.location.hash === '#topBasicPayCard' || window.location.hash === '#authorHeroCard') {
+            var el = document.getElementById('authorHeroCard') || document.getElementById('topBasicPayCard');
             if (el) {
               el.scrollIntoView({ behavior: 'auto', block: 'start' });
             }

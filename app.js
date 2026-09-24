@@ -1510,32 +1510,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2800);
   }
 
-  // Auto-display and scroll to "Select Basic Pay" immediately when link / program is opened
+  // Auto-display and scroll to Author Photo & Select Basic Pay immediately when opened
   function focusSelectBasicPayOnOpen(behavior = 'smooth') {
+    const authorEl = document.getElementById('authorHeroCard');
     const topBasicCard = document.getElementById('topBasicPayCard');
-    if (!topBasicCard) return;
+    const target = authorEl || topBasicCard;
+    if (!target) return;
 
     // Respect specific section hashes if user clicked one (e.g. #monthWiseCard)
-    if (window.location.hash && window.location.hash !== '#topBasicPayCard' && window.location.hash !== '#') {
+    if (window.location.hash && window.location.hash !== '#topBasicPayCard' && window.location.hash !== '#authorHeroCard' && window.location.hash !== '#') {
       return;
     }
 
     try {
-      const rect = topBasicCard.getBoundingClientRect();
-      const targetY = rect.top + (window.pageYOffset || document.documentElement.scrollTop || 0) - 8;
+      const rect = target.getBoundingClientRect();
+      const targetY = rect.top + (window.pageYOffset || document.documentElement.scrollTop || 0) - 6;
       window.scrollTo({
-        top: targetY,
+        top: Math.max(0, targetY),
         behavior: behavior
       });
     } catch(e) {
-      topBasicCard.scrollIntoView({ behavior: behavior, block: 'start' });
+      target.scrollIntoView({ behavior: behavior, block: 'start' });
     }
 
     // Subtle emerald pulse animation on the card to focus user attention
-    topBasicCard.classList.add('top-pay-highlight-pulse');
-    setTimeout(() => {
-      topBasicCard.classList.remove('top-pay-highlight-pulse');
-    }, 2800);
+    if (topBasicCard) {
+      topBasicCard.classList.add('top-pay-highlight-pulse');
+      setTimeout(() => {
+        topBasicCard.classList.remove('top-pay-highlight-pulse');
+      }, 2800);
+    }
   }
 
   // Immediate triggers when link / program is opened
