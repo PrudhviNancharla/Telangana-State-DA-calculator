@@ -87,7 +87,7 @@ DA_RECORDS.forEach(r => DA_LOOKUP.set(r.basic, r));
  * @param {number|null} customDa2 Custom 2nd DA rate (%)
  * @param {number|null} customDrawn Custom Drawn DA rate (%)
  */
-function calculateDA(basicPay, employeeType = 'CPS', months = 32, daMode = 'BOTH', customDa1 = null, customDa2 = null, customDrawn = null) {
+function calculateDA(basicPay, employeeType = 'CPS', months = 33, daMode = 'BOTH', customDa1 = null, customDa2 = null, customDrawn = null) {
   basicPay = Number(basicPay) || 0;
   months = Math.max(1, parseInt(months) || 1);
 

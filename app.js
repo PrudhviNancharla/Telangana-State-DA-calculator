@@ -1,7 +1,7 @@
 // Telangana Government 2 DAs Difference & Arrears Calculator Application Script
 // RPS 2020 • 1st DA (Jan 2024: 37.31% | Diff: +3.64%) & 2nd DA (Jul 2024: 40.04% | Diff: +2.73% | Total Diff: +6.37%)
 // Baseline Drawn DA: 33.67% (July 2023 • G.O.Ms.02)
-// Arrears Period: Jan-2024 to Aug-2026 (32 Months)
+// Arrears Period: Jan-2024 to Sep-2026 (33 Months)
 // Formulated by Nancharla Prudhvi, Senior Accountant, District Treasury, Khammam
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -166,11 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const toast = document.getElementById('toast');
 
   // Application State
-  let currentMonths = 32; // Default: Jan-2024 to Aug-2026
+  let currentMonths = 33; // Default: Jan-2024 to Sep-2026
   let currentDaMode = 'BOTH'; // 'BOTH', 'DA1_ONLY', 'DA2_ONLY'
   let selectedIncrIdx = '0'; // Default: Jan-24 (0)
   let agiAutoRecur = true;
-  let selectedAasIdx = 'none'; // 'none' or 0-31
+  let selectedAasIdx = 'none'; // 'none' or 0-32
   let selectedAasDate = 1;
 
   // Year-wise Surrender Leave state for 2024, 2025, and 2026
@@ -180,22 +180,22 @@ document.addEventListener('DOMContentLoaded', () => {
     2026: { days: 0, monthIdx: null }
   };
 
-  // 32-Month labels from Jan-2024 to Aug-2026
+  // 33-Month labels from Jan-2024 to Sep-2026
   const month32Names = [
     'Jan-2024', 'Feb-2024', 'Mar-2024', 'Apr-2024', 'May-2024', 'Jun-2024',
     'Jul-2024', 'Aug-2024', 'Sep-2024', 'Oct-2024', 'Nov-2024', 'Dec-2024',
     'Jan-2025', 'Feb-2025', 'Mar-2025', 'Apr-2025', 'May-2025', 'Jun-2025',
     'Jul-2025', 'Aug-2025', 'Sep-2025', 'Oct-2025', 'Nov-2025', 'Dec-2025',
     'Jan-2026', 'Feb-2026', 'Mar-2026', 'Apr-2026', 'May-2026', 'Jun-2026',
-    'Jul-2026', 'Aug-2026'
+    'Jul-2026', 'Aug-2026', 'Sep-2026'
   ];
 
-  // Number of days in each of the 32 months (2024 is a leap year: Feb has 29)
+  // Number of days in each of the 33 months (2024 is a leap year: Feb has 29)
   function getDaysInMonth(monthIdx) {
     const days = [
       31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, // 2024
       31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, // 2025
-      31, 28, 31, 30, 31, 30, 31, 31                   // 2026
+      31, 28, 31, 30, 31, 30, 31, 31, 30               // 2026 (Jan to Sep)
     ];
     return days[monthIdx] || 30;
   }
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     const mIdx = parseInt(monthIdx);
-    if (isNaN(mIdx) || mIdx < 0 || mIdx > 31) {
+    if (isNaN(mIdx) || mIdx < 0 || mIdx > 32) {
       if (aasDateSection) aasDateSection.style.display = 'none';
       return;
     }
@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!btn) return;
     durationChips.querySelectorAll('.month-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    currentMonths = parseInt(btn.dataset.months) || 32;
+    currentMonths = parseInt(btn.dataset.months) || 33;
     monthsInput.value = currentMonths;
     updateCalculations();
   });
@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
       const mIdx = parseInt(selectedAasIdx);
-      if (!isNaN(mIdx) && mIdx >= 0 && mIdx < 32) {
+      if (!isNaN(mIdx) && mIdx >= 0 && mIdx < 33) {
         updateAasDateBadge(month32Names[mIdx], getDaysInMonth(mIdx));
       }
       updateCalculations();
@@ -742,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const activeSurrenders = [];
     [2024, 2025, 2026].forEach(yr => {
       const cfg = surrenderYears[yr];
-      if (cfg && cfg.days > 0 && cfg.monthIdx !== null && cfg.monthIdx >= 0 && cfg.monthIdx < 32) {
+      if (cfg && cfg.days > 0 && cfg.monthIdx !== null && cfg.monthIdx >= 0 && cfg.monthIdx < 33) {
         activeSurrenders.push({
           year: yr,
           days: cfg.days,
@@ -1033,9 +1033,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const surrSuffix = hasAnySurrender
       ? ` + Surrender (${computedSurrenders.map(s => `${s.year}: ${s.days}d`).join(', ')})`
       : '';
-    if (currentMonths === 32) {
-      if (totalMonthsBadge) totalMonthsBadge.textContent = `Jan 2024 to Aug 2026 (32 Months)${surrSuffix}`;
-      if (periodDatesBadge) periodDatesBadge.textContent = 'Jan-2024 to Aug-2026';
+    if (currentMonths === 33) {
+      if (totalMonthsBadge) totalMonthsBadge.textContent = `Jan 2024 to Sep 2026 (33 Months)${surrSuffix}`;
+      if (periodDatesBadge) periodDatesBadge.textContent = 'Jan-2024 to Sep-2026';
     } else {
       if (totalMonthsBadge) totalMonthsBadge.textContent = `${currentMonths} Months${surrSuffix}`;
       if (periodDatesBadge) periodDatesBadge.textContent = `${currentMonths} Months`;
@@ -1077,7 +1077,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (arrearsBadge) arrearsBadge.textContent = `${currentMonths} Months${surrSuffix}`;
     if (arrDa1MonthlyDiff) arrDa1MonthlyDiff.textContent = `${formatINR(firstMonthData ? firstMonthData.diff1 : 0)} / mo`;
     if (arrDa2MonthlyDiff) arrDa2MonthlyDiff.textContent = `${formatINR(jul24MonthData ? jul24MonthData.grossDiff : 0)} / mo`;
-    if (arrDurationText) arrDurationText.textContent = currentMonths === 32 ? '32 Months (Jan-2024 to Aug-2026)' : `${currentMonths} Months`;
+    if (arrDurationText) arrDurationText.textContent = currentMonths === 33 ? '33 Months (Jan-2024 to Sep-2026)' : `${currentMonths} Months`;
 
     if (arrDa1Total) arrDa1Total.textContent = formatINR(finalDa1Total);
     if (arrDa2Total) arrDa2Total.textContent = formatINR(finalDa2Total);
@@ -1165,7 +1165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (infoAasProrataRow) infoAasProrataRow.style.display = 'none';
         if (infoAasSplit) {
           const aasActiveMonths = Math.max(0, currentMonths - aasIdx);
-          infoAasSplit.textContent = `${aasActiveMonths} Months (${aasMonthName} to Aug-2026)`;
+          infoAasSplit.textContent = `${aasActiveMonths} Months (${aasMonthName} to Sep-2026)`;
         }
       } else {
         const prorataBasic = Math.round((preAasBase * preDays + postAasBase * postDays) / daysInAasMonth);
@@ -1259,8 +1259,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const surrSuffix = data.surrSuffix || '';
     if (tablePeriodBadge) {
-      tablePeriodBadge.textContent = data.currentMonths === 32
-        ? `Jan-2024 to Aug-2026 (32 Months)${surrSuffix}`
+      tablePeriodBadge.textContent = data.currentMonths === 33
+        ? `Jan-2024 to Sep-2026 (33 Months)${surrSuffix}`
         : `${data.currentMonths} Months${surrSuffix}`;
     }
 
@@ -1388,7 +1388,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `• 1st DA (w.e.f Jan 2024): ${s.da1RateVal}% (Diff: +${s.diff1Rate}%)`,
         `• 2nd DA (w.e.f Jul 2024): ${s.da2RateVal}% (Diff: +${s.diff2Rate}% | Total: +${s.totalDiffRate}%)`,
         `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
-        `• Arrears Period: ${s.currentMonths === 32 ? 'Jan-2024 to Aug-2026 (32 Months)' : `${s.currentMonths} Months`}`,
+        `• Arrears Period: ${s.currentMonths === 33 ? 'Jan-2024 to Sep-2026 (33 Months)' : `${s.currentMonths} Months`}`,
         `• 1st DA Component Arrears (+${s.diff1Rate}%): ${formatINR(s.finalDa1Total)}`,
         `• 2nd DA Component Arrears (+${s.diff2Rate}%): ${formatINR(s.finalDa2Total)}`,
         ...(surrLines || []),
