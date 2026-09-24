@@ -37,7 +37,7 @@
       <!-- Author Attribution Card with Photo -->
       <div class="author-hero-card">
         <div class="author-photo-wrapper">
-          <img src="prudhvi.jpg" alt="Nancharla Prudhvi" class="author-photo">
+          <img src="prudhvi.jpg" alt="Nancharla Prudhvi" class="author-photo" width="68" height="68" loading="eager">
           <span class="author-badge-check" title="Official Contributor">✓</span>
         </div>
         <div class="author-details">
@@ -124,6 +124,20 @@
         </div>
       </div>
     </div>
+
+    <!-- Immediate Auto-Display Select Basic Pay on Screen Load -->
+    <script>
+      (function() {
+        try {
+          if (!window.location.hash || window.location.hash === '#topBasicPayCard') {
+            var el = document.getElementById('topBasicPayCard');
+            if (el) {
+              el.scrollIntoView({ behavior: 'auto', block: 'start' });
+            }
+          }
+        } catch(e) {}
+      })();
+    </script>
 
     <!-- Main Content Grid -->
     <div class="calculator-grid">
@@ -739,8 +753,11 @@
 
         <!-- Mobile Navigation: Jump to Options / Table -->
         <div class="quick-jump-wrapper" style="margin-bottom: 14px;">
+          <a href="#topBasicPayCard" class="btn-jump-action">
+            💰 Select Basic Pay ↑
+          </a>
           <a href="#calculatorCard" class="btn-jump-action">
-            ⚙️ Select Basic Pay &amp; Options ↓
+            ⚙️ Additional Options ↓
           </a>
           <a href="#monthWiseCard" class="btn-jump-action">
             📅 Month-Wise Table ↓

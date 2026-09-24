@@ -1397,6 +1397,7 @@ document.addEventListener('DOMContentLoaded', () => {
         s.isCPS ? `• 10% Deduction to CPS PRAN: ${formatINR(s.totalCpsArrears)}` : null,
         `• ${s.isCPS ? '90% Net Cash Payable to Bank' : '100% Total GPF / Cash'}: ${formatINR(s.totalNetArrears)}`,
         `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+        `• Calculate Online: https://prudhvinancharla.github.io/Telangana-State-DA-calculator/#topBasicPayCard`,
         `• Formulated by: Nancharla Prudhvi, Senior Accountant, District Treasury, Khammam`,
         `Reference: Telangana Govt. 2 DAs (1st DA 37.31% & 2nd DA 40.04% • RPS-2020)`
       ].filter(Boolean).join('\n');
@@ -1508,4 +1509,33 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.classList.remove('show');
     }, 2800);
   }
+
+  // Auto-display and scroll to "Select Basic Pay" immediately when link / program is opened
+  function focusSelectBasicPayOnOpen(behavior = 'smooth') {
+    const topBasicCard = document.getElementById('topBasicPayCard');
+    if (!topBasicCard) return;
+
+    // Respect specific section hashes if user clicked one (e.g. #monthWiseCard)
+    if (window.location.hash && window.location.hash !== '#topBasicPayCard' && window.location.hash !== '#') {
+      return;
+    }
+
+    // Scroll if near top of page (initial open)
+    if (window.scrollY < 260) {
+      topBasicCard.scrollIntoView({ behavior: behavior, block: 'start' });
+    }
+
+    // Subtle emerald pulse animation on the card to focus user attention
+    topBasicCard.classList.add('top-pay-highlight-pulse');
+    setTimeout(() => {
+      topBasicCard.classList.remove('top-pay-highlight-pulse');
+    }, 2800);
+  }
+
+  // Immediate triggers when link / program is opened
+  setTimeout(() => focusSelectBasicPayOnOpen('auto'), 40);
+  setTimeout(() => focusSelectBasicPayOnOpen('smooth'), 200);
+  window.addEventListener('load', () => {
+    setTimeout(() => focusSelectBasicPayOnOpen('smooth'), 120);
+  });
 });
