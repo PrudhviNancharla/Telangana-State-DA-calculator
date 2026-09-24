@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="eRyjX4Ww6LNNqPMmmKdU5UO8gcPFKxD_UHqAoB-CwIU" />
+  <title>Telangana Govt 2 DAs Difference & Arrears Calculator • RPS 2020 (1st DA 37.31% & 2nd DA 40.04%)</title>
+  <meta name="description" content="Official Telangana State Government Employees 2 DAs Difference & Arrears Calculator: 1st DA @37.31% (+3.64% w.e.f Jan-2024) and 2nd DA @40.04% (+2.73% w.e.f Jul-2024 | Total Diff: +6.37%). Arrears period Jan-2024 to Aug-2026 (32 Months), Surrender Leave (15/30 Days), CPS 10% PRAN deduction, 90% Net Cash. Formulated by Nancharla Prudhvi, Senior Accountant, District Treasury, Khammam.">
+  <meta name="keywords" content="Telangana DA calculator, TS 2 DAs difference, RPS 2020 DA arrears, Telangana DA 37.31, TS 1st DA 3.64, TS 2nd DA 40.04, TS 2nd DA 2.73, Surrender leave DA arrears, Telangana employees DA table, CPS PRAN 10%, Nancharla Prudhvi, Khammam Treasury">
+  <meta name="author" content="Nancharla Prudhvi, Senior Accountant, District Treasury, Khammam">
+  <!-- Social Media Previews -->
+  <meta property="og:title" content="Telangana Govt 2 DAs Difference & Arrears Calculator • RPS 2020">
+  <meta property="og:description" content="Calculate TS Govt RPS-2020 2 DAs Difference: 1st DA (37.31% vs 33.67% = +3.64% w.e.f Jan 24) and 2nd DA (40.04% vs 37.31% = +2.73% w.e.f Jul 24 | Total Diff: +6.37%), Jan-2024 to Aug-2026 Arrears (32 Months), Surrender Leave, 10% CPS & 90% Net Cash.">
+  <meta property="og:image" content="prudhvi.jpg">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header Section -->
+    <header class="app-header">
+      <span class="badge-top">GOVERNMENT OF TELANGANA</span>
+      <h1 class="app-title">2 DAs (1st &amp; 2nd DA) Difference &amp; Arrears Calculator</h1>
+      <p class="app-subtitle">
+        Jan-2024 to Aug-2026 Arrears Period (32 Months) • RPS 2020
+      </p>
+
+      <!-- Author Attribution Card with Photo -->
+      <div class="author-hero-card">
+        <div class="author-photo-wrapper">
+          <img src="prudhvi.jpg" alt="Nancharla Prudhvi" class="author-photo">
+          <span class="author-badge-check" title="Official Contributor">✓</span>
+        </div>
+        <div class="author-details">
+          <span class="author-prep-title">DA Difference Tables Formulated &amp; Prepared By</span>
+          <div class="author-name">
+            <span class="sparkle-star">✨</span>NANCHARLA PRUDHVI<span class="sparkle-star">✨</span>
+          </div>
+          <div class="author-designation">Senior Accountant, District Treasury, Khammam</div>
+        </div>
+      </div>
+
+      <div class="badge-rates">
+        <span class="rate-pill">Drawn DA (Jul 23): <strong id="headerDrawnDaDisplay">33.67%</strong></span>
+        <span class="rate-pill" style="background: #ecfdf5; border-color: #a7f3d0; color: #065f46;">1st DA (Jan 24): <strong id="headerDa1Display">37.31% (+3.64%)</strong></span>
+        <span class="rate-pill" style="background: #eff6ff; border-color: #bfdbfe; color: #1e40af;">2nd DA (Jul 24): <strong id="headerDa2Display">40.04% (+2.73%)</strong></span>
+        <span class="rate-pill highlight">Total Hike (w.e.f Jul 24): <strong id="headerDiffDisplay">+6.37%</strong></span>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="calculator-grid">
+
+      <!-- LEFT COLUMN: Input & Selection Controls -->
+      <div class="card calculator-card" id="calculatorCard">
+        <h2 class="card-title">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 100 2h.01a1 1 0 100-2H10zm-4-1a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm0-4a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm4 0a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm4 0a1 1 0 011-1h.01a1 1 0 110 2H14a1 1 0 01-1-1zm-8 8a1 1 0 100 2h.01a1 1 0 100-2H6z" clip-rule="evenodd"/>
+          </svg>
+          Select &amp; Customize
+        </h2>
+
+        <!-- Mobile Navigation: Jump to Summary -->
+        <div class="quick-jump-wrapper" style="margin-bottom: 14px;">
+          <a href="#resultsCard" class="btn-jump-action primary" style="width: 100%;">
+            📊 View Calculation Summary &amp; Statement ↑
+          </a>
+        </div>
+
+        <!-- 1. Basic Pay Selection -->
+        <div class="form-group">
+          <label class="form-label" for="basicSelect">
+            1. Select Basic Pay:
+            <span class="form-sublabel">September 2026 నాటి బేసిక్ పే ఎంటర్ చేయండి (RPS 2020: ₹19,000 to ₹1,58,380)</span>
+          </label>
+
+          <!-- Telugu Guidance Banner -->
+          <div style="margin-bottom: 8px; padding: 7px 10px; background: #ecfdf5; border-left: 4px solid #059669; border-radius: 4px; font-size: 0.78rem; color: #065f46; font-weight: 700; line-height: 1.4;">
+            👉 సెప్టెంబర్ 2026 లో ఉన్న బేసిక్ పే ఎంటర్ చేయండి / ఎంచుకోండి. (2025 &amp; 2024 బేసిక్ పేలు ఆటోమేటిక్‌గా వెనక్కి లెక్కించబడతాయి)
+          </div>
+
+          <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search basic pay (e.g. 20280, 19640, 31040)...">
+          </div>
+
+          <select id="basicSelect" class="select-control">
+            <!-- Dynamically populated via app.js -->
+          </select>
+
+          <!-- Custom Basic Pay Toggle / Input -->
+          <div style="margin-top: 10px;">
+            <label style="font-size: 0.82rem; color: #475569; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="customPayCheck">
+              <span>Enter Custom Basic Pay manually</span>
+            </label>
+            <div id="customPayWrapper" style="display: none; margin-top: 6px;">
+              <input type="number" id="customPayInput" class="input-control" placeholder="Enter basic pay amount as of Sep-2026 (₹)" min="1000" step="10">
+            </div>
+          </div>
+
+          <!-- 3-Year Backward Pay Stages Display Card -->
+          <div id="backwardPayCard" style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; margin-top: 10px;">
+            <div style="font-size: 0.76rem; font-weight: 800; color: #0f172a; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+              <span>📅 3-Year Pay Progression (3 ఏళ్ల బేసిక్ పే వివరాలు):</span>
+              <span style="font-size: 0.72rem; color: #047857; background: #ecfdf5; padding: 2px 8px; border-radius: 4px; font-weight: 700;">RPS-2020 Stages</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center;">
+              <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 6px 4px;">
+                <div style="font-size: 0.70rem; color: #64748b; font-weight: 700;">2024 Basic Pay</div>
+                <div id="dispPay2024" style="font-size: 0.98rem; font-weight: 800; color: #0f172a; margin: 2px 0;">₹19,000</div>
+                <div id="dispDecr2024" style="font-size: 0.68rem; color: #059669; font-weight: 600;">2 ఇంక్రిమెంట్లు వెనక్కి</div>
+              </div>
+              <div style="background: #ffffff; border: 1.5px solid #93c5fd; border-radius: 6px; padding: 6px 4px;">
+                <div style="font-size: 0.70rem; color: #0284c7; font-weight: 700;">2025 Basic Pay</div>
+                <div id="dispPay2025" style="font-size: 0.98rem; font-weight: 800; color: #0369a1; margin: 2px 0;">₹19,640</div>
+                <div id="dispDecr2025" style="font-size: 0.68rem; color: #0284c7; font-weight: 600;">1 ఇంక్రిమెంట్ వెనక్కి</div>
+              </div>
+              <div style="background: #ecfdf5; border: 1.5px solid #10b981; border-radius: 6px; padding: 6px 4px;">
+                <div style="font-size: 0.70rem; color: #047857; font-weight: 800;">September 2026 Pay</div>
+                <div id="dispPay2026" style="font-size: 0.98rem; font-weight: 800; color: #047857; margin: 2px 0;">₹20,280</div>
+                <div style="font-size: 0.68rem; color: #047857; font-weight: 700;">ప్రస్తుత బేసిక్ పే (Active)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Telangana State 2 DAs Sanctioned (Jan-24 & Jul-24 • RPS-2020) -->
+        <div class="form-group da-rates-section">
+          <label class="form-label">
+            2. Telangana State 2 DAs Sanctioned (Jan-24 &amp; Jul-24 • RPS-2020):
+            <span class="form-sublabel">1st DA Rate: 37.31% (+3.64%) • 2nd DA Rate: 40.04% (+2.73%) • Baseline Drawn DA: 33.67%</span>
+          </label>
+
+          <!-- Telugu Guidance Banner -->
+          <div style="margin-bottom: 10px; padding: 8px 12px; background: #ecfdf5; border-left: 4px solid #059669; border-radius: 6px; font-size: 0.79rem; color: #065f46; font-weight: 700; line-height: 1.45;">
+            👉 2 DAలు మంజూరు వివరాలు: 1వ DA (Jan-2024 నుండి 37.31% - వ్యత్యాసం +3.64%) మరియు 2వ DA (Jul-2024 నుండి 40.04% - వ్యత్యాసం +2.73%). జూలై 2024 నుండి మొత్తం వ్యత్యాసం +6.37%! నెలావారీగా మరియు విడివిడిగా స్పష్టంగా లెక్కించబడుతుంది.
+          </div>
+
+          <!-- Fixed Drawn DA Baseline Banner -->
+          <div class="fixed-drawn-banner">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-size: 0.76rem; color: #64748b; font-weight: 600; text-transform: uppercase;">Drawn DA (Fixed Baseline):</span>
+                <div style="font-size: 1.15rem; font-weight: 800; color: #0f172a;">33.67% <span style="font-size: 0.78rem; font-weight: 600; color: #047857;">(July 2023 • G.O.Ms.02)</span></div>
+              </div>
+              <span class="fixed-badge">FIXED BASELINE</span>
+            </div>
+          </div>
+
+          <!-- DA Mode Selector -->
+          <div style="margin-top: 12px;">
+            <label class="rate-sublabel" style="font-weight: 700; color: #1e293b; margin-bottom: 6px; display: block;">Select DA Calculation Mode:</label>
+            <div class="radio-group" style="grid-template-columns: 1fr; gap: 8px;">
+              <label class="radio-card active" id="labelModeBoth" style="padding: 10px 12px; cursor: pointer;">
+                <input type="radio" name="daMode" value="BOTH" checked>
+                <span class="radio-title" style="display: flex; justify-content: space-between; align-items: center;">
+                  <span>✨ Both 2 DAs Sanctioned (Combined Difference)</span>
+                  <span style="font-size: 0.70rem; background: #dcfce7; color: #15803d; padding: 2px 8px; border-radius: 4px; font-weight: 800;">RECOMMENDED</span>
+                </span>
+                <span class="radio-desc" style="display: block; margin-top: 3px;">
+                  Jan-24 to Jun-24 (6 Mo) @ <strong>37.31% (+3.64%)</strong> • Jul-24 onwards (26 Mo) @ <strong>40.04% (+6.37% Total = 3.64% + 2.73%)</strong>
+                </span>
+              </label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <label class="radio-card" id="labelModeDa1" style="padding: 9px 10px; cursor: pointer;">
+                  <input type="radio" name="daMode" value="DA1_ONLY">
+                  <span class="radio-title" style="font-size: 0.86rem;">1st DA Only</span>
+                  <span class="radio-desc" style="font-size: 0.72rem;">Jan-24 w.e.f. @ 37.31% (+3.64%)</span>
+                </label>
+                <label class="radio-card" id="labelModeDa2" style="padding: 9px 10px; cursor: pointer;">
+                  <input type="radio" name="daMode" value="DA2_ONLY">
+                  <span class="radio-title" style="font-size: 0.86rem;">2nd DA Only</span>
+                  <span class="radio-desc" style="font-size: 0.72rem;">Jul-24 w.e.f. @ 40.04% (+2.73%)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dual 2 DAs Display Cards -->
+          <div class="da-dual-cards">
+            <div class="da-card-box da-card-da1">
+              <div style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; opacity: 0.85;">Installment 1 • w.e.f Jan 2024</div>
+              <div style="font-size: 1.05rem; font-weight: 800; margin: 2px 0;">1st DA: <span id="dispDa1Rate">37.31%</span></div>
+              <div style="font-size: 0.78rem; font-weight: 700; color: #047857;">Difference: <strong id="dispDa1Diff">+3.64%</strong></div>
+            </div>
+            <div class="da-card-box da-card-da2">
+              <div style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; opacity: 0.85;">Installment 2 • w.e.f Jul 2024</div>
+              <div style="font-size: 1.05rem; font-weight: 800; margin: 2px 0;">2nd DA: <span id="dispDa2Rate">40.04%</span></div>
+              <div style="font-size: 0.78rem; font-weight: 700; color: #0369a1;">Diff: <strong>+2.73%</strong> (Total: <strong id="dispDaTotalDiff">+6.37%</strong>)</div>
+            </div>
+          </div>
+
+          <!-- Custom Rates Collapsible / Inputs -->
+          <div style="margin-top: 10px;">
+            <label style="font-size: 0.80rem; color: #475569; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="customDaCheck">
+              <span>Edit / Customize DA Rates Manually</span>
+            </label>
+            <div id="customDaInputsWrapper" style="display: none; margin-top: 8px; background: #ffffff; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1;">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                <div>
+                  <label class="rate-sublabel" style="font-size: 0.72rem;">Drawn DA (%):</label>
+                  <input type="number" id="customDrawnRate" class="input-control rate-number-input" value="33.67" step="0.01" min="0" max="100" style="padding: 6px; font-size: 0.88rem;">
+                </div>
+                <div>
+                  <label class="rate-sublabel" style="font-size: 0.72rem;">1st DA (%):</label>
+                  <input type="number" id="customDa1Rate" class="input-control rate-number-input" value="37.31" step="0.01" min="0" max="100" style="padding: 6px; font-size: 0.88rem;">
+                </div>
+                <div>
+                  <label class="rate-sublabel" style="font-size: 0.72rem;">2nd DA (%):</label>
+                  <input type="number" id="customDa2Rate" class="input-control rate-number-input" value="40.04" step="0.01" min="0" max="100" style="padding: 6px; font-size: 0.88rem;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Difference Indicator -->
+          <div class="diff-indicator" style="margin-top: 10px;">
+            Telangana DA Difference: <strong id="calculatedDiffBadge">Jan-Jun: +3.64% | Jul onwards: +6.37%</strong>
+            <span id="diffFormulaText" style="font-size: 0.74rem; color: #64748b; display: block; margin-top: 2px;">(Jan-Jun 24: 37.31% - 33.67% = +3.64% | Jul-24+: 40.04% - 33.67% = +6.37%)</span>
+          </div>
+
+          <!-- Collapsible Reference Table for TS Cumulative DAs -->
+          <div class="accordion" style="margin-top: 10px;">
+            <div class="accordion-header" id="tsTableToggle" style="font-size: 0.78rem; cursor: pointer; padding: 7px 10px; background: #f8fafc; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #cbd5e1; user-select: none;">
+              <span>📋 View Official TS Cumulative DA Table (RPS-2020)</span>
+              <span id="tsTableArrow">▼</span>
+            </div>
+            <div class="accordion-content" id="tsTableContent" style="display: none; padding: 10px; overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.75rem;">
+                <thead>
+                  <tr style="background: #f1f5f9; text-align: left;">
+                    <th style="padding: 4px 6px; border-bottom: 1px solid #cbd5e1;">Month</th>
+                    <th style="padding: 4px 6px; border-bottom: 1px solid #cbd5e1; text-align: right;">Incr DA</th>
+                    <th style="padding: 4px 6px; border-bottom: 1px solid #cbd5e1; text-align: right; color: #047857;">Cumulative DA</th>
+                    <th style="padding: 4px 6px; border-bottom: 1px solid #cbd5e1;">Remarks</th>
+                  </tr>
+                </thead>
+                <tbody id="tsCumulativeTableBody">
+                  <!-- Populated via app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Annual Grade Increment (AGI) Month -->
+        <div class="form-group increment-section">
+          <label class="form-label" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span>3. Annual Grade Increment (AGI) Month:</span>
+            <span id="activeIncrBadge" style="font-size: 0.74rem; font-weight: 700; color: #047857; background: #ecfdf5; padding: 2px 8px; border-radius: 6px;">No Increment</span>
+          </label>
+          <span class="form-sublabel" style="display: block; margin-bottom: 6px;">Scroll horizontally to select increment month (Jan-2024 to Aug-2026):</span>
+
+          <!-- Horizontal Scrollable Month Chips (Jan-24 to Aug-26) -->
+          <div class="incr-scroll-wrapper" style="position: relative; display: flex; align-items: center; gap: 4px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 4px 6px;">
+            <button type="button" class="scroll-nav-btn incr-scroll-prev" title="Scroll Left" aria-label="Scroll Left" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #047857;">&#9664;</button>
+            <div class="scrollable-chips incr-scroll-strip" id="incrChips" style="display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 6px; padding: 2px 2px 6px 2px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; flex-grow: 1;">
+              <button type="button" class="chip-btn incr-btn" data-incr="none" style="flex-shrink: 0; font-weight: 700;">No Increment</button>
+              
+              <span class="year-divider" style="font-size: 0.72rem; color: #047857; font-weight: 800; align-self: center; padding: 0 4px; flex-shrink: 0;">2024:</span>
+              <button type="button" class="chip-btn incr-btn active" data-incr="0" style="flex-shrink: 0;">Jan-24</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="1" style="flex-shrink: 0;">Feb-24</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="2" style="flex-shrink: 0;">Mar-24</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="3" style="flex-shrink: 0;">Apr-24</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="4" style="flex-shrink: 0;">May-24</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="5" style="flex-shrink: 0;">Jun-24</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="6" style="flex-shrink: 0;">Jul-24</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="7" style="flex-shrink: 0;">Aug-24</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="8" style="flex-shrink: 0;">Sep-24</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="9" style="flex-shrink: 0;">Oct-24</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="10" style="flex-shrink: 0;">Nov-24</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="11" style="flex-shrink: 0;">Dec-24</button>
+
+              <span class="year-divider" style="font-size: 0.72rem; color: #047857; font-weight: 800; align-self: center; padding: 0 4px; flex-shrink: 0;">2025:</span>
+              <button type="button" class="chip-btn incr-btn" data-incr="12" style="flex-shrink: 0;">Jan-25</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="13" style="flex-shrink: 0;">Feb-25</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="14" style="flex-shrink: 0;">Mar-25</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="15" style="flex-shrink: 0;">Apr-25</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="16" style="flex-shrink: 0;">May-25</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="17" style="flex-shrink: 0;">Jun-25</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="18" style="flex-shrink: 0;">Jul-25</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="19" style="flex-shrink: 0;">Aug-25</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="20" style="flex-shrink: 0;">Sep-25</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="21" style="flex-shrink: 0;">Oct-25</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="22" style="flex-shrink: 0;">Nov-25</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="23" style="flex-shrink: 0;">Dec-25</button>
+
+              <span class="year-divider" style="font-size: 0.72rem; color: #047857; font-weight: 800; align-self: center; padding: 0 4px; flex-shrink: 0;">2026:</span>
+              <button type="button" class="chip-btn incr-btn" data-incr="24" style="flex-shrink: 0;">Jan-26</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="25" style="flex-shrink: 0;">Feb-26</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="26" style="flex-shrink: 0;">Mar-26</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="27" style="flex-shrink: 0;">Apr-26</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="28" style="flex-shrink: 0;">May-26</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="29" style="flex-shrink: 0;">Jun-26</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="30" style="flex-shrink: 0;">Jul-26</button>
+              <button type="button" class="chip-btn incr-btn" data-incr="31" style="flex-shrink: 0;">Aug-26</button>
+            </div>
+            <button type="button" class="scroll-nav-btn incr-scroll-next" title="Scroll Right" aria-label="Scroll Right" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #047857;">&#9654;</button>
+          </div>
+
+          <!-- All 32 Months Dropdown for quick selection -->
+          <div id="incrDropdownWrapper" style="margin-top: 8px;">
+            <select id="incrMonthSelect" class="select-control" style="font-size: 0.82rem; padding: 7px 10px;">
+              <option value="none">-- Or Select from List (No Increment) --</option>
+              <optgroup label="2024 Months">
+                <option value="0" selected>January 2024 (Jan-24)</option>
+                <option value="1">February 2024 (Feb-24)</option>
+                <option value="2">March 2024 (Mar-24)</option>
+                <option value="3">April 2024 (Apr-24)</option>
+                <option value="4">May 2024 (May-24)</option>
+                <option value="5">June 2024 (Jun-24)</option>
+                <option value="6">July 2024 (Jul-24)</option>
+                <option value="7">August 2024 (Aug-24)</option>
+                <option value="8">September 2024 (Sep-24)</option>
+                <option value="9">October 2024 (Oct-24)</option>
+                <option value="10">November 2024 (Nov-24)</option>
+                <option value="11">December 2024 (Dec-24)</option>
+              </optgroup>
+              <optgroup label="2025 Months">
+                <option value="12">January 2025 (Jan-25)</option>
+                <option value="13">February 2025 (Feb-25)</option>
+                <option value="14">March 2025 (Mar-25)</option>
+                <option value="15">April 2025 (Apr-25)</option>
+                <option value="16">May 2025 (May-25)</option>
+                <option value="17">June 2025 (Jun-25)</option>
+                <option value="18">July 2025 (Jul-25)</option>
+                <option value="19">August 2025 (Aug-25)</option>
+                <option value="20">September 2025 (Sep-25)</option>
+                <option value="21">October 2025 (Oct-25)</option>
+                <option value="22">November 2025 (Nov-25)</option>
+                <option value="23">December 2025 (Dec-25)</option>
+              </optgroup>
+              <optgroup label="2026 Months">
+                <option value="24">January 2026 (Jan-26)</option>
+                <option value="25">February 2026 (Feb-26)</option>
+                <option value="26">March 2026 (Mar-26)</option>
+                <option value="27">April 2026 (Apr-26)</option>
+                <option value="28">May 2026 (May-26)</option>
+                <option value="29">June 2026 (Jun-26)</option>
+                <option value="30">July 2026 (Jul-26)</option>
+                <option value="31">August 2026 (Aug-26)</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <!-- Auto-Recur Checkbox -->
+          <div style="margin-top: 8px;">
+            <label style="font-size: 0.77rem; color: #065f46; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 700;">
+              <input type="checkbox" id="agiAutoRecurCheck" checked>
+              <span>🔄 Annual Recurring Increment in 2024, 2025 &amp; 2026 (ప్రతి సంవత్సరం అదే నెలలో ఇంక్రిమెంట్)</span>
+            </label>
+          </div>
+
+          <!-- Increment Stage Info Card -->
+          <div class="incr-info-card" id="incrInfoCard" style="display: none; margin-top: 10px;">
+            <div class="incr-info-header">
+              <span>RPS-2020 Increment Milestones</span>
+              <span class="incr-badge" id="infoIncrMonthBadge">July Increment</span>
+            </div>
+            <div class="incr-info-row">
+              <span>Initial Basic Pay:</span>
+              <strong id="infoPreBasic">₹19,000</strong>
+            </div>
+            <div id="infoAgiMilestonesContainer" style="margin-top: 6px; padding-top: 6px; border-top: 1px dashed #cbd5e1;">
+              <!-- Populated dynamically with 2024, 2025, 2026 stages -->
+            </div>
+            <div class="incr-info-row" style="font-size: 0.78rem; color: #475569; margin-top: 4px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">
+              <span>Period Split:</span>
+              <strong id="infoIncrSplit" style="color: #065f46;">6 Mo Pre + 26 Mo Post</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Automatic Advance Scheme (AAS) - 6/12/18/24 Years -->
+        <div class="form-group aas-section" style="background: #f8faff; border: 1.5px solid #c7d2fe; border-radius: var(--radius-md); padding: 14px;">
+          <label class="form-label" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="color: #3730a3; font-weight: 800;">4. Automatic Advance Scheme (AAS - 6/12/18/24 Yrs):</span>
+            <span id="activeAasBadge" style="font-size: 0.74rem; font-weight: 700; color: #4338ca; background: #eef2ff; padding: 2px 8px; border-radius: 6px;">No AAS</span>
+          </label>
+          <span class="form-sublabel" style="display: block; margin-bottom: 6px; color: #4338ca; font-size: 0.76rem;">
+            Scroll horizontally to select AAS sanction month (Jan-2024 to Aug-2026). Adds +1 increment from selected month:
+          </span>
+
+          <!-- Horizontal Scrollable Month Chips (Jan-24 to Aug-26) -->
+          <div class="incr-scroll-wrapper" style="position: relative; display: flex; align-items: center; gap: 4px; background: #ffffff; border: 1px solid #c7d2fe; border-radius: 8px; padding: 4px 6px;">
+            <button type="button" class="scroll-nav-btn aas-scroll-prev" title="Scroll Left" aria-label="Scroll Left" style="background: #eef2ff; border: 1px solid #c7d2fe; color: #4338ca;">&#9664;</button>
+            <div class="scrollable-chips" id="aasChips" style="display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 6px; padding: 2px 2px 6px 2px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; flex-grow: 1;">
+              <button type="button" class="chip-btn aas-btn active" data-aas="none" style="flex-shrink: 0; font-weight: 700;">No AAS</button>
+
+              <span class="year-divider" style="font-size: 0.72rem; color: #4338ca; font-weight: 800; align-self: center; padding: 0 4px; flex-shrink: 0;">2024:</span>
+              <button type="button" class="chip-btn aas-btn" data-aas="0" style="flex-shrink: 0;">Jan-24</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="1" style="flex-shrink: 0;">Feb-24</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="2" style="flex-shrink: 0;">Mar-24</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="3" style="flex-shrink: 0;">Apr-24</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="4" style="flex-shrink: 0;">May-24</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="5" style="flex-shrink: 0;">Jun-24</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="6" style="flex-shrink: 0;">Jul-24</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="7" style="flex-shrink: 0;">Aug-24</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="8" style="flex-shrink: 0;">Sep-24</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="9" style="flex-shrink: 0;">Oct-24</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="10" style="flex-shrink: 0;">Nov-24</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="11" style="flex-shrink: 0;">Dec-24</button>
+
+              <span class="year-divider" style="font-size: 0.72rem; color: #4338ca; font-weight: 800; align-self: center; padding: 0 4px; flex-shrink: 0;">2025:</span>
+              <button type="button" class="chip-btn aas-btn" data-aas="12" style="flex-shrink: 0;">Jan-25</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="13" style="flex-shrink: 0;">Feb-25</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="14" style="flex-shrink: 0;">Mar-25</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="15" style="flex-shrink: 0;">Apr-25</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="16" style="flex-shrink: 0;">May-25</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="17" style="flex-shrink: 0;">Jun-25</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="18" style="flex-shrink: 0;">Jul-25</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="19" style="flex-shrink: 0;">Aug-25</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="20" style="flex-shrink: 0;">Sep-25</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="21" style="flex-shrink: 0;">Oct-25</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="22" style="flex-shrink: 0;">Nov-25</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="23" style="flex-shrink: 0;">Dec-25</button>
+
+              <span class="year-divider" style="font-size: 0.72rem; color: #4338ca; font-weight: 800; align-self: center; padding: 0 4px; flex-shrink: 0;">2026:</span>
+              <button type="button" class="chip-btn aas-btn" data-aas="24" style="flex-shrink: 0;">Jan-26</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="25" style="flex-shrink: 0;">Feb-26</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="26" style="flex-shrink: 0;">Mar-26</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="27" style="flex-shrink: 0;">Apr-26</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="28" style="flex-shrink: 0;">May-26</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="29" style="flex-shrink: 0;">Jun-26</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="30" style="flex-shrink: 0;">Jul-26</button>
+              <button type="button" class="chip-btn aas-btn" data-aas="31" style="flex-shrink: 0;">Aug-26</button>
+            </div>
+            <button type="button" class="scroll-nav-btn aas-scroll-next" title="Scroll Right" aria-label="Scroll Right" style="background: #eef2ff; border: 1px solid #c7d2fe; color: #4338ca;">&#9654;</button>
+          </div>
+
+          <!-- All 32 Months Dropdown for AAS -->
+          <div id="aasDropdownWrapper" style="margin-top: 8px;">
+            <select id="aasMonthSelect" class="select-control" style="font-size: 0.82rem; padding: 7px 10px; border-color: #c7d2fe;">
+              <option value="none">-- Or Select from List (No AAS) --</option>
+              <optgroup label="2024 Months">
+                <option value="0">January 2024 (Jan-24)</option>
+                <option value="1">February 2024 (Feb-24)</option>
+                <option value="2">March 2024 (Mar-24)</option>
+                <option value="3">April 2024 (Apr-24)</option>
+                <option value="4">May 2024 (May-24)</option>
+                <option value="5">June 2024 (Jun-24)</option>
+                <option value="6">July 2024 (Jul-24)</option>
+                <option value="7">August 2024 (Aug-24)</option>
+                <option value="8">September 2024 (Sep-24)</option>
+                <option value="9">October 2024 (Oct-24)</option>
+                <option value="10">November 2024 (Nov-24)</option>
+                <option value="11">December 2024 (Dec-24)</option>
+              </optgroup>
+              <optgroup label="2025 Months">
+                <option value="12">January 2025 (Jan-25)</option>
+                <option value="13">February 2025 (Feb-25)</option>
+                <option value="14">March 2025 (Mar-25)</option>
+                <option value="15">April 2025 (Apr-25)</option>
+                <option value="16">May 2025 (May-25)</option>
+                <option value="17">June 2025 (Jun-25)</option>
+                <option value="18">July 2025 (Jul-25)</option>
+                <option value="19">August 2025 (Aug-25)</option>
+                <option value="20">September 2025 (Sep-25)</option>
+                <option value="21">October 2025 (Oct-25)</option>
+                <option value="22">November 2025 (Nov-25)</option>
+                <option value="23">December 2025 (Dec-25)</option>
+              </optgroup>
+              <optgroup label="2026 Months">
+                <option value="24">January 2026 (Jan-26)</option>
+                <option value="25">February 2026 (Feb-26)</option>
+                <option value="26">March 2026 (Mar-26)</option>
+                <option value="27">April 2026 (Apr-26)</option>
+                <option value="28">May 2026 (May-26)</option>
+                <option value="29">June 2026 (Jun-26)</option>
+                <option value="30">July 2026 (Jul-26)</option>
+                <option value="31">August 2026 (Aug-26)</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <!-- AAS Sanction Date Selector (Visible when AAS month is selected) -->
+          <div id="aasDateSection" class="aas-date-section" style="display: none; margin-top: 10px; padding: 10px; background: #eef2ff; border: 1.5px dashed #a5b4fc; border-radius: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span id="aasDateTitle" style="font-size: 0.78rem; font-weight: 700; color: #3730a3;">
+                📅 Select AAS Sanction Date (Day):
+              </span>
+              <span id="activeAasDateBadge" style="font-size: 0.72rem; font-weight: 700; color: #4338ca; background: #ffffff; border: 1px solid #c7d2fe; padding: 1px 8px; border-radius: 6px;">
+                1st of Month (Full Month)
+              </span>
+            </div>
+
+            <!-- Horizontal Scrollable Date Chips (1 to 28/29/30/31) -->
+            <div class="incr-scroll-wrapper" style="position: relative; display: flex; align-items: center; gap: 4px; background: #ffffff; border: 1px solid #c7d2fe; border-radius: 8px; padding: 4px 6px;">
+              <button type="button" class="scroll-nav-btn aas-date-prev" title="Scroll Left" aria-label="Scroll Left" style="background: #eef2ff; border: 1px solid #c7d2fe; color: #4338ca;">&#9664;</button>
+              <div class="scrollable-chips aas-date-scroll-strip" id="aasDateChips" style="display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 5px; padding: 2px 2px 5px 2px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; flex-grow: 1;">
+                <!-- Populated dynamically via app.js -->
+              </div>
+              <button type="button" class="scroll-nav-btn aas-date-next" title="Scroll Right" aria-label="Scroll Right" style="background: #eef2ff; border: 1px solid #c7d2fe; color: #4338ca;">&#9654;</button>
+            </div>
+
+            <!-- Date Select Dropdown for quick picking -->
+            <div style="margin-top: 6px; display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+              <label for="aasDateSelect" style="font-size: 0.73rem; color: #4338ca; font-weight: 600;">Or Select Date from List:</label>
+              <select id="aasDateSelect" class="select-control" style="font-size: 0.78rem; padding: 4px 8px; width: auto; min-width: 170px; border-color: #c7d2fe; height: 30px;">
+                <!-- Populated dynamically via app.js -->
+              </select>
+            </div>
+            <div style="font-size: 0.72rem; color: #4f46e5; margin-top: 5px; line-height: 1.3;">
+              ℹ️ Increment takes effect from chosen date. In sanction month, pay is pro-rated (Pre-days + Post-days).
+            </div>
+          </div>
+
+          <!-- AAS Stage Info Card -->
+          <div class="incr-info-card" id="aasInfoCard" style="display: none; margin-top: 10px; border-color: #c7d2fe;">
+            <div class="incr-info-header" style="color: #3730a3;">
+              <span>Automatic Advancement Scheme (AAS) Benefit</span>
+              <span class="aas-badge" id="infoAasMonthBadge">Feb 2025 AAS</span>
+            </div>
+            <div class="incr-info-row">
+              <span>Pay Prior to AAS:</span>
+              <strong id="infoPreAasBasic">₹19,000</strong>
+            </div>
+            <div class="incr-info-row">
+              <span>AAS Scheme Increment:</span>
+              <strong id="infoAasIncrAmount" style="color: #4f46e5;">+₹640 (1 Increment)</strong>
+            </div>
+            <div class="incr-info-row highlight-next">
+              <span>Revised Pay with AAS:</span>
+              <strong id="infoPostAasBasic" style="color: #4338ca;">₹19,640</strong>
+            </div>
+            <div class="incr-info-row" id="infoAasDateRow" style="display: none;">
+              <span>AAS Effective Date:</span>
+              <strong id="infoAasDate" style="color: #3730a3;">15-Jul-2024</strong>
+            </div>
+            <div class="incr-info-row" id="infoAasProrataRow" style="display: none;">
+              <span>Sanction Month Proportionate Basic:</span>
+              <strong id="infoAasProrataBasic" style="color: #065f46;">₹19,351 (Pro-rata)</strong>
+            </div>
+            <div class="incr-info-row" style="font-size: 0.78rem; color: #475569; margin-top: 4px; border-top: 1px dashed #c7d2fe; padding-top: 4px;">
+              <span>AAS Effect Period:</span>
+              <strong id="infoAasSplit" style="color: #3730a3;">Applicable from Feb-2025 onwards</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Employee Category Selection -->
+        <div class="form-group">
+          <label class="form-label">5. Employee Category:</label>
+          <div class="radio-group">
+            <label class="radio-card active" id="labelCps">
+              <input type="radio" name="employeeType" value="CPS" checked>
+              <span class="radio-title">CPS Employee</span>
+              <span class="radio-desc">10% to CPS PRAN Account &amp; 90% Net Cash to Bank</span>
+            </label>
+            <label class="radio-card" id="labelGpf">
+              <input type="radio" name="employeeType" value="GPF">
+              <span class="radio-title">GPF Employee</span>
+              <span class="radio-desc">100% Total Amount to GPF / Net Cash</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 6. Arrears Period & Duration (Jan-2024 to Aug-2026 = 32 Months) -->
+        <div class="form-group" id="durationSection">
+          <label class="form-label" style="display: flex; justify-content: space-between; align-items: center;">
+            <span>6. Arrears Period &amp; Duration (Months):</span>
+            <span class="badge-optional" id="totalMonthsBadge" style="background: #e0f2fe; color: #0369a1; font-weight: 700; padding: 2px 10px; border-radius: 9999px; font-size: 0.78rem;">Jan 2024 to Aug 2026 (32 Months)</span>
+          </label>
+
+          <!-- Arrears Period Highlight Banner -->
+          <div style="padding: 12px; background: #f0fdf4; border-radius: 8px; border: 1.5px solid #a7f3d0; margin-bottom: 10px;">
+            <div style="font-size: 0.82rem; font-weight: 700; color: #065f46; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+              <span>📅 Arrears Calculation Period:</span>
+              <span id="periodDatesBadge" style="font-size: 0.74rem; color: #047857; font-weight: 700; background: #dcfce7; padding: 2px 8px; border-radius: 6px;">Jan-2024 to Aug-2026</span>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 6px; background: #ffffff; padding: 4px 10px; border-radius: 8px; border: 1.5px solid #10b981;">
+                <input type="number" id="monthsInput" value="32" min="1" max="120" style="width: 58px; font-weight: 800; font-size: 1.15rem; color: #065f46; border: none; outline: none; text-align: center;">
+                <span style="font-size: 0.82rem; color: #475569; font-weight: 700;">Months</span>
+              </div>
+              <div style="font-size: 0.76rem; color: #047857; line-height: 1.35;">
+                2024 (12m) + 2025 (12m) + 2026 (8m) = <strong>32 Months Arrears</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Duration Presets -->
+          <div class="month-selector scrollable-chips" id="durationChips">
+            <button type="button" class="month-btn active" data-months="32">32 Mo (Jan 24 - Aug 26)</button>
+            <button type="button" class="month-btn" data-months="24">24 Mo (2024-25)</button>
+            <button type="button" class="month-btn" data-months="12">12 Mo (1 Year)</button>
+            <button type="button" class="month-btn" data-months="6">6 Months</button>
+            <button type="button" class="month-btn" data-months="1">1 Month (Monthly Diff)</button>
+          </div>
+        </div>
+
+        <!-- 7. Year-Wise Surrender Leave (2024, 2025, 2026) -->
+        <div class="form-group surrender-section" style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: var(--radius-md); padding: 14px;">
+          <label class="form-label" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="color: #78350f; font-weight: 800;">7. Surrender Leave (సరెండర్ లీవ్ - ఏడాదికి ఒకసారి):</span>
+            <span id="activeSurrenderBadge" style="font-size: 0.74rem; font-weight: 700; color: #92400e; background: #fef3c7; padding: 2px 8px; border-radius: 6px;">No Surrender Leave</span>
+          </label>
+          <p style="font-size: 0.76rem; color: #78350f; margin-bottom: 10px;">
+            ప్రభుత్వ నిబంధనల ప్రకారం 1st DA Arrears కాలంలో ప్రతి ఏడాదికి (2024, 2025, 2026) ఒకసారి సరెండర్ లీవ్ (15 లేదా 30 రోజులు) ఎన్‌క్యాష్ చేసుకోవచ్చు:
+          </p>
+
+          <!-- 2024 Surrender Leave Card -->
+          <div class="surrender-year-box" style="background: #ffffff; border: 1.5px solid #fde68a; border-radius: 8px; padding: 10px; margin-bottom: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span style="font-size: 0.82rem; font-weight: 800; color: #92400e;">📅 2024 Surrender Leave:</span>
+              <span id="badgeSurr2024" style="font-size: 0.72rem; font-weight: 700; color: #78350f; background: #fef3c7; padding: 2px 8px; border-radius: 4px;">No Leave in 2024</span>
+            </div>
+            <!-- Days pills for 2024 -->
+            <div class="surrender-days-group" id="surrDays2024" style="display: flex; gap: 6px; margin-bottom: 8px;">
+              <button type="button" class="chip-btn surr-day-btn surr-day-2024 active" data-year="2024" data-days="0" style="padding: 4px 10px; font-size: 0.76rem;">No Leave</button>
+              <button type="button" class="chip-btn surr-day-btn surr-day-2024" data-year="2024" data-days="15" style="padding: 4px 10px; font-size: 0.76rem;">15 Days (0.5 Mo)</button>
+              <button type="button" class="chip-btn surr-day-btn surr-day-2024" data-year="2024" data-days="30" style="padding: 4px 10px; font-size: 0.76rem;">30 Days (1.0 Mo)</button>
+            </div>
+            <!-- Scroll strip for 2024 (Jan-24 to Dec-24) -->
+            <div class="incr-scroll-wrapper" style="position: relative; display: flex; align-items: center; gap: 4px; background: #fffdf5; border: 1.5px solid #fde68a; border-radius: 6px; padding: 4px 6px;">
+              <button type="button" class="scroll-nav-btn surr-prev-2024" title="Scroll Left" aria-label="Scroll Left" style="background: #fef3c7; border: 1px solid #fde68a; color: #78350f; height: 30px; width: 26px;">&#9664;</button>
+              <div class="scrollable-chips" id="surrChips2024" style="display: flex; flex-wrap: nowrap; gap: 6px; overflow-x: auto; padding: 2px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; flex-grow: 1;">
+                <button type="button" class="chip-btn surrender-month-btn active" data-year="2024" data-smonth="none" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">No Leave</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="0" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Jan-24</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="1" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Feb-24</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="2" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Mar-24</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="3" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Apr-24</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="4" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">May-24</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="5" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Jun-24</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="6" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Jul-24</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="7" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Aug-24</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="8" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Sep-24</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="9" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Oct-24</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="10" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Nov-24</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2024" data-smonth="11" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Dec-24</button>
+              </div>
+              <button type="button" class="scroll-nav-btn surr-next-2024" title="Scroll Right" aria-label="Scroll Right" style="background: #fef3c7; border: 1px solid #fde68a; color: #78350f; height: 30px; width: 26px;">&#9654;</button>
+            </div>
+            <div id="subtextSurr2024" style="font-size: 0.73rem; color: #b45309; margin-top: 5px; font-weight: 600;"></div>
+          </div>
+
+          <!-- 2025 Surrender Leave Card -->
+          <div class="surrender-year-box" style="background: #ffffff; border: 1.5px solid #fde68a; border-radius: 8px; padding: 10px; margin-bottom: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span style="font-size: 0.82rem; font-weight: 800; color: #92400e;">📅 2025 Surrender Leave:</span>
+              <span id="badgeSurr2025" style="font-size: 0.72rem; font-weight: 700; color: #78350f; background: #fef3c7; padding: 2px 8px; border-radius: 4px;">No Leave in 2025</span>
+            </div>
+            <!-- Days pills for 2025 -->
+            <div class="surrender-days-group" id="surrDays2025" style="display: flex; gap: 6px; margin-bottom: 8px;">
+              <button type="button" class="chip-btn surr-day-btn surr-day-2025 active" data-year="2025" data-days="0" style="padding: 4px 10px; font-size: 0.76rem;">No Leave</button>
+              <button type="button" class="chip-btn surr-day-btn surr-day-2025" data-year="2025" data-days="15" style="padding: 4px 10px; font-size: 0.76rem;">15 Days (0.5 Mo)</button>
+              <button type="button" class="chip-btn surr-day-btn surr-day-2025" data-year="2025" data-days="30" style="padding: 4px 10px; font-size: 0.76rem;">30 Days (1.0 Mo)</button>
+            </div>
+            <!-- Scroll strip for 2025 (Jan-25 to Dec-25) -->
+            <div class="incr-scroll-wrapper" style="position: relative; display: flex; align-items: center; gap: 4px; background: #fffdf5; border: 1.5px solid #fde68a; border-radius: 6px; padding: 4px 6px;">
+              <button type="button" class="scroll-nav-btn surr-prev-2025" title="Scroll Left" aria-label="Scroll Left" style="background: #fef3c7; border: 1px solid #fde68a; color: #78350f; height: 30px; width: 26px;">&#9664;</button>
+              <div class="scrollable-chips" id="surrChips2025" style="display: flex; flex-wrap: nowrap; gap: 6px; overflow-x: auto; padding: 2px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; flex-grow: 1;">
+                <button type="button" class="chip-btn surrender-month-btn active" data-year="2025" data-smonth="none" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">No Leave</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="12" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Jan-25</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="13" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Feb-25</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="14" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Mar-25</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="15" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Apr-25</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="16" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">May-25</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="17" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Jun-25</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="18" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Jul-25</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="19" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Aug-25</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="20" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Sep-25</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="21" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Oct-25</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="22" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Nov-25</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2025" data-smonth="23" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Dec-25</button>
+              </div>
+              <button type="button" class="scroll-nav-btn surr-next-2025" title="Scroll Right" aria-label="Scroll Right" style="background: #fef3c7; border: 1px solid #fde68a; color: #78350f; height: 30px; width: 26px;">&#9654;</button>
+            </div>
+            <div id="subtextSurr2025" style="font-size: 0.73rem; color: #b45309; margin-top: 5px; font-weight: 600;"></div>
+          </div>
+
+          <!-- 2026 Surrender Leave Card -->
+          <div class="surrender-year-box" style="background: #ffffff; border: 1.5px solid #fde68a; border-radius: 8px; padding: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span style="font-size: 0.82rem; font-weight: 800; color: #92400e;">📅 2026 Surrender Leave:</span>
+              <span id="badgeSurr2026" style="font-size: 0.72rem; font-weight: 700; color: #78350f; background: #fef3c7; padding: 2px 8px; border-radius: 4px;">No Leave in 2026</span>
+            </div>
+            <!-- Days pills for 2026 -->
+            <div class="surrender-days-group" id="surrDays2026" style="display: flex; gap: 6px; margin-bottom: 8px;">
+              <button type="button" class="chip-btn surr-day-btn surr-day-2026 active" data-year="2026" data-days="0" style="padding: 4px 10px; font-size: 0.76rem;">No Leave</button>
+              <button type="button" class="chip-btn surr-day-btn surr-day-2026" data-year="2026" data-days="15" style="padding: 4px 10px; font-size: 0.76rem;">15 Days (0.5 Mo)</button>
+              <button type="button" class="chip-btn surr-day-btn surr-day-2026" data-year="2026" data-days="30" style="padding: 4px 10px; font-size: 0.76rem;">30 Days (1.0 Mo)</button>
+            </div>
+            <!-- Scroll strip for 2026 (Jan-26 to Aug-26) -->
+            <div class="incr-scroll-wrapper" style="position: relative; display: flex; align-items: center; gap: 4px; background: #fffdf5; border: 1.5px solid #fde68a; border-radius: 6px; padding: 4px 6px;">
+              <button type="button" class="scroll-nav-btn surr-prev-2026" title="Scroll Left" aria-label="Scroll Left" style="background: #fef3c7; border: 1px solid #fde68a; color: #78350f; height: 30px; width: 26px;">&#9664;</button>
+              <div class="scrollable-chips" id="surrChips2026" style="display: flex; flex-wrap: nowrap; gap: 6px; overflow-x: auto; padding: 2px; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; flex-grow: 1;">
+                <button type="button" class="chip-btn surrender-month-btn active" data-year="2026" data-smonth="none" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">No Leave</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2026" data-smonth="24" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Jan-26</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2026" data-smonth="25" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Feb-26</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2026" data-smonth="26" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Mar-26</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2026" data-smonth="27" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Apr-26</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2026" data-smonth="28" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">May-26</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2026" data-smonth="29" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Jun-26</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2026" data-smonth="30" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Jul-26</button>
+                <button type="button" class="chip-btn surrender-month-btn" data-year="2026" data-smonth="31" style="flex-shrink: 0; font-size: 0.76rem; padding: 4px 10px;">Aug-26</button>
+              </div>
+              <button type="button" class="scroll-nav-btn surr-next-2026" title="Scroll Right" aria-label="Scroll Right" style="background: #fef3c7; border: 1px solid #fde68a; color: #78350f; height: 30px; width: 26px;">&#9654;</button>
+            </div>
+            <div id="subtextSurr2026" style="font-size: 0.73rem; color: #b45309; margin-top: 5px; font-weight: 600;"></div>
+          </div>
+
+          <!-- Surrender Extra Total Amount Badge -->
+          <div id="surrenderAmountBadge" style="margin-top: 10px; font-size: 0.84rem; color: #166534; background: #dcfce7; padding: 8px 12px; border-radius: 6px; font-weight: 700; border: 1px solid #86efac; display: flex; justify-content: space-between; align-items: center;">
+            <span>Total Surrender Leave Arrears (2024 + 2025 + 2026):</span>
+            <strong id="surrenderAmountDisplay">+₹0</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Dynamic Calculation Results -->
+      <div class="card results-card" id="resultsCard">
+        <h2 class="card-title">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+          </svg>
+          Calculation Summary &amp; Statement
+        </h2>
+
+        <!-- Mobile Navigation: Jump to Options / Table -->
+        <div class="quick-jump-wrapper" style="margin-bottom: 14px;">
+          <a href="#calculatorCard" class="btn-jump-action">
+            ⚙️ Select Basic Pay &amp; Options ↓
+          </a>
+          <a href="#monthWiseCard" class="btn-jump-action">
+            📅 Month-Wise Table ↓
+          </a>
+        </div>
+
+        <!-- Hero Banner Summary -->
+        <div class="results-banner">
+          <div class="banner-row">
+            <div>
+              <div class="banner-label" id="heroGrossLabel">Total 2 DAs Arrears Difference (32 Months):</div>
+              <div class="banner-value" id="heroMonthlyDiff">₹0</div>
+              <div class="banner-subvalue" id="heroBasicDisplay">Basic Pay: ₹19,000 | 1st DA (+3.64%) &amp; 2nd DA (+2.73%)</div>
+            </div>
+            <div style="text-align: right;">
+              <div class="banner-label" id="heroNetLabel">Total Net Cash Payable (90%):</div>
+              <div class="banner-value" id="heroNetCash" style="color: #6ee7b7;">₹0</div>
+              <div class="banner-subvalue" id="heroDurationBadge">32 Months Arrears</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metrics Box Grid -->
+        <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
+          <div class="metric-box">
+            <div class="metric-label">Basic Pay</div>
+            <div class="metric-val" id="metricBasic">₹19,000</div>
+            <div class="metric-footnote">Sep-2026 Pay</div>
+          </div>
+
+          <div class="metric-box">
+            <div class="metric-label">Drawn DA (33.67%)</div>
+            <div class="metric-val" id="metricDrawnDA">₹6,397</div>
+            <div class="metric-footnote">Baseline Drawn</div>
+          </div>
+
+          <div class="metric-box" style="background: #ecfdf5; border-color: #a7f3d0;">
+            <div class="metric-label" style="color: #065f46;">1st DA (37.31%)</div>
+            <div class="metric-val" id="metricDa1" style="color: #047857;">₹7,089</div>
+            <div class="metric-footnote" style="color: #059669; font-weight: 700;">Diff: +3.64%</div>
+          </div>
+
+          <div class="metric-box" style="background: #eff6ff; border-color: #bfdbfe;">
+            <div class="metric-label" style="color: #1e40af;">2nd DA (40.04%)</div>
+            <div class="metric-val" id="metricDa2" style="color: #0369a1;">₹7,608</div>
+            <div class="metric-footnote" style="color: #0284c7; font-weight: 700;">Diff: +2.73%</div>
+          </div>
+
+          <div class="metric-box highlight-diff">
+            <div class="metric-label">Total Diff (Jul-24+)</div>
+            <div class="metric-val" id="metricDiff">₹1,211</div>
+            <div class="metric-footnote">+6.37% (3.64+2.73)</div>
+          </div>
+
+          <div class="metric-box" style="border: 1.5px solid #fde68a; background: #fffbeb;">
+            <div class="metric-label" style="color: #92400e;">Surrender Leave</div>
+            <div class="metric-val" id="metricSurrender" style="color: #b45309;">₹0</div>
+            <div class="metric-footnote" id="metricSurrenderFootnote">Extra encashment</div>
+          </div>
+
+          <div class="metric-box highlight-net">
+            <div class="metric-label" id="lblMetricNet">Net Cash Payable</div>
+            <div class="metric-val" id="metricNet">₹0</div>
+            <div class="metric-footnote" id="fnMetricNet">Credit to Bank (90%)</div>
+          </div>
+        </div>
+
+        <!-- Arrears Summary Box -->
+        <div class="arrears-summary-box" id="arrearsSummaryBox" style="display: block;">
+          <div class="arrears-header">
+            <span class="arrears-title">📑 2 DAs Arrears Statement (1st &amp; 2nd DA)</span>
+            <span class="arrears-badge" id="arrearsBadge">32 Months</span>
+          </div>
+          <div class="arrears-rows">
+            <div class="arrears-row" id="arrDa1DiffRow">
+              <span>Monthly 1st DA Diff (Jan-Jun 24 • +3.64%):</span>
+              <strong id="arrDa1MonthlyDiff">₹692 / mo</strong>
+            </div>
+            <div class="arrears-row" id="arrDa2DiffRow">
+              <span>Monthly 2 DAs Combined Diff (Jul-24+ • +6.37%):</span>
+              <strong id="arrDa2MonthlyDiff">₹1,211 / mo</strong>
+            </div>
+            <div class="arrears-row">
+              <span>Arrears Period Duration:</span>
+              <strong id="arrDurationText">32 Months (Jan-2024 to Aug-2026)</strong>
+            </div>
+            <div class="arrears-row" style="background: #f0fdf4; padding: 6px 8px; border-radius: 6px; border: 1px dashed #a7f3d0;">
+              <span>1st DA Component Total (Jan-24 to Aug-26 • 32 Mo @ +3.64%):</span>
+              <strong id="arrDa1Total" style="color: #065f46;">₹0</strong>
+            </div>
+            <div class="arrears-row" style="background: #f0f9ff; padding: 6px 8px; border-radius: 6px; border: 1px dashed #bae6fd;">
+              <span>2nd DA Component Total (Jul-24 to Aug-26 • 26 Mo @ +2.73%):</span>
+              <strong id="arrDa2Total" style="color: #0369a1;">₹0</strong>
+            </div>
+            <div class="arrears-row" id="arrPreIncrRow" style="display: none; font-size: 0.82rem; color: #475569;">
+              <span id="arrPreIncrLabel">2024 Period:</span>
+              <strong id="arrPreIncrVal">₹0</strong>
+            </div>
+            <div class="arrears-row" id="arrPostIncrRow" style="display: none; font-size: 0.82rem; color: #475569;">
+              <span id="arrPostIncrLabel">2025-26 Period:</span>
+              <strong id="arrPostIncrVal">₹0</strong>
+            </div>
+            <div class="arrears-row" id="arrSurrenderRow" style="display: none; background: #fffbeb; padding: 6px 8px; border-radius: 6px; border: 1px dashed #fde68a;">
+              <span id="arrSurrenderLabel" style="color: #92400e;">🏖️ Surrender Leave Encashment:</span>
+              <strong id="arrSurrenderVal" style="color: #b45309;">+₹0</strong>
+            </div>
+            <div class="arrears-row" style="border-top: 1.5px dashed #86efac; padding-top: 6px; margin-top: 4px;">
+              <span style="font-weight: 800; font-size: 0.96rem;">Total Gross 2 DAs Arrears:</span>
+              <strong id="arrTotalGross" style="font-size: 1.15rem; color: #064e3b;">₹0</strong>
+            </div>
+            <div class="arrears-row" id="arrCpsRow">
+              <span>Total Deduction to CPS PRAN (10%):</span>
+              <strong id="arrTotalCPS" style="color: #0369a1;">₹0</strong>
+            </div>
+            <div class="arrears-row">
+              <span id="arrNetTitle">Total Net Cash to Bank (90%):</span>
+              <strong id="arrTotalNet" style="color: #15803d; font-size: 1.25rem;">₹0</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons" style="margin-top: 20px;">
+          <button type="button" class="btn btn-primary" id="btnPrint">
+            🖨️ Print Statement / Save PDF
+          </button>
+          <button type="button" class="btn btn-secondary" id="btnCopy">
+            📋 Copy Statement Text
+          </button>
+          <button type="button" class="btn btn-secondary" id="btnReset">
+            🔄 Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Month-Wise Arrears Period Schedule Table Section -->
+    <div class="card month-wise-card" id="monthWiseCard" style="margin-top: 24px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+        <h2 class="card-title" style="margin-bottom: 0;">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+          </svg>
+          Month-Wise 2 DAs Arrears Breakdown Table
+        </h2>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="badge-optional" id="tablePeriodBadge" style="background: #e0f2fe; color: #0369a1; font-weight: 700; padding: 4px 12px; border-radius: 9999px; font-size: 0.8rem;">
+            Jan-2024 to Aug-2026 (32 Months)
+          </span>
+          <button type="button" class="btn btn-secondary" id="btnTablePrint" style="padding: 6px 12px; font-size: 0.78rem;">
+            🖨️ Print Table
+          </button>
+        </div>
+      </div>
+
+      <p style="font-size: 0.8rem; color: #475569; margin-bottom: 12px;">
+        Month-by-month calculation of 1st DA arrears (+3.64%), 2nd DA arrears (+2.73% w.e.f Jul-24), Annual Grade Increment (AGI) step-up, and Surrender Leave encashment:
+      </p>
+
+      <div class="table-responsive" style="overflow-x: auto; border: 1px solid #cbd5e1; border-radius: 8px; max-height: 560px; overflow-y: auto;">
+        <table class="month-table" id="monthWiseTable" style="width: 100%; border-collapse: collapse; font-size: 0.80rem;">
+          <thead>
+            <tr style="background: #047857; color: #ffffff; text-align: right; position: sticky; top: 0; z-index: 3;">
+              <th style="padding: 9px 6px; text-align: center; width: 36px;">#</th>
+              <th style="padding: 9px 8px; text-align: left;">Month &amp; Year</th>
+              <th style="padding: 9px 8px;">Basic Pay (₹)</th>
+              <th style="padding: 9px 8px;">Drawn DA<br><span style="font-weight: normal; font-size: 0.68rem; opacity: 0.9;">(33.67%)</span></th>
+              <th style="padding: 9px 8px;">Sanctioned DA<br><span style="font-weight: normal; font-size: 0.68rem; opacity: 0.9;">(37.31%/40.04%)</span></th>
+              <th style="padding: 9px 8px; background: #065f46;">1st DA Diff<br><span style="font-weight: normal; font-size: 0.68rem; opacity: 0.9;">(+3.64%)</span></th>
+              <th style="padding: 9px 8px; background: #0284c7;">2nd DA Diff<br><span style="font-weight: normal; font-size: 0.68rem; opacity: 0.9;">(+2.73%)</span></th>
+              <th style="padding: 9px 8px; background: #064e3b;">Total Diff<br><span style="font-weight: normal; font-size: 0.68rem; opacity: 0.9;">(Gross)</span></th>
+              <th style="padding: 9px 8px;" id="thCpsCol">CPS (10%)<br><span style="font-weight: normal; font-size: 0.68rem; opacity: 0.9;">PRAN</span></th>
+              <th style="padding: 9px 8px; background: #15803d;" id="thNetCol">Net Cash<br><span style="font-weight: normal; font-size: 0.68rem; opacity: 0.9;">(90% Bank)</span></th>
+              <th style="padding: 9px 8px; text-align: left;">Remarks</th>
+            </tr>
+          </thead>
+          <tbody id="monthWiseTableBody">
+            <!-- Dynamically populated via app.js -->
+          </tbody>
+          <tfoot id="monthWiseTableFoot" style="position: sticky; bottom: 0; z-index: 2; background: #f8fafc; font-weight: 800; border-top: 2px solid #047857;">
+            <!-- Dynamically populated via app.js -->
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <footer class="app-footer">
+      <p>
+        Reference: <strong>Telangana Govt. 2 DAs Difference Table (1st DA 37.31% &amp; 2nd DA 40.04% • RPS-2020)</strong>
+      </p>
+      <p style="margin-top: 4px; font-size: 0.78rem; color: #64748b;">
+        Official TS Revised Pay Scales 2020 (RPS-2020) Treasury Scale Formulations • Formulated by Nancharla Prudhvi, Senior Accountant, District Treasury, Khammam
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">✅ Copied to clipboard!</div>
+
+  <!-- Script Files -->
+  <script src="da-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
