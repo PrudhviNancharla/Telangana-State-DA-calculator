@@ -900,10 +900,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <thead>
               <tr>
                 <th style="text-align: left;">DA వివరాలు (Particulars)</th>
-                <th style="text-align: center;">వాయిదాల సంఖ్య (Installments)</th>
-                <th style="text-align: right; color: #6ee7b7;">చేతికి నగదు (Net Cash 90%)</th>
-                <th style="text-align: right; color: #fde047;">CPS PRAN (10%)</th>
-                <th style="text-align: right;">నెలకు మొత్తం వాయిదా (Total)</th>
+                <th style="text-align: center;">వాయిదాల వ్యవధి (Duration)</th>
+                <th style="text-align: right;">నెలకు మొత్తం<br><span style="font-size:0.70rem; font-weight:normal; opacity:0.85;">(Monthly Gross)</span></th>
+                <th style="text-align: right; color: #fde047;">CPS 10%<br><span style="font-size:0.70rem; font-weight:normal; opacity:0.85;">(PRAN జమ)</span></th>
+                <th style="text-align: right; color: #6ee7b7; background: rgba(5, 150, 105, 0.28); border-left: 1px solid rgba(255,255,255,0.2);">చేతికి వచ్చే నగదు వాయిదా<br><span style="font-size:0.72rem; font-weight:bold; color: #a7f3d0;">(Cash 90% Installment)</span></th>
               </tr>
             </thead>
             <tbody>
@@ -918,15 +918,15 @@ document.addEventListener('DOMContentLoaded', () => {
                   <div style="font-size: 0.72rem; opacity: 0.85;">(1/33 వాయిదా)</div>
                 </td>
                 <td style="text-align: right;">
-                  <strong class="inst-cash" style="font-size: 1.25rem;">₹${formatINR(da1InstCash)}</strong>
+                  <span class="inst-tot-pill">
+                    <strong class="inst-tot" style="font-size: 1.15rem;">₹${formatINR(da1InstDiff)}</strong>
+                  </span>
                 </td>
                 <td style="text-align: right;">
                   <strong class="inst-cps" style="font-size: 1.15rem;">₹${formatINR(da1InstCps)}</strong>
                 </td>
-                <td style="text-align: right;">
-                  <span class="inst-tot-pill">
-                    <strong class="inst-tot" style="font-size: 1.25rem;">₹${formatINR(da1InstDiff)}</strong>
-                  </span>
+                <td style="text-align: right; background: rgba(5, 150, 105, 0.16); border-left: 1px solid rgba(255,255,255,0.15);">
+                  <strong class="inst-cash" style="font-size: 1.30rem; color: #6ee7b7;">₹${formatINR(da1InstCash)}</strong>
                 </td>
               </tr>
 
@@ -941,15 +941,15 @@ document.addEventListener('DOMContentLoaded', () => {
                   <div style="font-size: 0.72rem; opacity: 0.85;">(1/27 వాయిదా)</div>
                 </td>
                 <td style="text-align: right;">
-                  <strong class="inst-cash" style="font-size: 1.25rem;">₹${formatINR(da2InstCash)}</strong>
+                  <span class="inst-tot-pill">
+                    <strong class="inst-tot" style="font-size: 1.15rem;">₹${formatINR(da2InstDiff)}</strong>
+                  </span>
                 </td>
                 <td style="text-align: right;">
                   <strong class="inst-cps" style="font-size: 1.15rem;">₹${formatINR(da2InstCps)}</strong>
                 </td>
-                <td style="text-align: right;">
-                  <span class="inst-tot-pill">
-                    <strong class="inst-tot" style="font-size: 1.25rem;">₹${formatINR(da2InstDiff)}</strong>
-                  </span>
+                <td style="text-align: right; background: rgba(5, 150, 105, 0.16); border-left: 1px solid rgba(255,255,255,0.15);">
+                  <strong class="inst-cash" style="font-size: 1.30rem; color: #6ee7b7;">₹${formatINR(da2InstCash)}</strong>
                 </td>
               </tr>
 
@@ -957,21 +957,23 @@ document.addEventListener('DOMContentLoaded', () => {
               <tr class="install-table-comb-row">
                 <td style="text-align: left;">
                   <strong style="color: #fde047; font-size: 0.95rem;">⚡ రెండు DA లు కలిపి</strong>
-                  <div style="font-size: 0.74rem; color: #ffffff; opacity: 0.9; font-weight: 600;">(Combined Monthly Installment)</div>
+                  <div style="font-size: 0.74rem; color: #ffffff; opacity: 0.9; font-weight: 600;">(Combined Monthly)</div>
                 </td>
                 <td style="text-align: center;">
                   <strong style="color: #fde047; font-size: 0.95rem;">Jul 24 - Sep 26</strong>
-                  <div style="font-size: 0.72rem; opacity: 0.9;">(27 నెలలు కలిపి వస్తుంది)</div>
+                  <div style="font-size: 0.72rem; opacity: 0.9;">(27 నెలలు ఒకేసారి)</div>
                 </td>
                 <td style="text-align: right;">
-                  <strong class="inst-cash" style="font-size: 1.35rem; color: #6ee7b7;">₹${formatINR(combInstCash)}</strong>
+                  <span class="inst-tot-pill">
+                    <strong class="inst-tot" style="font-size: 1.25rem;">₹${formatINR(combInstDiff)}</strong>
+                  </span>
                 </td>
                 <td style="text-align: right;">
                   <strong class="inst-cps" style="font-size: 1.20rem; color: #fde047;">₹${formatINR(combInstCps)}</strong>
                 </td>
-                <td style="text-align: right;">
+                <td style="text-align: right; background: rgba(5, 150, 105, 0.28); border-left: 1.5px solid rgba(255,255,255,0.25);">
                   <span class="inst-tot-pill inst-tot-pill--comb">
-                    <strong style="font-size: 1.40rem; color: #ffffff; font-weight: 900;">₹${formatINR(combInstDiff)}</strong>
+                    <strong style="font-size: 1.45rem; color: #6ee7b7; font-weight: 900;">₹${formatINR(combInstCash)}</strong>
                   </span>
                 </td>
               </tr>
