@@ -10,9 +10,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- PWA & Mobile Web App Settings -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1e3a8a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TS DA Calc">
+  <link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
   <div class="container">
+
+    <!-- PWA Install App Top Bar -->
+    <div id="pwaInstallBanner" class="pwa-install-banner" style="display: flex;">
+      <div class="pwa-banner-left">
+        <img src="icon-192.png" alt="TS DA App" class="pwa-app-icon">
+        <div class="pwa-banner-info">
+          <div class="pwa-banner-title">TS DA Calculator Mobile App</div>
+          <div class="pwa-banner-sub">మీ ఫోన్‌లో యాప్‌గా ఇన్‌స్టాల్ చేసుకోండి (1-Tap Install &amp; Offline)</div>
+        </div>
+      </div>
+      <button type="button" id="pwaInstallBtn" class="pwa-btn-install">
+        📲 Install App
+      </button>
+    </div>
 
     <!-- Header Section -->
     <header class="app-header">
@@ -471,6 +492,10 @@
         <button type="button" class="btn-action btn-share" id="btnShare">
           <span>📲</span>
           <span>Share / Copy Summary</span>
+        </button>
+        <button type="button" class="btn-action btn-install-app" id="pwaActionInstallBtn" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: #ffffff; border: 1.5px solid #1e3a8a;">
+          <span>📱</span>
+          <span>Install Mobile App (యాప్)</span>
         </button>
         <button type="button" class="btn-action btn-reset" id="btnReset">
           <span>🔄</span>

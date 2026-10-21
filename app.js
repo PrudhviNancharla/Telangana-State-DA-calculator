@@ -1318,4 +1318,57 @@ document.addEventListener('DOMContentLoaded', () => {
       basicpay.focus({ preventScroll: true });
     }
   }, 350);
+
+  // --- PWA Installation & Service Worker Integration ---
+  const pwaInstallBanner = document.getElementById('pwaInstallBanner');
+  const pwaInstallBtn = document.getElementById('pwaInstallBtn');
+  const pwaActionInstallBtn = document.getElementById('pwaActionInstallBtn');
+  let deferredPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (pwaInstallBanner) pwaInstallBanner.style.display = 'flex';
+  });
+
+  function triggerPwaInstall() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          if (pwaInstallBanner) pwaInstallBanner.style.display = 'none';
+        }
+        deferredPrompt = null;
+      });
+    } else {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      if (isIOS) {
+        alert("📲 iPhone/iPad లో యాప్‌లా ఇన్‌స్టాల్ చేసుకోవడానికి:\n\n1. Safari బ్రౌజర్‌లో కింద ఉన్న 'Share' (షేర్) బటన్ నొక్కండి.\n2. కిందకి స్క్రోల్ చేసి 'Add to Home Screen' ఎంచుకోండి.\n3. పైన 'Add' నొక్కండి. యాప్ మీ హోమ్ స్క్రీన్‌పై కనిపిస్తుంది!");
+      } else {
+        alert("📲 మొబైల్ / కంప్యూటర్‌లో యాప్‌లా ఇన్‌స్టాల్ చేసుకోవడానికి:\n\n1. మీ బ్రౌజర్ కుడివైపు పైన ఉన్న 3 చుక్కలు (⋮) నొక్కండి.\n2. 'Install App' లేదా 'Add to Home screen' (హోమ్ స్క్రీన్‌కు జోడించు) ఎంచుకోండి.\n3. 'Install' నొక్కండి. వెంటనే యాప్ రూపంలో మీ మొబైల్ లేదా కంప్యూటర్‌లో ఇన్‌స్టాల్ అవుతుంది!");
+      }
+    }
+  }
+
+  if (pwaInstallBtn) {
+    pwaInstallBtn.addEventListener('click', triggerPwaInstall);
+  }
+  if (pwaActionInstallBtn) {
+    pwaActionInstallBtn.addEventListener('click', triggerPwaInstall);
+  }
+
+  window.addEventListener('appinstalled', () => {
+    if (pwaInstallBanner) pwaInstallBanner.style.display = 'none';
+    deferredPrompt = null;
+  });
 });
+
+// Register Service Worker for Offline & Mobile App performance
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then((reg) => console.log('ServiceWorker registered:', reg.scope))
+      .catch((err) => console.log('ServiceWorker registration info:', err));
+  });
+}
+
