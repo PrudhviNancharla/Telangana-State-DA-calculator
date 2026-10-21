@@ -14,7 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const activeBasicDisplay = document.getElementById('activeBasicDisplay');
 
   const incmonth = document.getElementById('incmonth');
+  const surrenderContainer = document.getElementById('surrender-leave-container');
+  const aasSectionContainer = document.getElementById('aas-section-container');
   const aas = document.getElementById('aas');
+  const aasYearDiv = document.getElementById('aas-year-div');
+  const aasyear = document.getElementById('aasyear');
   const aasMonthDiv = document.getElementById('aas-month-div');
   const aasmonth = document.getElementById('aasmonth');
   const aasDayDiv = document.getElementById('aas-day-div');
@@ -160,7 +164,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- 2. AAS Dynamic Days Generation ---
+  // --- 2. AAS Dynamic Month & Days Generation ---
+  function updateAasMonths() {
+    const selectedYear = parseInt(aasyear.value, 10);
+    if (selectedYear && (selectedYear === 2024 || selectedYear === 2025 || selectedYear === 2026)) {
+      aasmonth.innerHTML = `<option value="0">--SELECT AAS ${selectedYear} MONTH--</option>`;
+      const yearMonths = MONTHS_33.filter(m => m.year === selectedYear);
+      yearMonths.forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m.id;
+        opt.dataset.month = m.ym;
+        opt.textContent = `${m.name} (${m.days} days)`;
+        aasmonth.appendChild(opt);
+      });
+      aasMonthDiv.style.display = 'block';
+      setTimeout(() => {
+        aasMonthDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        aasmonth.focus({ preventScroll: true });
+      }, 100);
+    } else {
+      aasmonth.innerHTML = '<option value="0">--SELECT AAS MONTH--</option>';
+      aasMonthDiv.style.display = 'none';
+      aasDayDiv.style.display = 'none';
+      aasmonth.value = '0';
+      aasday.value = '1';
+    }
+  }
+
   function updateAasDays() {
     const selectedMonthId = parseInt(aasmonth.value, 10);
     if (selectedMonthId >= 1 && selectedMonthId <= 33) {
@@ -174,6 +204,10 @@ document.addEventListener('DOMContentLoaded', () => {
         aasday.appendChild(opt);
       }
       aasDayDiv.style.display = 'block';
+      setTimeout(() => {
+        aasDayDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        aasday.focus({ preventScroll: true });
+      }, 100);
     } else {
       aasday.innerHTML = '<option value="1">1st of Month</option>';
       aasDayDiv.style.display = 'none';
@@ -195,6 +229,11 @@ document.addEventListener('DOMContentLoaded', () => {
         sy2025.item.style.display = 'block';
         sy2025.chip.classList.add('year-chip--active');
         sy2024.chip.classList.add('year-chip--completed');
+        // Smoothly reveal & scroll to 2025
+        setTimeout(() => {
+          sy2025.item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          if (sy2025.slSelect) sy2025.slSelect.focus({ preventScroll: true });
+        }, 120);
       } else {
         if (val2024 !== '1' && m2024 === '0' && sy2025.slSelect.value === '1' && sy2026.slSelect.value === '1') {
           sy2025.item.style.display = 'none';
@@ -212,6 +251,11 @@ document.addEventListener('DOMContentLoaded', () => {
         sy2026.item.style.display = 'block';
         sy2026.chip.classList.add('year-chip--active');
         sy2025.chip.classList.add('year-chip--completed');
+        // Smoothly reveal & scroll to 2026
+        setTimeout(() => {
+          sy2026.item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          if (sy2026.slSelect) sy2026.slSelect.focus({ preventScroll: true });
+        }, 120);
       } else {
         if (val2025 !== '1' && m2025 === '0' && sy2026.slSelect.value === '1') {
           sy2026.item.style.display = 'none';
@@ -221,8 +265,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const val2026 = sy2026.slSelect.value;
       const m2026 = sy2026.monthSelect.value;
-      if ((val2026 === '1') || ((val2026 === '2' || val2026 === '3') && m2026 !== '0')) {
+      const is2026Answered = (val2026 === '1') || ((val2026 === '2' || val2026 === '3') && m2026 !== '0');
+      if (is2026Answered) {
         sy2026.chip.classList.add('year-chip--completed');
+        // When Surrender Leave 2026 is answered, REVEAL AAS section!
+        if (aasSectionContainer) {
+          aasSectionContainer.style.display = 'block';
+          setTimeout(() => {
+            aasSectionContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (aas) aas.focus({ preventScroll: true });
+          }, 150);
+        }
       }
     }
 
@@ -233,11 +286,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const val = sy.slSelect.value;
         if (val === '2' || val === '3') {
           sy.monthDiv.style.display = 'block';
+          setTimeout(() => {
+            sy.monthDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (sy.monthSelect) sy.monthSelect.focus({ preventScroll: true });
+          }, 80);
         } else {
           sy.monthDiv.style.display = 'none';
           sy.monthSelect.value = '0';
+          updateProgressiveYears();
         }
-        updateProgressiveYears();
         calculateAndRender();
       });
 
@@ -774,18 +831,42 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
-  incmonth.addEventListener('change', calculateAndRender);
+  incmonth.addEventListener('change', () => {
+    calculateAndRender();
+    // When Increment Month is selected, REVEAL & SCROLL TO SURRENDER LEAVE 2024!
+    if (surrenderContainer) {
+      surrenderContainer.style.display = 'block';
+      setTimeout(() => {
+        const item2024 = document.getElementById('sl-item-2024') || surrenderContainer;
+        item2024.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        const sl2024 = document.getElementById('sl2024');
+        if (sl2024) sl2024.focus({ preventScroll: true });
+      }, 150);
+    }
+  });
+
   cpsorgpf.addEventListener('change', calculateAndRender);
 
   aas.addEventListener('change', () => {
     if (aas.value === '2') {
-      aasMonthDiv.style.display = 'block';
+      aasYearDiv.style.display = 'block';
+      setTimeout(() => {
+        aasYearDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        aasyear.focus({ preventScroll: true });
+      }, 100);
     } else {
+      aasYearDiv.style.display = 'none';
       aasMonthDiv.style.display = 'none';
       aasDayDiv.style.display = 'none';
+      aasyear.value = '0';
       aasmonth.value = '0';
       aasday.value = '1';
     }
+    calculateAndRender();
+  });
+
+  aasyear.addEventListener('change', () => {
+    updateAasMonths();
     calculateAndRender();
   });
 
@@ -866,9 +947,13 @@ document.addEventListener('DOMContentLoaded', () => {
     customPayWrapper.style.display = 'none';
     customPayInput.value = '';
     incmonth.value = '0';
+    if (surrenderContainer) surrenderContainer.style.display = 'none';
+    if (aasSectionContainer) aasSectionContainer.style.display = 'none';
     aas.value = '1';
-    aasMonthDiv.style.display = 'none';
-    aasDayDiv.style.display = 'none';
+    if (aasYearDiv) aasYearDiv.style.display = 'none';
+    if (aasMonthDiv) aasMonthDiv.style.display = 'none';
+    if (aasDayDiv) aasDayDiv.style.display = 'none';
+    if (aasyear) aasyear.value = '0';
     aasmonth.value = '0';
     aasday.value = '1';
     cpsorgpf.value = '1';

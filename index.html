@@ -199,8 +199,8 @@
 
           </div><!-- /form-grid -->
 
-          <!-- 3. Surrender Leave Fields (Displayed BEFORE AAS) -->
-          <div id="surrender-leave-container" style="margin-top: 16px;">
+          <!-- 3. Surrender Leave Fields (Displayed AFTER Increment Month selection) -->
+          <div id="surrender-leave-container" style="display: none; margin-top: 16px;">
             <div class="sl-section-header">
               <div class="sl-header-left">
                 <span class="sl-header-icon">🏖️</span>
@@ -218,7 +218,7 @@
               </div>
             </div>
 
-            <!-- YEAR 1: 2024 (Always visible first) -->
+            <!-- YEAR 1: 2024 (Always visible first inside surrender container) -->
             <div class="surrender-year-card" id="sl-item-2024">
               <div class="sl-card-top">
                 <span class="sl-year-badge badge-2024">📅 2024 సంవత్సరం (Jan - Dec 2024)</span>
@@ -306,11 +306,11 @@
             </div>
           </div><!-- /surrender-leave-container -->
 
-          <!-- 4. AAS Section (Displayed AFTER Surrender Leave) -->
-          <div class="aas-section-container" style="margin-top: 16px; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 14px;">
+          <!-- 4. AAS Section (Displayed AFTER Surrender Leave is completed) -->
+          <div class="aas-section-container" id="aas-section-container" style="display: none; margin-top: 16px; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 14px;">
             <div class="form-group" style="margin-bottom: 0;">
               <label for="aas" style="display: flex; flex-direction: column; gap: 2px;">
-                <span style="font-weight: 800; font-size: 0.95rem; color: #1e3a8a;">👉 4. AAS (6/12/18/24 Yrs Scale) Taken</span>
+                <span style="font-weight: 800; font-size: 0.95rem; color: #1e3a8a;">👉 4. Automatic Advancement Scheme (AAS 6/12/18/24 Yrs Scale) Taken</span>
                 <span style="font-size: 0.76rem; color: #047857; font-weight: 600;">(స్పెషల్ గ్రేడ్ / AAS తీసుకున్నారా?)</span>
               </label>
               <select name="aas" id="aas" class="form-control" style="font-size: 0.95rem; font-weight: 600; height: 48px; margin-top: 6px;">
@@ -319,20 +319,34 @@
               </select>
             </div>
 
-            <!-- Smart AAS: Month first, then days based on selected month -->
+            <!-- AAS Year Selection (Step 1 of AAS) -->
+            <div class="form-group aasdiv" id="aas-year-div" style="display: none; background: #eef2ff; padding: 14px; border-radius: 10px; border: 1.5px solid #c7d2fe; margin-top: 12px;">
+              <label for="aasyear" style="font-weight: 800; font-size: 0.90rem; color: #3730a3;">
+                Select AAS Year (AAS మంజూరైన సంవత్సరం):
+              </label>
+              <select name="aasyear" id="aasyear" class="form-control" style="font-size: 0.92rem; font-weight: 600; margin-top: 6px;">
+                <option value="0">--SELECT AAS YEAR--</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+              </select>
+            </div>
+
+            <!-- Smart AAS: Month based on selected year (Step 2 of AAS) -->
             <div class="form-group aasdiv" id="aas-month-div" style="display: none; background: #eef2ff; padding: 14px; border-radius: 10px; border: 1.5px solid #c7d2fe; margin-top: 12px;">
               <label for="aasmonth" style="font-weight: 800; font-size: 0.90rem; color: #3730a3;">
                 Select AAS Month (AAS మంజూరైన నెల):
               </label>
               <select name="aasmonth" id="aasmonth" class="form-control" style="font-size: 0.92rem; font-weight: 600; margin-top: 6px;">
                 <option value="0">--SELECT AAS MONTH--</option>
-                <!-- Populated dynamically: Jan 2024 to Sep 2026 -->
+                <!-- Populated dynamically based on selected year -->
               </select>
             </div>
 
+            <!-- Smart AAS: Date / Day based on selected month (Step 3 of AAS) -->
             <div class="form-group aasdiv" id="aas-day-div" style="display: none; background: #eef2ff; padding: 14px; border-radius: 10px; border: 1.5px solid #c7d2fe; margin-top: 12px;">
               <label for="aasday" style="font-weight: 800; font-size: 0.90rem; color: #3730a3;">
-                Select AAS Day (తేదీ):
+                Select AAS Date / Day (తేదీ):
               </label>
               <select name="aasday" id="aasday" class="form-control" style="font-size: 0.92rem; font-weight: 600; margin-top: 6px;">
                 <option value="1">1st of Month (నెల మొత్తం)</option>
