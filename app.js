@@ -887,7 +887,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const combInstCps = da1InstCps + da2InstCps;
       const combInstDiff = da1InstDiff + da2InstDiff;
 
-      if (cardInstallIcon) cardInstallIcon.textContent = '📅';
+      if (cardInstallIcon) cardInstallIcon.textContent = '';
       if (cardInstallTitle) cardInstallTitle.textContent = 'DA Wise Monthly Installments (నెలవారీ వాయిదాల వివరాలు)';
       if (cardInstallBadge) {
         cardInstallBadge.textContent = '1/33 & 1/27 వాయిదాలు (CPS 90% Net Cash)';
@@ -895,80 +895,88 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       cardInstallSplit.innerHTML = `
-        <div class="install-split-grid">
-          <!-- 1st DA (1/33 Installment) -->
-          <div class="install-row-item">
-            <div class="install-row-header">
-              <span class="install-tag tag-da1">1st DA (1/33 వాయిదా)</span>
-              <span class="install-period">33 నెలలు (G.O. 128 • Jan 2024 to Sep 2026)</span>
-            </div>
-            <div class="install-row-values">
-              <span class="inst-val-box">
-                <span class="inst-val-lbl">Cash 90%:</span>
-                <strong class="inst-cash">₹${formatINR(da1InstCash)}</strong>
-              </span>
-              <span class="inst-math-sign">+</span>
-              <span class="inst-val-box">
-                <span class="inst-val-lbl">CPS 10%:</span>
-                <strong class="inst-cps">₹${formatINR(da1InstCps)}</strong>
-              </span>
-              <span class="inst-math-sign">=</span>
-              <span class="inst-val-box inst-val-box--total">
-                <span class="inst-val-lbl">నెలకు మొత్తం (1/33):</span>
-                <strong class="inst-tot">₹${formatINR(da1InstDiff)}</strong>
-              </span>
-            </div>
-          </div>
+        <div class="install-table-wrap">
+          <table class="install-table">
+            <thead>
+              <tr>
+                <th style="text-align: left;">DA వివరాలు (Particulars)</th>
+                <th style="text-align: center;">వాయిదాల సంఖ్య (Installments)</th>
+                <th style="text-align: right; color: #6ee7b7;">చేతికి నగదు (Net Cash 90%)</th>
+                <th style="text-align: right; color: #fde047;">CPS PRAN (10%)</th>
+                <th style="text-align: right;">నెలకు మొత్తం వాయిదా (Total)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 1st DA (1/33 Installment) -->
+              <tr>
+                <td style="text-align: left;">
+                  <span class="install-tag tag-da1">1st DA</span>
+                  <div style="font-size: 0.74rem; opacity: 0.9; margin-top: 3px; font-weight: 600;">G.O.Ms.No. 128 (37.31%)</div>
+                </td>
+                <td style="text-align: center;">
+                  <strong style="font-size: 0.95rem; color: #ffffff;">33 నెలలు</strong>
+                  <div style="font-size: 0.72rem; opacity: 0.85;">(1/33 వాయిదా)</div>
+                </td>
+                <td style="text-align: right;">
+                  <strong class="inst-cash" style="font-size: 1.25rem;">₹${formatINR(da1InstCash)}</strong>
+                </td>
+                <td style="text-align: right;">
+                  <strong class="inst-cps" style="font-size: 1.15rem;">₹${formatINR(da1InstCps)}</strong>
+                </td>
+                <td style="text-align: right;">
+                  <span class="inst-tot-pill">
+                    <strong class="inst-tot" style="font-size: 1.25rem;">₹${formatINR(da1InstDiff)}</strong>
+                  </span>
+                </td>
+              </tr>
 
-          <!-- 2nd DA (1/27 Installment) -->
-          <div class="install-row-item">
-            <div class="install-row-header">
-              <span class="install-tag tag-da2">2nd DA (1/27 వాయిదా)</span>
-              <span class="install-period">27 నెలలు (G.O. 130 • Jul 2024 to Sep 2026)</span>
-            </div>
-            <div class="install-row-values">
-              <span class="inst-val-box">
-                <span class="inst-val-lbl">Cash 90%:</span>
-                <strong class="inst-cash">₹${formatINR(da2InstCash)}</strong>
-              </span>
-              <span class="inst-math-sign">+</span>
-              <span class="inst-val-box">
-                <span class="inst-val-lbl">CPS 10%:</span>
-                <strong class="inst-cps">₹${formatINR(da2InstCps)}</strong>
-              </span>
-              <span class="inst-math-sign">=</span>
-              <span class="inst-val-box inst-val-box--total">
-                <span class="inst-val-lbl">నెలకు మొత్తం (1/27):</span>
-                <strong class="inst-tot">₹${formatINR(da2InstDiff)}</strong>
-              </span>
-            </div>
-          </div>
+              <!-- 2nd DA (1/27 Installment) -->
+              <tr>
+                <td style="text-align: left;">
+                  <span class="install-tag tag-da2">2nd DA</span>
+                  <div style="font-size: 0.74rem; opacity: 0.9; margin-top: 3px; font-weight: 600;">G.O.Ms.No. 130 (40.04%)</div>
+                </td>
+                <td style="text-align: center;">
+                  <strong style="font-size: 0.95rem; color: #ffffff;">27 నెలలు</strong>
+                  <div style="font-size: 0.72rem; opacity: 0.85;">(1/27 వాయిదా)</div>
+                </td>
+                <td style="text-align: right;">
+                  <strong class="inst-cash" style="font-size: 1.25rem;">₹${formatINR(da2InstCash)}</strong>
+                </td>
+                <td style="text-align: right;">
+                  <strong class="inst-cps" style="font-size: 1.15rem;">₹${formatINR(da2InstCps)}</strong>
+                </td>
+                <td style="text-align: right;">
+                  <span class="inst-tot-pill">
+                    <strong class="inst-tot" style="font-size: 1.25rem;">₹${formatINR(da2InstDiff)}</strong>
+                  </span>
+                </td>
+              </tr>
 
-          <!-- Combined Total Monthly Installment (Jul 2024 to Sep 2026) -->
-          <div class="install-combined-banner">
-            <div class="combined-desc">
-              <div>
-                <span class="combined-title">⚡ రెండు DA ల వాయిదాలు కలిపి (Combined 1st &amp; 2nd DA):</span>
-                <span class="combined-sub">Jul 2024 నుండి Sep 2026 వరకు ప్రతి నెలా చేతికి అందే మొత్తం వాయిదా</span>
-              </div>
-              <div class="combined-vals">
-                <span class="inst-val-box">
-                  <span class="inst-val-lbl">Cash 90%:</span>
-                  <strong class="inst-cash">₹${formatINR(combInstCash)}</strong>
-                </span>
-                <span class="inst-math-sign">+</span>
-                <span class="inst-val-box">
-                  <span class="inst-val-lbl">CPS 10%:</span>
-                  <strong class="inst-cps">₹${formatINR(combInstCps)}</strong>
-                </span>
-                <span class="inst-math-sign">=</span>
-                <span class="inst-val-box inst-val-box--total">
-                  <span class="inst-val-lbl">నెలకు కలిపి:</span>
-                  <strong class="inst-tot">₹${formatINR(combInstDiff)}</strong>
-                </span>
-              </div>
-            </div>
-          </div>
+              <!-- Combined Both DAs -->
+              <tr class="install-table-comb-row">
+                <td style="text-align: left;">
+                  <strong style="color: #fde047; font-size: 0.95rem;">⚡ రెండు DA లు కలిపి</strong>
+                  <div style="font-size: 0.74rem; color: #ffffff; opacity: 0.9; font-weight: 600;">(Combined Monthly Installment)</div>
+                </td>
+                <td style="text-align: center;">
+                  <strong style="color: #fde047; font-size: 0.95rem;">Jul 24 - Sep 26</strong>
+                  <div style="font-size: 0.72rem; opacity: 0.9;">(27 నెలలు కలిపి వస్తుంది)</div>
+                </td>
+                <td style="text-align: right;">
+                  <strong class="inst-cash" style="font-size: 1.35rem; color: #6ee7b7;">₹${formatINR(combInstCash)}</strong>
+                </td>
+                <td style="text-align: right;">
+                  <strong class="inst-cps" style="font-size: 1.20rem; color: #fde047;">₹${formatINR(combInstCps)}</strong>
+                </td>
+                <td style="text-align: right;">
+                  <span class="inst-tot-pill inst-tot-pill--comb">
+                    <strong style="font-size: 1.40rem; color: #ffffff; font-weight: 900;">₹${formatINR(combInstDiff)}</strong>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       `;
     } else {
