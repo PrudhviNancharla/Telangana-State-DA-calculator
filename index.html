@@ -537,31 +537,37 @@
 
       <!-- TABLE 3: Grand Total Table -->
       <section class="da-rate-table-block" style="margin-top: 18px;">
-        <p class="results-table-label">Grand Total</p>
+        <p class="results-table-label" style="background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); font-weight: 800;">
+          🎯 3. Grand Total (మొత్తం బకాయిల సారాంశం)
+        </p>
         <div class="table-scroll-wrap">
-          <div class="table-scroll-hint">👉 Swipe left / right to view full table</div>
-          <div class="table-scroll">
-            <table class="results-table results-table--main">
+          <div class="table-scroll" style="overflow-x: auto;">
+            <table class="results-table" id="grandTotalTable" style="width: 100%; table-layout: fixed; min-width: 320px;">
               <thead>
                 <tr>
-                  <th>Month</th>
-                  <th>Basic Pay</th>
-                  <th>Eligible DA</th>
-                  <th>DA Drawn</th>
-                  <th>DA Diff</th>
-                  <th class="col-cps">To CPS<br>Account</th>
-                  <th class="col-cash">Net Cash<br>(90%/100%)</th>
+                  <th style="width: 34%; text-align: left; padding: 12px 14px; font-size: 0.82rem;">వివరాలు (Particulars)</th>
+                  <th style="width: 33%; text-align: right; padding: 12px 14px; font-size: 0.82rem;">
+                    DA Diff<br>
+                    <span style="font-size: 0.72rem; font-weight: normal; opacity: 0.85;">(మొత్తం DA వ్యత్యాసం)</span>
+                  </th>
+                  <th id="thGtCredit" style="width: 33%; text-align: right; padding: 12px 14px; font-size: 0.82rem;">
+                    Net Cash 90%<br>
+                    <span style="font-size: 0.72rem; font-weight: normal; opacity: 0.85;">(చేతికి నగదు)</span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="total-row">
-                  <th>GRAND TOTAL</th>
-                  <td id="gtBasic">—</td>
-                  <td id="gtEligible">—</td>
-                  <td id="gtDrawn">—</td>
-                  <td id="gtDiff" style="color: #1e3a8a; font-weight: 900; font-size: 1.05rem;">₹39,312</td>
-                  <td class="col-cps" id="gtCps">₹3,927</td>
-                  <td class="col-cash" id="gtCash">₹35,385</td>
+                <tr class="total-row" style="background: #f8fafc;">
+                  <th style="font-weight: 900; font-size: 1rem; color: #1e3a8a; text-align: left; padding: 14px;">
+                    🎯 GRAND TOTAL
+                  </th>
+                  <td id="gtDiff" style="color: #1e3a8a; font-weight: 900; font-size: 1.15rem; text-align: right; padding: 14px;">
+                    ₹0
+                  </td>
+                  <td id="gtCredit" style="text-align: right; padding: 14px;">
+                    <div id="gtCreditVal" style="color: #047857; font-weight: 900; font-size: 1.15rem;">₹0</div>
+                    <div id="gtCreditSub" style="font-size: 0.75rem; color: #64748b; font-weight: 600; margin-top: 3px;">(CPS 10% PRAN: ₹0)</div>
+                  </td>
                 </tr>
               </tbody>
             </table>

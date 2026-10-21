@@ -69,6 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const gtDiff = document.getElementById('gtDiff');
   const gtCps = document.getElementById('gtCps');
   const gtCash = document.getElementById('gtCash');
+  const thGtCredit = document.getElementById('thGtCredit');
+  const gtCreditVal = document.getElementById('gtCreditVal');
+  const gtCreditSub = document.getElementById('gtCreditSub');
   const gtSurrenderRow = document.getElementById('gtSurrenderRow');
 
   const installmentTableBody = document.getElementById('installmentTableBody');
@@ -818,9 +821,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const grandCps = da1TotCps + da2TotCps;
     const grandCash = isCPS ? (grandDiff - grandCps) : grandDiff;
 
-    gtDiff.textContent = `₹${formatINR(grandDiff)}`;
-    gtCps.textContent = isCPS ? `₹${formatINR(grandCps)}` : '—';
-    gtCash.textContent = `₹${formatINR(grandCash)}`;
+    if (gtDiff) gtDiff.textContent = `₹${formatINR(grandDiff)}`;
+    if (gtCps) gtCps.textContent = isCPS ? `₹${formatINR(grandCps)}` : '—';
+    if (gtCash) gtCash.textContent = `₹${formatINR(grandCash)}`;
+
+    if (isCPS) {
+      if (thGtCredit) {
+        thGtCredit.innerHTML = 'Net Cash 90%<br><span style="font-size:0.72rem; font-weight:normal; opacity:0.85;">(చేతికి నగదు)</span>';
+      }
+      if (gtCreditVal) {
+        gtCreditVal.textContent = `₹${formatINR(grandCash)}`;
+        gtCreditVal.style.color = '#047857';
+      }
+      if (gtCreditSub) {
+        gtCreditSub.innerHTML = `(CPS 10% PRAN: <strong>₹${formatINR(grandCps)}</strong>)`;
+        gtCreditSub.style.color = '#64748b';
+      }
+    } else {
+      if (thGtCredit) {
+        thGtCredit.innerHTML = '100% GPF లో Adjustment<br><span style="font-size:0.72rem; font-weight:normal; opacity:0.85;">(GPF ఖాతాకు సర్దుబాటు)</span>';
+      }
+      if (gtCreditVal) {
+        gtCreditVal.textContent = `₹${formatINR(grandDiff)}`;
+        gtCreditVal.style.color = '#047857';
+      }
+      if (gtCreditSub) {
+        gtCreditSub.innerHTML = `(పూర్తి 100% మొత్తం GPF ఖాతాకు సర్దుబాటు)`;
+        gtCreditSub.style.color = '#047857';
+      }
+    }
 
     if (gtSurrenderRow) {
       gtSurrenderRow.style.display = 'none';
