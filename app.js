@@ -759,7 +759,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 6. Event Listeners ---
   // Form input changes trigger instant recalculation
-  basicpay.addEventListener('change', calculateAndRender);
+  basicpay.addEventListener('change', () => {
+    calculateAndRender();
+    // When Basic Pay is selected, automatically scroll to Increment Month
+    if (basicpay.value && basicpay.value !== '') {
+      const incEl = document.getElementById('incMonthGroup') || document.getElementById('incmonth');
+      if (incEl) {
+        setTimeout(() => {
+          incEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (incmonth) {
+            incmonth.focus({ preventScroll: true });
+          }
+        }, 150);
+      }
+    }
+  });
   incmonth.addEventListener('change', calculateAndRender);
   cpsorgpf.addEventListener('change', calculateAndRender);
 
