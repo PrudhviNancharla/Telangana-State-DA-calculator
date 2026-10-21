@@ -618,13 +618,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const isAgiMonth = (incM >= 1 && incM <= 12 && mObj.month === incM);
       const isAasMonth = (hasAas && aasM === mIdx);
 
-      let tagsHtml = '';
+      let badgesHtml = '';
       if (isAgiMonth) {
-        tagsHtml += `<span style="font-size:0.68rem; font-weight:800; background:#2563eb; color:#fff; padding:2px 6px; border-radius:4px; margin-left:4px;">AGI</span>`;
+        badgesHtml += `<span class="badge-agi">AGI</span>`;
       }
       if (isAasMonth) {
-        tagsHtml += `<span style="font-size:0.68rem; font-weight:800; background:#059669; color:#fff; padding:2px 6px; border-radius:4px; margin-left:4px;">AAS${aasD > 1 ? ` (${aasD}th)` : ''}</span>`;
+        badgesHtml += `<span class="badge-aas">AAS${aasD > 1 ? ` (${aasD}th)` : ''}</span>`;
       }
+
+      const monthCellHtml = `
+        <div class="month-cell">
+          <span class="month-cell-title">${mObj.name}</span>
+          ${badgesHtml ? `<div class="month-badges-wrap">${badgesHtml}</div>` : ''}
+        </div>
+      `;
 
       da1TotBasic += bp;
       da1TotEligible += eligible;
@@ -638,7 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       da1RowsHtml += `
         <tr>
-          <th>${mObj.name}${tagsHtml}</th>
+          <th>${monthCellHtml}</th>
           <td>${formatINR(bp)}</td>
           <td>${formatINR(eligible)}</td>
           <td>${formatINR(drawn)}</td>
@@ -697,13 +704,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const isAgiMonth = (incM >= 1 && incM <= 12 && mObj.month === incM);
       const isAasMonth = (hasAas && aasM === mIdx);
 
-      let tagsHtml = '';
+      let badgesHtml2 = '';
       if (isAgiMonth) {
-        tagsHtml += `<span style="font-size:0.68rem; font-weight:800; background:#2563eb; color:#fff; padding:2px 6px; border-radius:4px; margin-left:4px;">AGI</span>`;
+        badgesHtml2 += `<span class="badge-agi">AGI</span>`;
       }
       if (isAasMonth) {
-        tagsHtml += `<span style="font-size:0.68rem; font-weight:800; background:#059669; color:#fff; padding:2px 6px; border-radius:4px; margin-left:4px;">AAS${aasD > 1 ? ` (${aasD}th)` : ''}</span>`;
+        badgesHtml2 += `<span class="badge-aas">AAS${aasD > 1 ? ` (${aasD}th)` : ''}</span>`;
       }
+
+      const monthCellHtml2 = `
+        <div class="month-cell">
+          <span class="month-cell-title">${mObj.name}</span>
+          ${badgesHtml2 ? `<div class="month-badges-wrap">${badgesHtml2}</div>` : ''}
+        </div>
+      `;
 
       da2TotBasic += bp;
       da2TotEligible += eligible;
@@ -717,7 +731,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       da2RowsHtml += `
         <tr>
-          <th>${mObj.name}${tagsHtml}</th>
+          <th>${monthCellHtml2}</th>
           <td>${formatINR(bp)}</td>
           <td>${formatINR(eligible)}</td>
           <td>${formatINR(drawn)}</td>
