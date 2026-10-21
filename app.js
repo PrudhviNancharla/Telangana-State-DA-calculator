@@ -903,23 +903,26 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="inst-mcard-go">G.O.Ms.No. 128 (37.31%)</span>
             </div>
             
-            <div class="inst-mcard-main">
-              <div class="inst-mcard-title">1/33 వాయిదా (చేతికి వచ్చే నగదు 90%):</div>
-              <div class="inst-mcard-val-row">
-                <span class="inst-mcard-bigval">₹${formatINR(da1InstCash)}</span>
-                <span class="inst-mcard-permonth">/ ప్రతి నెలా (33 వాయిదాలు)</span>
-              </div>
+            <!-- 1. నెలకు మొత్తం (1st Display) -->
+            <div class="inst-mcard-step-row">
+              <span class="inst-step-lbl">1. నెలకు మొత్తం (Monthly Gross 100%):</span>
+              <strong class="inst-step-val inst-tot-val">₹${formatINR(da1InstDiff)}</strong>
             </div>
 
-            <div class="inst-mcard-footer">
-              <div class="inst-mcard-foot-item">
-                <span class="inst-foot-lbl">CPS 10% PRAN:</span>
-                <strong class="inst-foot-val inst-cps-val">₹${formatINR(da1InstCps)}</strong>
+            <!-- 2. దాని క్రింద CPS 10% (Below that, CPS 10%) -->
+            <div class="inst-mcard-step-row inst-step-row--minus">
+              <span class="inst-step-lbl">2. (-) CPS 10% (PRAN జమ):</span>
+              <strong class="inst-step-val inst-cps-val">₹${formatINR(da1InstCps)}</strong>
+            </div>
+
+            <!-- 3. Cash 90% దగ్గర 1/33 Installment -->
+            <div class="inst-mcard-highlight">
+              <div class="inst-mcard-hl-title">
+                💰 1/33 నగదు వాయిదా (Cash 90% Installment):
               </div>
-              <div class="inst-foot-divider"></div>
-              <div class="inst-mcard-foot-item">
-                <span class="inst-foot-lbl">నెలకు మొత్తం (100%):</span>
-                <strong class="inst-foot-val inst-tot-val">₹${formatINR(da1InstDiff)}</strong>
+              <div class="inst-mcard-hl-amount">
+                <span class="inst-hl-num">₹${formatINR(da1InstCash)}</span>
+                <span class="inst-hl-sub">/ ప్రతి నెలా చేతికి వచ్చే వాయిదా (33 నెలలు)</span>
               </div>
             </div>
           </div>
@@ -931,23 +934,26 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="inst-mcard-go">G.O.Ms.No. 130 (40.04%)</span>
             </div>
             
-            <div class="inst-mcard-main">
-              <div class="inst-mcard-title">1/27 వాయిదా (చేతికి వచ్చే నగదు 90%):</div>
-              <div class="inst-mcard-val-row">
-                <span class="inst-mcard-bigval">₹${formatINR(da2InstCash)}</span>
-                <span class="inst-mcard-permonth">/ ప్రతి నెలా (27 వాయిదాలు)</span>
-              </div>
+            <!-- 1. నెలకు మొత్తం (1st Display) -->
+            <div class="inst-mcard-step-row">
+              <span class="inst-step-lbl">1. నెలకు మొత్తం (Monthly Gross 100%):</span>
+              <strong class="inst-step-val inst-tot-val">₹${formatINR(da2InstDiff)}</strong>
             </div>
 
-            <div class="inst-mcard-footer">
-              <div class="inst-mcard-foot-item">
-                <span class="inst-foot-lbl">CPS 10% PRAN:</span>
-                <strong class="inst-foot-val inst-cps-val">₹${formatINR(da2InstCps)}</strong>
+            <!-- 2. దాని క్రింద CPS 10% (Below that, CPS 10%) -->
+            <div class="inst-mcard-step-row inst-step-row--minus">
+              <span class="inst-step-lbl">2. (-) CPS 10% (PRAN జమ):</span>
+              <strong class="inst-step-val inst-cps-val">₹${formatINR(da2InstCps)}</strong>
+            </div>
+
+            <!-- 3. Cash 90% దగ్గర 1/27 Installment -->
+            <div class="inst-mcard-highlight">
+              <div class="inst-mcard-hl-title">
+                💰 1/27 నగదు వాయిదా (Cash 90% Installment):
               </div>
-              <div class="inst-foot-divider"></div>
-              <div class="inst-mcard-foot-item">
-                <span class="inst-foot-lbl">నెలకు మొత్తం (100%):</span>
-                <strong class="inst-foot-val inst-tot-val">₹${formatINR(da2InstDiff)}</strong>
+              <div class="inst-mcard-hl-amount">
+                <span class="inst-hl-num">₹${formatINR(da2InstCash)}</span>
+                <span class="inst-hl-sub">/ ప్రతి నెలా చేతికి వచ్చే వాయిదా (27 నెలలు)</span>
               </div>
             </div>
           </div>
@@ -959,23 +965,26 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="inst-mcard-go">Jul 2024 నుండి Sep 2026 వరకు (27 నెలలు)</span>
             </div>
             
-            <div class="inst-mcard-main">
-              <div class="inst-mcard-title">1/33 &amp; 1/27 కలిపి ప్రతి నెలా చేతికి వచ్చే మొత్తం నగదు:</div>
-              <div class="inst-mcard-val-row">
-                <span class="inst-mcard-bigval inst-mcard-bigval--comb">₹${formatINR(combInstCash)}</span>
-                <span class="inst-mcard-permonth">/ ప్రతి నెలా (Net Cash 90%)</span>
-              </div>
+            <!-- 1. నెలకు మొత్తం కలిపి (1st Display) -->
+            <div class="inst-mcard-step-row">
+              <span class="inst-step-lbl">1. నెలకు మొత్తం కలిపి (Combined Gross 100%):</span>
+              <strong class="inst-step-val inst-tot-val">₹${formatINR(combInstDiff)}</strong>
             </div>
 
-            <div class="inst-mcard-footer">
-              <div class="inst-mcard-foot-item">
-                <span class="inst-foot-lbl">CPS 10% PRAN కలిపి:</span>
-                <strong class="inst-foot-val inst-cps-val">₹${formatINR(combInstCps)}</strong>
+            <!-- 2. దాని క్రింద CPS 10% కలిపి (Below that, CPS 10%) -->
+            <div class="inst-mcard-step-row inst-step-row--minus">
+              <span class="inst-step-lbl">2. (-) CPS 10% PRAN కలిపి:</span>
+              <strong class="inst-step-val inst-cps-val">₹${formatINR(combInstCps)}</strong>
+            </div>
+
+            <!-- 3. Cash 90% దగ్గర రెండు వాయిదాలు కలిపి Installment -->
+            <div class="inst-mcard-highlight inst-mcard-highlight--comb">
+              <div class="inst-mcard-hl-title" style="color: #fef08a;">
+                ⚡ 1/33 &amp; 1/27 కలిపి ప్రతి నెలా చేతికి వచ్చే నగదు వాయిదా:
               </div>
-              <div class="inst-foot-divider"></div>
-              <div class="inst-mcard-foot-item">
-                <span class="inst-foot-lbl">నెలకు మొత్తం కలిపి (100%):</span>
-                <strong class="inst-foot-val inst-tot-val">₹${formatINR(combInstDiff)}</strong>
+              <div class="inst-mcard-hl-amount">
+                <span class="inst-hl-num" style="color: #fef08a;">₹${formatINR(combInstCash)}</span>
+                <span class="inst-hl-sub">/ ప్రతి నెలా చేతికి వచ్చే మొత్తం వాయిదా (Net Cash 90%)</span>
               </div>
             </div>
           </div>
