@@ -541,20 +541,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 5.8 Grand Total
-    const grandDiff = da1TotDiff + da2TotDiff + totalSlAmount;
-    const grandCps = da1TotCps + da2TotCps; // SL has no CPS deduction
+    // 5.8 Grand Total (DA Arrears only - Surrender Leave removed from results)
+    const grandDiff = da1TotDiff + da2TotDiff;
+    const grandCps = da1TotCps + da2TotCps;
     const grandCash = isCPS ? (grandDiff - grandCps) : grandDiff;
 
     gtDiff.textContent = `₹${formatINR(grandDiff)}`;
     gtCps.textContent = isCPS ? `₹${formatINR(grandCps)}` : '—';
     gtCash.textContent = `₹${formatINR(grandCash)}`;
 
-    if (totalSlAmount > 0) {
-      const slDesc = slChipsData.map(c => `For ${c.monthName} (${c.days} Days): ₹${formatINR(c.amount)}`).join(' | ');
-      gtSurrenderRow.innerHTML = `<td colspan="7" style="color: #92400e; font-weight: 700; background: #fef3c7;">🏖️ Surrender Leave Arrears Total: <strong>₹${formatINR(totalSlAmount)}</strong> <br><span style="font-size:0.80rem; font-weight:normal;">(${slDesc})</span></td>`;
-    } else {
-      gtSurrenderRow.innerHTML = `<td colspan="7">Surrender Leave Not Taken</td>`;
+    if (gtSurrenderRow) {
+      gtSurrenderRow.style.display = 'none';
     }
 
     // 5.9 Update Summary Cards
@@ -670,14 +667,8 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }
 
-    // Surrender Leave Card
-    if (totalSlAmount > 0) {
-      cardSlWrapper.style.display = 'flex';
-      cardSlTotal.textContent = `₹${formatINR(totalSlAmount)}`;
-      cardSlChips.innerHTML = slChipsData.map(c => `
-        <span class="meta-chip">${c.monthName}: ₹${formatINR(c.amount)} (${c.days}d)</span>
-      `).join('');
-    } else {
+    // Surrender Leave Card (Removed from results view)
+    if (cardSlWrapper) {
       cardSlWrapper.style.display = 'none';
     }
 
