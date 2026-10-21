@@ -35,6 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const cardCashLabel = document.getElementById('cardCashLabel');
   const cardCashVal = document.getElementById('cardCashVal');
   const cardInstallSplit = document.getElementById('cardInstallSplit');
+  const cardInstallIcon = document.getElementById('cardInstallIcon');
+  const cardInstallTitle = document.getElementById('cardInstallTitle');
+  const cardInstallBadge = document.getElementById('cardInstallBadge');
   const cardSlWrapper = document.getElementById('cardSlWrapper');
   const cardSlTotal = document.getElementById('cardSlTotal');
   const cardSlChips = document.getElementById('cardSlChips');
@@ -833,11 +836,12 @@ document.addEventListener('DOMContentLoaded', () => {
       cardCashVal.textContent = `₹${formatINR(grandCash)}`;
     } else {
       cardCpsWrapper.style.display = 'none';
-      cardCashLabel.textContent = 'Total Net Cash (100% GPF)';
-      cardCashVal.textContent = `₹${formatINR(grandCash)}`;
+      cardCashLabel.textContent = 'Total Credited to GPF (100% GPF ఖాతాకు సర్దుబాటు)';
+      cardCashVal.textContent = `₹${formatINR(grandDiff)}`;
     }
 
-    // Monthly Installments (33 installments for DA 1, 27 installments for DA 2)
+    // Monthly Installments for CPS Employees ONLY (33 installments for DA 1, 27 installments for DA 2)
+    // GPF Employees have NO installments; their 100% full DA arrears are directly credited / adjusted to GPF!
     const da1InstDiff = Math.round(da1TotDiff / 33);
     const da1InstCps = isCPS ? Math.round(da1TotCps / 33) : 0;
     const da1InstCash = isCPS ? (da1InstDiff - da1InstCps) : da1InstDiff;
@@ -846,11 +850,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const da2InstCps = isCPS ? Math.round(da2TotCps / 27) : 0;
     const da2InstCash = isCPS ? (da2InstDiff - da2InstCps) : da2InstDiff;
 
-    const combinedInstDiff = da1InstDiff + da2InstDiff;
-    const combinedInstCash = da1InstCash + da2InstCash;
-    const combinedInstCps = da1InstCps + da2InstCps;
-
     if (isCPS) {
+      if (cardInstallIcon) cardInstallIcon.textContent = '📅';
+      if (cardInstallTitle) cardInstallTitle.textContent = 'DA Wise Installments (వాయిదాల వివరాలు)';
+      if (cardInstallBadge) {
+        cardInstallBadge.textContent = '1/33 & 1/27 వాయిదాలు (CPS 90% Net Cash)';
+        cardInstallBadge.style.background = 'rgba(255, 255, 255, 0.2)';
+      }
+
       cardInstallSplit.innerHTML = `
         <div class="install-split-grid">
           <!-- 1st DA (1/33 Installment) -->
@@ -903,38 +910,68 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
     } else {
+      // GPF EMPLOYEES: NO INSTALLMENTS! 100% Total Amount directly credited / adjusted to GPF
+      if (cardInstallIcon) cardInstallIcon.textContent = '🏛️';
+      if (cardInstallTitle) cardInstallTitle.textContent = 'GPF ఖాతాకు మొత్తం సర్దుబాటు (GPF Total Adjustment)';
+      if (cardInstallBadge) {
+        cardInstallBadge.textContent = 'వాయిదాలు ఉండవు (No Installments - 100% GPF Credit)';
+        cardInstallBadge.style.background = '#047857';
+      }
+
       cardInstallSplit.innerHTML = `
-        <div class="install-split-grid">
-          <!-- 1st DA (1/33 Installment) -->
-          <div class="install-row-item">
+        <div class="install-split-grid gpf-split-grid">
+          <!-- 1st DA Total Adjustment -->
+          <div class="install-row-item gpf-item">
             <div class="install-row-header">
-              <span class="install-tag tag-da1">1st DA (1/33 వాయిదా)</span>
-              <span class="install-period">33 నెలలు (GPF 100%)</span>
+              <span class="install-tag tag-da1" style="background: #0284c7; color: #fff;">1st DA Total GPF Adjustment</span>
+              <span class="install-period" style="color: #ffffff; font-weight: 700;">G.O.Ms.No. 128 (Jan 24 - Sep 26 • 33 నెలలు)</span>
             </div>
             <div class="install-row-values">
-              <span class="inst-val-box inst-val-box--total">
-                <span class="inst-val-lbl">నెలకు 1/33 వాయిదా (GPF జమా):</span>
-                <strong class="inst-tot">₹${formatINR(da1InstDiff)}</strong>
+              <span class="inst-val-box inst-val-box--total" style="background: rgba(255, 255, 255, 0.22); border: 1.5px solid rgba(255, 255, 255, 0.4); padding: 8px 14px;">
+                <span class="inst-val-lbl" style="color: #ffffff; font-size: 0.82rem; font-weight: 700;">1st DA మొత్తం GPF ఖాతాలో జమా:</span>
+                <strong class="inst-tot" style="font-size: 1.25rem; color: #ffffff;">₹${formatINR(da1TotDiff)}</strong>
               </span>
             </div>
           </div>
 
-          <!-- 2nd DA (1/27 Installment) -->
-          <div class="install-row-item">
+          <!-- 2nd DA Total Adjustment -->
+          <div class="install-row-item gpf-item">
             <div class="install-row-header">
-              <span class="install-tag tag-da2">2nd DA (1/27 వాయిదా)</span>
-              <span class="install-period">27 నెలలు (GPF 100%)</span>
+              <span class="install-tag tag-da2" style="background: #059669; color: #fff;">2nd DA Total GPF Adjustment</span>
+              <span class="install-period" style="color: #ffffff; font-weight: 700;">G.O.Ms.No. 130 (Jul 24 - Sep 26 • 27 నెలలు)</span>
             </div>
             <div class="install-row-values">
-              <span class="inst-val-box inst-val-box--total">
-                <span class="inst-val-lbl">నెలకు 1/27 వాయిదా (GPF జమా):</span>
-                <strong class="inst-tot">₹${formatINR(da2InstDiff)}</strong>
+              <span class="inst-val-box inst-val-box--total" style="background: rgba(255, 255, 255, 0.22); border: 1.5px solid rgba(255, 255, 255, 0.4); padding: 8px 14px;">
+                <span class="inst-val-lbl" style="color: #ffffff; font-size: 0.82rem; font-weight: 700;">2nd DA మొత్తం GPF ఖాతాలో జమా:</span>
+                <strong class="inst-tot" style="font-size: 1.25rem; color: #ffffff;">₹${formatINR(da2TotDiff)}</strong>
               </span>
+            </div>
+          </div>
+
+          <!-- Grand Total GPF Adjustment Banner -->
+          <div class="gpf-banner" style="background: rgba(255, 255, 255, 0.25); border: 1.5px solid rgba(255, 255, 255, 0.5); border-radius: 8px; padding: 12px 16px; margin-top: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <div style="font-size: 0.92rem; font-weight: 900; color: #ffffff; display: flex; align-items: center; gap: 6px;">
+                <span>🎯</span>
+                <span>2 DA లు కలిపి Grand Total GPF Adjustment:</span>
+              </div>
+              <div style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.95); margin-top: 3px; font-weight: 600;">
+                * GPF ఉద్యోగులకు వాయిదాలు ఉండవు • 100% పూర్తి మొత్తం నేరుగా GPF ఖాతాకు సర్దుబాటు (Adjustment) చేయబడుతుంది.
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <span style="font-size: 0.70rem; color: rgba(255, 255, 255, 0.85); display: block; font-weight: 700;">మొత్తం GPF జమ:</span>
+              <strong style="font-size: 1.45rem; font-weight: 900; color: #ffffff;">₹${formatINR(grandDiff)}</strong>
             </div>
           </div>
         </div>
       `;
     }
+
+    // Update table headers for CPS vs GPF
+    document.querySelectorAll('th.col-cash').forEach(th => {
+      th.innerHTML = isCPS ? 'CPS Net Cash<br>(90%)' : 'GPF Credit<br>(100% సర్దుబాటు)';
+    });
 
     // Surrender Leave Card (Removed from results view)
     if (cardSlWrapper) {
@@ -1179,10 +1216,10 @@ document.addEventListener('DOMContentLoaded', () => {
       `📊 *Telangana Govt 2 DAs Difference & Arrears Statement*`,
       `━━━━━━━━━━━━━━━━━━━━━━━━━━`,
       `🔹 Basic Pay (As On Sep-2026): ₹${formatINR(activeBp)}`,
-      `🔹 Scheme: ${isCPS ? 'CPS (10% PRAN Deduction)' : 'GPF (100% Cash/GPF)'}`,
-      `💰 *Total DA Arrears:* ${totArr}`,
+      `🔹 Scheme: ${isCPS ? 'CPS (10% PRAN Deduction / 90% Net Cash)' : 'GPF (100% GPF Total Adjustment - No Installments)'}`,
+      isCPS ? `💰 *Total DA Arrears:* ${totArr}` : `🏛️ *Grand Total GPF Adjustment:* ${totArr}`,
       isCPS ? `🏛️ *CPS Account (10%):* ${cpsVal}` : null,
-      `💵 *${isCPS ? 'CPS Net Cash (90%)' : 'Net Cash'}:* ${cashVal}`,
+      isCPS ? `💵 *CPS Net Cash (90%):* ${cashVal}` : `✅ *100% మొత్తం నేరుగా GPF ఖాతాకు సర్దుబాటు (వాయిదాలు ఉండవు)*`,
       `🎉 *Oct-2026 Monthly Cash Hike:* ${octVal} / month`,
       `━━━━━━━━━━━━━━━━━━━━━━━━━━`,
       `✅ Sanctioned vide G.O.Ms.128 (37.31%) & G.O.Ms.130 (40.04%)`,
