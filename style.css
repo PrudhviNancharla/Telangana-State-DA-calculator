@@ -2776,7 +2776,12 @@ body {
     gap: 14px;
     padding: 12px;
   }
+  .first-basic-box {
+    order: 1;
+    scroll-margin-top: 10px;
+  }
   .first-author-card {
+    order: 2;
     padding: 12px 14px;
   }
   .first-author-photo-wrapper {
@@ -2785,5 +2790,9 @@ body {
   }
   .first-author-name {
     font-size: 1.05rem;
+  }
+  #basicpay {
+    border: 2.5px solid #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25) !important;
   }
 }

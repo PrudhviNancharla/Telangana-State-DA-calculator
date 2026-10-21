@@ -99,20 +99,20 @@
 
           <!-- 1ST DISPLAY: Basic Pay Selection + Author Photo Beside -->
           <div class="first-display-row" id="firstDisplayRow">
-            <!-- 1. మూల వేతనం ఎంచుకోండి (Select Basic Pay As On 30-Sep-2026) -->
+            <!-- 1. Select Basic Pay As On 30-Sep-2026 -->
             <div class="form-group form-group--primary first-basic-box">
               <label for="basicpay" style="display: flex; flex-direction: column; gap: 2px;">
-                <span style="font-weight: 800; font-size: 1rem; color: #1e3a8a;">
-                  👉 1. మూల వేతనం ఎంచుకోండి (Select Basic Pay As On 30-Sep-2026)
+                <span style="font-weight: 800; font-size: 1.05rem; color: #1e3a8a;">
+                  👉 1. Select Basic Pay (As On 30-Sep-2026)
                 </span>
-                <span style="font-size: 0.78rem; color: #047857; font-weight: 600;">
-                  (30 సెప్టెంబర్ 2026 నాటికి మీ మూల వేతనం సెలెక్ట్ చేయండి)
+                <span style="font-size: 0.80rem; color: #047857; font-weight: 600;">
+                  (30 సెప్టెంబర్ 2026 నాటికి మీ Basic Pay సెలెక్ట్ చేయండి)
                 </span>
               </label>
 
               <!-- Quick Search Filter for Basic Pay -->
               <div style="margin-bottom: 8px;">
-                <input type="text" id="basicSearch" class="form-control" placeholder="🔍 మూల వేతనం సెర్చ్ చేయండి (ఉదా: 20280, 19640, 31040)..." style="font-size: 0.88rem; padding: 9px 12px; background: #ffffff;">
+                <input type="text" id="basicSearch" class="form-control" placeholder="🔍 Search Basic Pay (e.g. 20280, 19640, 31040)..." style="font-size: 0.88rem; padding: 9px 12px; background: #ffffff;">
               </div>
 
               <select name="basicpay" id="basicpay" class="form-control" required style="font-size: 1.12rem; font-weight: 800; color: #0f172a; height: 50px;">
@@ -123,7 +123,7 @@
               <div style="margin-top: 8px;">
                 <label style="font-size: 0.80rem; color: #475569; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600;">
                   <input type="checkbox" id="customPayCheck">
-                  <span>స్కేలులో లేని మూల వేతనం నమోదు చేయండి (Enter Custom Basic Pay)</span>
+                  <span>స్కేలులో లేని Basic Pay నమోదు చేయండి (Enter Custom Basic Pay)</span>
                 </label>
                 <div id="customPayWrapper" style="display: none; margin-top: 6px;">
                   <input type="number" id="customPayInput" class="form-control" placeholder="Enter basic pay amount (e.g. 25000)" min="1000" step="10">
@@ -132,7 +132,7 @@
 
               <!-- Active Basic Display Pill -->
               <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding: 7px 12px; background: #ecfdf5; border-radius: 8px; border: 1.5px solid #a7f3d0;">
-                <span style="font-size: 0.82rem; color: #065f46; font-weight: 700;">ఎంపిక చేసిన మూల వేతనం:</span>
+                <span style="font-size: 0.82rem; color: #065f46; font-weight: 700;">Selected Basic Pay:</span>
                 <span id="activeBasicDisplay" style="font-size: 1.25rem; font-weight: 900; color: #064e3b;">—</span>
               </div>
             </div>
@@ -502,7 +502,7 @@
               <thead>
                 <tr>
                   <th>Month</th>
-                  <th>మూల వేతనం<br><span style="font-size: 0.72rem; font-weight: normal; opacity: 0.85;">(Basic Pay)</span></th>
+                  <th>Basic Pay</th>
                   <th>Eligible DA</th>
                   <th>DA Drawn</th>
                   <th>DA Diff<br>(GPF Credit)</th>
@@ -530,7 +530,7 @@
               <thead>
                 <tr>
                   <th>Month</th>
-                  <th>మూల వేతనం<br><span style="font-size: 0.72rem; font-weight: normal; opacity: 0.85;">(Basic Pay)</span></th>
+                  <th>Basic Pay</th>
                   <th>Eligible DA</th>
                   <th>DA Drawn</th>
                   <th>DA Diff<br>(GPF Credit)</th>
@@ -556,7 +556,7 @@
               <thead>
                 <tr>
                   <th>Month</th>
-                  <th>మూల వేతనం<br><span style="font-size: 0.72rem; font-weight: normal; opacity: 0.85;">(Basic Pay)</span></th>
+                  <th>Basic Pay</th>
                   <th>Eligible DA</th>
                   <th>DA Drawn</th>
                   <th>DA Diff<br>(GPF Credit)</th>

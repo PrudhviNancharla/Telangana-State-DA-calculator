@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 1. Populate Dropdowns ---
   function populateDropdowns() {
     // Populate Basic Pay Select with RPS-2020 stages (No default pre-selected)
-    basicpay.innerHTML = '<option value="" selected>-- మూల వేతనం ఎంచుకోండి (SELECT BASIC PAY) --</option>';
+    basicpay.innerHTML = '<option value="" selected>-- SELECT BASIC PAY --</option>';
     RPS_2020_STAGES.forEach(st => {
       const opt = document.createElement('option');
       opt.value = st;
@@ -787,7 +787,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isCustom = customPayCheck && customPayCheck.checked && customPayInput.value;
     const hasBasic = isCustom || (basicpay && basicpay.value && basicpay.value !== '');
     if (!hasBasic) {
-      alert('దయచేసి ముందుగా మీ మూల వేతనం (Basic Pay As On 30-Sep-2026) ఎంచుకోండి!');
+      alert('దయచేసి ముందుగా మీ Basic Pay (Select Basic Pay As On 30-Sep-2026) ఎంచుకోండి!');
       basicpay.focus();
       basicpay.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
@@ -886,4 +886,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initSurrenderLeaveHandlers();
   initSearchFilter();
   calculateAndRender();
+
+  // Mobile Auto-Scroll & Open Basic Pay on load
+  const isMobile = window.innerWidth <= 768;
+  setTimeout(() => {
+    if (isMobile && basicpay) {
+      basicpay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Trigger focus and touch dropdown if supported
+      basicpay.focus({ preventScroll: true });
+    }
+  }, 350);
 });
