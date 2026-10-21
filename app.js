@@ -350,22 +350,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5.2 Pension Type: CPS (1) or GPF (2)
     const isCPS = (cpsorgpf.value === '1');
 
-    // 5.3 Increment progression (Months 1 to 33)
-    const incVal = parseInt(incmonth.value, 10); // 0 or 22..33
+    // 5.3 Annual Increment progression (Jan 2024 to Sep 2026 = 33 Months)
+    // activeBasic is as on 30-Sep-2026.
+    // If increment month is chosen (1 to 12 for Jan to Dec):
+    // - In 2026: if month >= incM, basic is activeBasic. If month < incM, basic is (activeBasic - 1 stage).
+    //   Exception: Oct/Nov/Dec (10, 11, 12) hasn't arrived by Sep 2026, so Sep 2026 hasn't gotten 2026 increment yet!
+    // - Every prior increment month (in 2025 and 2024) steps back 1 stage!
+    const incM = parseInt(incmonth.value, 10); // 0 (None) or 1..12 (Jan..Dec)
     const monthBasics = new Array(34).fill(activeBasic); // 1-indexed (1 to 33)
 
-    if (incVal >= 22 && incVal <= 33) {
-      const targetM = incVal; // e.g. 31 for July 2026, 22 for Oct 2025
-      const prev1 = getPreviousPayStage(activeBasic);
-      const prev2 = getPreviousPayStage(prev1);
+    if (incM >= 1 && incM <= 12) {
+      // Helper stages
+      const stage2026 = activeBasic;
+      const stage2025 = getPreviousPayStage(stage2026);
+      const stage2024 = getPreviousPayStage(stage2025);
+      const stagePrior2024 = getPreviousPayStage(stage2024);
 
       for (let m = 1; m <= 33; m++) {
-        if (m >= targetM) {
-          monthBasics[m] = activeBasic;
-        } else if (m >= (targetM - 12)) {
-          monthBasics[m] = prev1;
-        } else {
-          monthBasics[m] = prev2;
+        const mObj = MONTHS_33[m - 1]; // year (2024, 2025, 2026), month (1 to 12)
+        const yr = mObj.year;
+        const mo = mObj.month;
+
+        if (yr === 2026) {
+          // If employee increment is in Jan..Sep (<=9):
+          // From incM onwards in 2026, they draw stage2026.
+          // Prior to incM in 2026, they drew stage2025.
+          // If employee increment is Oct..Dec (10..12):
+          // In 2026 (Jan..Sep), they still draw stage2025 because Oct 2026 didn't occur yet!
+          if (incM <= 9) {
+            monthBasics[m] = (mo >= incM) ? stage2026 : stage2025;
+          } else {
+            monthBasics[m] = stage2025;
+          }
+        } else if (yr === 2025) {
+          // In 2025:
+          // From incM onwards, they draw stage2025.
+          // Before incM, they drew stage2024.
+          monthBasics[m] = (mo >= incM) ? stage2025 : stage2024;
+        } else if (yr === 2024) {
+          // In 2024:
+          // From incM onwards, they draw stage2024.
+          // Before incM, they drew stagePrior2024.
+          monthBasics[m] = (mo >= incM) ? stage2024 : stagePrior2024;
         }
       }
     }
