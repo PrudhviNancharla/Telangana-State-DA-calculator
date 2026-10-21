@@ -747,29 +747,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     da2TableBody.innerHTML = da2RowsHtml;
 
-    // 5.7 Surrender Leave Calculation
-    let totalSlAmount = 0;
-    const slChipsData = [];
-
-    surrenderYears.forEach(sl => {
-      if (!sl.slSelect) return;
-      const slType = sl.slSelect.value; // '1'=None, '2'=15d, '3'=30d
-      const slM = parseInt(sl.monthSelect ? sl.monthSelect.value : '0', 10);
-
-      if ((slType === '2' || slType === '3') && slM >= 1 && slM <= 33) {
-        const mObj = MONTHS_33[slM - 1];
-        const bp = monthBasics[slM];
-        const full30 = Math.round(bp * DA_RATES.SL_RATE);
-        const amount = (slType === '2') ? Math.round(full30 / 2) : full30;
-        totalSlAmount += amount;
-        slChipsData.push({
-          monthName: mObj.name,
-          days: slType === '2' ? 15 : 30,
-          amount: amount
-        });
-      }
-    });
-
     // 5.8 Grand Total (DA Arrears only - Surrender Leave shown in its column)
     const grandDiff = da1TotDiff + da2TotDiff;
     const grandCombinedDiff = grandDiff + totalSlAmount;
