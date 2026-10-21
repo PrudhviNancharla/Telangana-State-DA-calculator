@@ -658,14 +658,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const slEligible = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_1_RATE) / 2) : Math.round(bp * DA_RATES.DA_1_RATE);
         const slDrawn = isHalf ? Math.round(Math.round(bp * DA_RATES.DRAWN_DA_RATE) / 2) : Math.round(bp * DA_RATES.DRAWN_DA_RATE);
         const slDiff = slEligible - slDrawn;
-        const slCps = isCPS ? Math.round(slDiff * DA_RATES.CPS_RATE) : 0;
-        const slCash = isCPS ? (slDiff - slCps) : slDiff;
+        const slCps = 0; // Surrender Leave has NO CPS 10% deduction - 100% Direct Net Cash
+        const slCash = slDiff; // 100% Direct Net Cash
 
         da1TotBasic += slBp;
         da1TotEligible += slEligible;
         da1TotDrawn += slDrawn;
         da1TotDiff += slDiff;
-        da1TotCps += slCps;
+        // No CPS deduction on Surrender Leave (da1TotCps does not add slCps)
         da1TotCash += slCash;
 
         da1RowsHtml += `
@@ -680,7 +680,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${formatINR(slEligible)}</td>
             <td>${formatINR(slDrawn)}</td>
             <td style="color:#b45309; font-weight:800;">₹${formatINR(slDiff)}</td>
-            <td class="col-cps">${isCPS ? formatINR(slCps) : '—'}</td>
+            <td class="col-cps" style="color:#64748b; font-weight:normal;" title="సరెండర్ లీవ్ పై CPS 10% కటింగ్ ఉండదు (100% Direct Net Cash)">—</td>
             <td class="col-cash" style="font-weight:700;">${formatINR(slCash)}</td>
           </tr>
         `;
@@ -768,14 +768,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const slEligible2 = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_2_RATE) / 2) : Math.round(bp * DA_RATES.DA_2_RATE);
         const slDrawn2 = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_1_RATE) / 2) : Math.round(bp * DA_RATES.DA_1_RATE);
         const slDiff2 = slEligible2 - slDrawn2;
-        const slCps2 = isCPS ? Math.round(slDiff2 * DA_RATES.CPS_RATE) : 0;
-        const slCash2 = isCPS ? (slDiff2 - slCps2) : slDiff2;
+        const slCps2 = 0; // Surrender Leave has NO CPS 10% deduction - 100% Direct Net Cash
+        const slCash2 = slDiff2; // 100% Direct Net Cash
 
         da2TotBasic += slBp;
         da2TotEligible += slEligible2;
         da2TotDrawn += slDrawn2;
         da2TotDiff += slDiff2;
-        da2TotCps += slCps2;
+        // No CPS deduction on Surrender Leave (da2TotCps does not add slCps2)
         da2TotCash += slCash2;
 
         da2RowsHtml += `
@@ -790,7 +790,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${formatINR(slEligible2)}</td>
             <td>${formatINR(slDrawn2)}</td>
             <td style="color:#b45309; font-weight:800;">₹${formatINR(slDiff2)}</td>
-            <td class="col-cps">${isCPS ? formatINR(slCps2) : '—'}</td>
+            <td class="col-cps" style="color:#64748b; font-weight:normal;" title="సరెండర్ లీవ్ పై CPS 10% కటింగ్ ఉండదు (100% Direct Net Cash)">—</td>
             <td class="col-cash" style="font-weight:700;">${formatINR(slCash2)}</td>
           </tr>
         `;
