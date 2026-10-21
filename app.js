@@ -8,9 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // DOM Elements - Input Form
   const basicpay = document.getElementById('basicpay');
   const basicSearch = document.getElementById('basicSearch');
-  const customPayCheck = document.getElementById('customPayCheck');
-  const customPayWrapper = document.getElementById('customPayWrapper');
-  const customPayInput = document.getElementById('customPayInput');
   const activeBasicDisplay = document.getElementById('activeBasicDisplay');
 
   const incmonth = document.getElementById('incmonth');
@@ -322,30 +319,15 @@ document.addEventListener('DOMContentLoaded', () => {
         calculateAndRender();
       }
     });
-
-    customPayCheck.addEventListener('change', () => {
-      if (customPayCheck.checked) {
-        customPayWrapper.style.display = 'block';
-        customPayInput.focus();
-      } else {
-        customPayWrapper.style.display = 'none';
-      }
-      calculateAndRender();
-    });
-
-    customPayInput.addEventListener('input', calculateAndRender);
   }
 
   // --- 5. Main Calculation Engine ---
   function calculateAndRender() {
     const resultsContainer = document.getElementById('results');
 
-    // 5.1 Determine Active Basic Pay as on 30 Sep 2026
+    // 5.1 Determine Active Basic Pay as on 30 Sep 2026 (Dropdown only)
     let activeBasic = 0;
-    if (customPayCheck && customPayCheck.checked && customPayInput.value) {
-      const customVal = parseInt(customPayInput.value, 10);
-      if (customVal && customVal > 0) activeBasic = customVal;
-    } else if (basicpay && basicpay.value) {
+    if (basicpay && basicpay.value) {
       activeBasic = parseInt(basicpay.value, 10) || 0;
     }
 
@@ -870,8 +852,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Calculate Button click scrolls to results
   btnCalculate.addEventListener('click', () => {
-    const isCustom = customPayCheck && customPayCheck.checked && customPayInput.value;
-    const hasBasic = isCustom || (basicpay && basicpay.value && basicpay.value !== '');
+    const hasBasic = (basicpay && basicpay.value && basicpay.value !== '');
     if (!hasBasic) {
       alert('దయచేసి ముందుగా మీ Basic Pay (Select Basic Pay As On 30-Sep-2026) ఎంచుకోండి!');
       basicpay.focus();
@@ -900,7 +881,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Action: WhatsApp Share / Copy Summary
   btnShare.addEventListener('click', () => {
-    const activeBp = customPayCheck.checked && customPayInput.value ? customPayInput.value : basicpay.value;
+    const activeBp = basicpay.value;
     const isCPS = (cpsorgpf.value === '1');
     const totArr = cardTotalArrears.textContent;
     const cashVal = cardCashVal.textContent;
@@ -910,7 +891,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const summaryText = [
       `📊 *Telangana Govt 2 DAs Difference & Arrears Statement*`,
       `━━━━━━━━━━━━━━━━━━━━━━━━━━`,
-      `🔹 మూల వేతనం (Basic Pay As On Sep-2026): ₹${formatINR(activeBp)}`,
+      `🔹 Basic Pay (As On Sep-2026): ₹${formatINR(activeBp)}`,
       `🔹 Scheme: ${isCPS ? 'CPS (10% PRAN Deduction)' : 'GPF (100% Cash/GPF)'}`,
       `💰 *Total DA Arrears:* ${totArr}`,
       isCPS ? `🏛️ *CPS Account (10%):* ${cpsVal}` : null,
@@ -934,9 +915,6 @@ document.addEventListener('DOMContentLoaded', () => {
   btnReset.addEventListener('click', () => {
     basicpay.value = '';
     basicSearch.value = '';
-    customPayCheck.checked = false;
-    customPayWrapper.style.display = 'none';
-    customPayInput.value = '';
     incmonth.value = '0';
     if (surrenderContainer) surrenderContainer.style.display = 'none';
     if (aasSectionContainer) aasSectionContainer.style.display = 'none';
