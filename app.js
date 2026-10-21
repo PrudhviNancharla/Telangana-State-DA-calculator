@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Tables
   const da1TableBody = document.getElementById('da1TableBody');
   const da2TableBody = document.getElementById('da2TableBody');
+  const gtSlDiff = document.getElementById('gtSlDiff');
   const aasProRataSection = document.getElementById('aasProRataSection');
   const aasProRataTableBody = document.getElementById('aasProRataTableBody');
   const gtBasic = document.getElementById('gtBasic');
@@ -561,11 +562,38 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 5.5 Calculate DA Rate 1 Table (Jan-2024 to Sep-2026 = 33 Months)
+    // 5.5 Map Surrender Leave Months
+    const slMonthMap = {}; // monthId -> { days, amount }
+    let totalSlAmount = 0;
+    const slChipsData = [];
+
+    surrenderYears.forEach(sl => {
+      if (!sl.slSelect) return;
+      const slType = sl.slSelect.value; // '1'=None, '2'=15d, '3'=30d
+      const slM = parseInt(sl.monthSelect ? sl.monthSelect.value : '0', 10);
+
+      if ((slType === '2' || slType === '3') && slM >= 1 && slM <= 33) {
+        const mObj = MONTHS_33[slM - 1];
+        const bp = monthBasics[slM];
+        const full30 = Math.round(bp * DA_RATES.SL_RATE);
+        const amount = (slType === '2') ? Math.round(full30 / 2) : full30;
+        totalSlAmount += amount;
+        const days = (slType === '2' ? 15 : 30);
+        slMonthMap[slM] = { days, amount };
+        slChipsData.push({
+          monthName: mObj.name,
+          days: days,
+          amount: amount
+        });
+      }
+    });
+
+    // 5.6 Calculate DA Rate 1 Table (Jan-2024 to Sep-2026 = 33 Months)
     let da1TotBasic = 0;
     let da1TotEligible = 0;
     let da1TotDrawn = 0;
     let da1TotDiff = 0;
+    let da1TotSlDiff = 0;
     let da1TotCps = 0;
     let da1TotCash = 0;
 
@@ -581,20 +609,38 @@ document.addEventListener('DOMContentLoaded', () => {
       const cps = isCPS ? Math.round(diff * DA_RATES.CPS_RATE) : 0;
       const cash = isCPS ? (diff - cps) : diff;
 
+      // Surrender Leave for this month (if any)
+      const slEntry = slMonthMap[mIdx];
+      const slDiff = slEntry ? slEntry.amount : 0;
+
+      // Check if AGI or AAS occurred in this month
+      const isAgiMonth = (incM >= 1 && incM <= 12 && mObj.month === incM);
+      const isAasMonth = (hasAas && aasM === mIdx);
+
+      let tagsHtml = '';
+      if (isAgiMonth) {
+        tagsHtml += `<span style="font-size:0.68rem; font-weight:800; background:#2563eb; color:#fff; padding:2px 6px; border-radius:4px; margin-left:4px;">AGI</span>`;
+      }
+      if (isAasMonth) {
+        tagsHtml += `<span style="font-size:0.68rem; font-weight:800; background:#059669; color:#fff; padding:2px 6px; border-radius:4px; margin-left:4px;">AAS${aasD > 1 ? ` (${aasD}th)` : ''}</span>`;
+      }
+
       da1TotBasic += bp;
       da1TotEligible += eligible;
       da1TotDrawn += drawn;
       da1TotDiff += diff;
+      da1TotSlDiff += slDiff;
       da1TotCps += cps;
       da1TotCash += cash;
 
       da1RowsHtml += `
         <tr>
-          <th>${mObj.name}</th>
+          <th>${mObj.name}${tagsHtml}</th>
           <td>${formatINR(bp)}</td>
           <td>${formatINR(eligible)}</td>
           <td>${formatINR(drawn)}</td>
           <td>${formatINR(diff)}</td>
+          <td style="color:#0f766e; font-weight:700;">${slEntry ? `+₹${formatINR(slEntry.amount)} <span style="font-size:0.72rem; color:#475569;">(${slEntry.days}d)</span>` : '—'}</td>
           <td class="col-cps">${isCPS ? formatINR(cps) : '—'}</td>
           <td class="col-cash">${formatINR(cash)}</td>
         </tr>
@@ -608,17 +654,19 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${formatINR(da1TotEligible)}</td>
         <td>${formatINR(da1TotDrawn)}</td>
         <td>${formatINR(da1TotDiff)}</td>
+        <td style="color:#0f766e; font-weight:800;">${da1TotSlDiff > 0 ? `+₹${formatINR(da1TotSlDiff)}` : '—'}</td>
         <td class="col-cps">${isCPS ? formatINR(da1TotCps) : '—'}</td>
         <td class="col-cash">${formatINR(da1TotCash)}</td>
       </tr>
     `;
     da1TableBody.innerHTML = da1RowsHtml;
 
-    // 5.6 Calculate DA Rate 2 Table (Jul-2024 to Sep-2026 = 27 Months)
+    // 5.7 Calculate DA Rate 2 Table (Jul-2024 to Sep-2026 = 27 Months)
     let da2TotBasic = 0;
     let da2TotEligible = 0;
     let da2TotDrawn = 0;
     let da2TotDiff = 0;
+    let da2TotSlDiff = 0;
     let da2TotCps = 0;
     let da2TotCash = 0;
 
@@ -634,20 +682,38 @@ document.addEventListener('DOMContentLoaded', () => {
       const cps = isCPS ? Math.round(diff * DA_RATES.CPS_RATE) : 0;
       const cash = isCPS ? (diff - cps) : diff;
 
+      // Surrender Leave for this month (if any)
+      const slEntry = slMonthMap[mIdx];
+      const slDiff = slEntry ? slEntry.amount : 0;
+
+      // Check if AGI or AAS occurred in this month
+      const isAgiMonth = (incM >= 1 && incM <= 12 && mObj.month === incM);
+      const isAasMonth = (hasAas && aasM === mIdx);
+
+      let tagsHtml = '';
+      if (isAgiMonth) {
+        tagsHtml += `<span style="font-size:0.68rem; font-weight:800; background:#2563eb; color:#fff; padding:2px 6px; border-radius:4px; margin-left:4px;">AGI</span>`;
+      }
+      if (isAasMonth) {
+        tagsHtml += `<span style="font-size:0.68rem; font-weight:800; background:#059669; color:#fff; padding:2px 6px; border-radius:4px; margin-left:4px;">AAS${aasD > 1 ? ` (${aasD}th)` : ''}</span>`;
+      }
+
       da2TotBasic += bp;
       da2TotEligible += eligible;
       da2TotDrawn += drawn;
       da2TotDiff += diff;
+      da2TotSlDiff += slDiff;
       da2TotCps += cps;
       da2TotCash += cash;
 
       da2RowsHtml += `
         <tr>
-          <th>${mObj.name}</th>
+          <th>${mObj.name}${tagsHtml}</th>
           <td>${formatINR(bp)}</td>
           <td>${formatINR(eligible)}</td>
           <td>${formatINR(drawn)}</td>
           <td>${formatINR(diff)}</td>
+          <td style="color:#0f766e; font-weight:700;">${slEntry ? `+₹${formatINR(slEntry.amount)} <span style="font-size:0.72rem; color:#475569;">(${slEntry.days}d)</span>` : '—'}</td>
           <td class="col-cps">${isCPS ? formatINR(cps) : '—'}</td>
           <td class="col-cash">${formatINR(cash)}</td>
         </tr>
@@ -661,6 +727,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${formatINR(da2TotEligible)}</td>
         <td>${formatINR(da2TotDrawn)}</td>
         <td>${formatINR(da2TotDiff)}</td>
+        <td style="color:#0f766e; font-weight:800;">${da2TotSlDiff > 0 ? `+₹${formatINR(da2TotSlDiff)}` : '—'}</td>
         <td class="col-cps">${isCPS ? formatINR(da2TotCps) : '—'}</td>
         <td class="col-cash">${formatINR(da2TotCash)}</td>
       </tr>
@@ -690,12 +757,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 5.8 Grand Total (DA Arrears only - Surrender Leave removed from results)
+    // 5.8 Grand Total (DA Arrears only - Surrender Leave shown in its column)
     const grandDiff = da1TotDiff + da2TotDiff;
     const grandCps = da1TotCps + da2TotCps;
     const grandCash = isCPS ? (grandDiff - grandCps) : grandDiff;
 
     gtDiff.textContent = `₹${formatINR(grandDiff)}`;
+    if (gtSlDiff) {
+      gtSlDiff.textContent = (totalSlAmount > 0) ? `+₹${formatINR(totalSlAmount)}` : '—';
+    }
     gtCps.textContent = isCPS ? `₹${formatINR(grandCps)}` : '—';
     gtCash.textContent = `₹${formatINR(grandCash)}`;
 
