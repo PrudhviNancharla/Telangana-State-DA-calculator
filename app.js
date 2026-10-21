@@ -574,15 +574,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if ((slType === '2' || slType === '3') && slM >= 1 && slM <= 33) {
         const mObj = MONTHS_33[slM - 1];
         const bp = monthBasics[slM];
+        const isHalf = (slType === '2');
+        const days = isHalf ? 15 : 30;
+        const slBp = isHalf ? Math.round(bp / 2) : bp;
         const full30 = Math.round(bp * DA_RATES.SL_RATE);
-        const amount = (slType === '2') ? Math.round(full30 / 2) : full30;
+        const amount = isHalf ? Math.round(full30 / 2) : full30;
         totalSlAmount += amount;
-        const days = (slType === '2' ? 15 : 30);
-        slMonthMap[slM] = { days, amount };
+        slMonthMap[slM] = { days, amount, slBp, isHalf };
         slChipsData.push({
           monthName: mObj.name,
           days: days,
-          amount: amount
+          amount: amount,
+          slBp: slBp
         });
       }
     });
@@ -650,8 +653,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // If Surrender Leave taken in this month, display as a dedicated highlighted row
       if (slEntry) {
-        const isHalf = (slEntry.days === 15);
-        const slBp = isHalf ? Math.round(bp / 2) : bp;
+        const isHalf = slEntry.isHalf;
+        const slBp = slEntry.slBp;
         const slEligible = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_1_RATE) / 2) : Math.round(bp * DA_RATES.DA_1_RATE);
         const slDrawn = isHalf ? Math.round(Math.round(bp * DA_RATES.DRAWN_DA_RATE) / 2) : Math.round(bp * DA_RATES.DRAWN_DA_RATE);
         const slDiff = slEligible - slDrawn;
@@ -673,7 +676,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="badge-sl">🏖️ Surrender Leave (${slEntry.days}d)</span>
               </div>
             </th>
-            <td>${formatINR(slBp)}</td>
+            <td style="font-weight:800; color:#92400e;">
+              ${formatINR(slBp)}
+              <span style="font-size:0.68rem; color:#b45309; display:block; font-weight:700;">${isHalf ? '(Half Basic - 15d)' : '(Full Basic - 30d)'}</span>
+            </td>
             <td>${formatINR(slEligible)}</td>
             <td>${formatINR(slDrawn)}</td>
             <td style="color:#b45309; font-weight:800;">₹${formatINR(slDiff)}</td>
@@ -760,8 +766,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // If Surrender Leave taken in this month, display as a dedicated highlighted row
       if (slEntry) {
-        const isHalf = (slEntry.days === 15);
-        const slBp = isHalf ? Math.round(bp / 2) : bp;
+        const isHalf = slEntry.isHalf;
+        const slBp = slEntry.slBp;
         const slEligible2 = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_2_RATE) / 2) : Math.round(bp * DA_RATES.DA_2_RATE);
         const slDrawn2 = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_1_RATE) / 2) : Math.round(bp * DA_RATES.DA_1_RATE);
         const slDiff2 = slEligible2 - slDrawn2;
@@ -783,7 +789,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="badge-sl">🏖️ Surrender Leave (${slEntry.days}d)</span>
               </div>
             </th>
-            <td>${formatINR(slBp)}</td>
+            <td style="font-weight:800; color:#92400e;">
+              ${formatINR(slBp)}
+              <span style="font-size:0.68rem; color:#b45309; display:block; font-weight:700;">${isHalf ? '(Half Basic - 15d)' : '(Full Basic - 30d)'}</span>
+            </td>
             <td>${formatINR(slEligible2)}</td>
             <td>${formatINR(slDrawn2)}</td>
             <td style="color:#b45309; font-weight:800;">₹${formatINR(slDiff2)}</td>
