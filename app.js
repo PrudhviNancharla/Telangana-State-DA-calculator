@@ -895,77 +895,87 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       cardInstallSplit.innerHTML = `
-        <div class="install-split-grid">
-          <!-- 1st DA (1/33 Installment) -->
-          <div class="install-row-item">
-            <div class="install-row-header">
-              <span class="install-tag tag-da1">1st DA (1/33 వాయిదా)</span>
-              <span class="install-period">33 నెలలు (G.O. 128 • Jan 2024 to Sep 2026)</span>
+        <div class="inst-mobile-cards">
+          <!-- Card 1: 1st DA (1/33 Installment) -->
+          <div class="inst-mcard inst-mcard--da1">
+            <div class="inst-mcard-top">
+              <span class="inst-mcard-badge tag-da1">1st DA • 33 నెలలు</span>
+              <span class="inst-mcard-go">G.O.Ms.No. 128 (37.31%)</span>
             </div>
-            <div class="install-row-values">
-              <span class="inst-val-box">
-                <span class="inst-val-lbl">Cash 90%:</span>
-                <strong class="inst-cash">₹${formatINR(da1InstCash)}</strong>
-              </span>
-              <span class="inst-math-sign">+</span>
-              <span class="inst-val-box">
-                <span class="inst-val-lbl">CPS 10%:</span>
-                <strong class="inst-cps">₹${formatINR(da1InstCps)}</strong>
-              </span>
-              <span class="inst-math-sign">=</span>
-              <span class="inst-val-box inst-val-box--total">
-                <span class="inst-val-lbl">నెలకు మొత్తం (1/33):</span>
-                <strong class="inst-tot">₹${formatINR(da1InstDiff)}</strong>
-              </span>
-            </div>
-          </div>
-
-          <!-- 2nd DA (1/27 Installment) -->
-          <div class="install-row-item">
-            <div class="install-row-header">
-              <span class="install-tag tag-da2">2nd DA (1/27 వాయిదా)</span>
-              <span class="install-period">27 నెలలు (G.O. 130 • Jul 2024 to Sep 2026)</span>
-            </div>
-            <div class="install-row-values">
-              <span class="inst-val-box">
-                <span class="inst-val-lbl">Cash 90%:</span>
-                <strong class="inst-cash">₹${formatINR(da2InstCash)}</strong>
-              </span>
-              <span class="inst-math-sign">+</span>
-              <span class="inst-val-box">
-                <span class="inst-val-lbl">CPS 10%:</span>
-                <strong class="inst-cps">₹${formatINR(da2InstCps)}</strong>
-              </span>
-              <span class="inst-math-sign">=</span>
-              <span class="inst-val-box inst-val-box--total">
-                <span class="inst-val-lbl">నెలకు మొత్తం (1/27):</span>
-                <strong class="inst-tot">₹${formatINR(da2InstDiff)}</strong>
-              </span>
-            </div>
-          </div>
-
-          <!-- Combined Total Monthly Installment (Jul 2024 to Sep 2026) -->
-          <div class="install-combined-banner">
-            <div class="combined-desc">
-              <div>
-                <span class="combined-title">⚡ రెండు DA ల వాయిదాలు కలిపి (Combined 1st &amp; 2nd DA):</span>
-                <span class="combined-sub">Jul 2024 నుండి Sep 2026 వరకు ప్రతి నెలా చేతికి అందే మొత్తం వాయిదా</span>
+            
+            <div class="inst-mcard-main">
+              <div class="inst-mcard-title">1/33 వాయిదా (చేతికి వచ్చే నగదు 90%):</div>
+              <div class="inst-mcard-val-row">
+                <span class="inst-mcard-bigval">₹${formatINR(da1InstCash)}</span>
+                <span class="inst-mcard-permonth">/ ప్రతి నెలా (33 వాయిదాలు)</span>
               </div>
-              <div class="combined-vals">
-                <span class="inst-val-box">
-                  <span class="inst-val-lbl">Cash 90%:</span>
-                  <strong class="inst-cash">₹${formatINR(combInstCash)}</strong>
-                </span>
-                <span class="inst-math-sign">+</span>
-                <span class="inst-val-box">
-                  <span class="inst-val-lbl">CPS 10%:</span>
-                  <strong class="inst-cps">₹${formatINR(combInstCps)}</strong>
-                </span>
-                <span class="inst-math-sign">=</span>
-                <span class="inst-val-box inst-val-box--total">
-                  <span class="inst-val-lbl">నెలకు కలిపి:</span>
-                  <strong class="inst-tot">₹${formatINR(combInstDiff)}</strong>
-                </span>
+            </div>
+
+            <div class="inst-mcard-footer">
+              <div class="inst-mcard-foot-item">
+                <span class="inst-foot-lbl">CPS 10% PRAN:</span>
+                <strong class="inst-foot-val inst-cps-val">₹${formatINR(da1InstCps)}</strong>
+              </div>
+              <div class="inst-foot-divider"></div>
+              <div class="inst-mcard-foot-item">
+                <span class="inst-foot-lbl">నెలకు మొత్తం (100%):</span>
+                <strong class="inst-foot-val inst-tot-val">₹${formatINR(da1InstDiff)}</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: 2nd DA (1/27 Installment) -->
+          <div class="inst-mcard inst-mcard--da2">
+            <div class="inst-mcard-top">
+              <span class="inst-mcard-badge tag-da2">2nd DA • 27 నెలలు</span>
+              <span class="inst-mcard-go">G.O.Ms.No. 130 (40.04%)</span>
+            </div>
+            
+            <div class="inst-mcard-main">
+              <div class="inst-mcard-title">1/27 వాయిదా (చేతికి వచ్చే నగదు 90%):</div>
+              <div class="inst-mcard-val-row">
+                <span class="inst-mcard-bigval">₹${formatINR(da2InstCash)}</span>
+                <span class="inst-mcard-permonth">/ ప్రతి నెలా (27 వాయిదాలు)</span>
+              </div>
+            </div>
+
+            <div class="inst-mcard-footer">
+              <div class="inst-mcard-foot-item">
+                <span class="inst-foot-lbl">CPS 10% PRAN:</span>
+                <strong class="inst-foot-val inst-cps-val">₹${formatINR(da2InstCps)}</strong>
+              </div>
+              <div class="inst-foot-divider"></div>
+              <div class="inst-mcard-foot-item">
+                <span class="inst-foot-lbl">నెలకు మొత్తం (100%):</span>
+                <strong class="inst-foot-val inst-tot-val">₹${formatINR(da2InstDiff)}</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Combined Installments -->
+          <div class="inst-mcard inst-mcard--comb">
+            <div class="inst-mcard-top">
+              <span class="inst-mcard-badge tag-comb">⚡ రెండు DA ల వాయిదాలు కలిపి</span>
+              <span class="inst-mcard-go">Jul 2024 నుండి Sep 2026 వరకు (27 నెలలు)</span>
+            </div>
+            
+            <div class="inst-mcard-main">
+              <div class="inst-mcard-title">1/33 &amp; 1/27 కలిపి ప్రతి నెలా చేతికి వచ్చే మొత్తం నగదు:</div>
+              <div class="inst-mcard-val-row">
+                <span class="inst-mcard-bigval inst-mcard-bigval--comb">₹${formatINR(combInstCash)}</span>
+                <span class="inst-mcard-permonth">/ ప్రతి నెలా (Net Cash 90%)</span>
+              </div>
+            </div>
+
+            <div class="inst-mcard-footer">
+              <div class="inst-mcard-foot-item">
+                <span class="inst-foot-lbl">CPS 10% PRAN కలిపి:</span>
+                <strong class="inst-foot-val inst-cps-val">₹${formatINR(combInstCps)}</strong>
+              </div>
+              <div class="inst-foot-divider"></div>
+              <div class="inst-mcard-foot-item">
+                <span class="inst-foot-lbl">నెలకు మొత్తం కలిపి (100%):</span>
+                <strong class="inst-foot-val inst-tot-val">₹${formatINR(combInstDiff)}</strong>
               </div>
             </div>
           </div>

@@ -2189,119 +2189,187 @@ body {
 }
 
 /* ==========================================================
-   DA Wise Installments Rich Breakdown (1/33 & 1/27)
-   Enlarged, Clear & Professional styling for CPS Employees
+   DA Wise Monthly Installments â€” Mobile-First High Visibility Cards
+   Crystal-Clear 1/33 & 1/27 Breakdown for Mobile Screens
    ========================================================== */
 .summary-card--install {
   grid-column: 1 / -1;
-  padding: 18px 20px !important;
+  padding: 16px 16px 18px !important;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #093b3b 100%) !important;
 }
 
-.install-split-grid {
-  display: flex;
-  flex-direction: column;
+.inst-mobile-cards {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 12px;
   width: 100%;
   margin-top: 10px;
 }
 
-.install-row-item {
+@media (min-width: 680px) {
+  .inst-mobile-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .inst-mcard--comb {
+    grid-column: 1 / -1;
+  }
+}
+
+.inst-mcard {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.inst-mcard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.32);
+}
+
+.inst-mcard--da1 {
+  border-left: 5px solid #10b981;
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.18) 0%, rgba(15, 23, 42, 0.65) 100%);
+}
+
+.inst-mcard--da2 {
+  border-left: 5px solid #f59e0b;
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.18) 0%, rgba(15, 23, 42, 0.65) 100%);
+}
+
+.inst-mcard--comb {
+  border-left: 5px solid #38bdf8;
+  border-color: rgba(56, 189, 248, 0.45);
+  background: linear-gradient(135deg, rgba(14, 116, 144, 0.28) 0%, rgba(15, 23, 42, 0.75) 100%);
+  box-shadow: 0 4px 16px rgba(14, 116, 144, 0.25);
+}
+
+.inst-mcard-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  border-radius: 10px;
-  padding: 12px 16px;
   flex-wrap: wrap;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+  gap: 6px;
 }
 
-.install-row-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.install-tag {
-  font-size: 0.88rem;
+.inst-mcard-badge {
+  font-size: 0.82rem;
   font-weight: 800;
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: 6px;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .tag-da1 {
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
-  color: #ffffff;
-  border: 1px solid #34d399;
+  background: #059669;
 }
 
 .tag-da2 {
-  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-  color: #ffffff;
-  border: 1px solid #fbbf24;
+  background: #d97706;
 }
 
-.install-period {
-  font-size: 0.84rem;
-  color: rgba(255, 255, 255, 0.95);
+.tag-comb {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #fef08a;
+  font-weight: 900;
+}
+
+.inst-mcard-go {
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+.inst-mcard-main {
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.inst-mcard-title {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.92);
   font-weight: 700;
 }
 
-.install-row-values {
+.inst-mcard-val-row {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.95rem;
-  color: #ffffff;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 4px;
   flex-wrap: wrap;
 }
 
-.inst-val-box {
-  display: inline-flex;
+.inst-mcard-bigval {
+  font-size: 1.85rem;
+  font-weight: 900;
+  color: #6ee7b7;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inst-mcard-bigval--comb {
+  color: #fef08a;
+  font-size: 2rem;
+}
+
+.inst-mcard-permonth {
+  font-size: 0.80rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.inst-mcard-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.88);
+  padding: 6px 4px 0;
+  flex-wrap: wrap;
+}
+
+.inst-mcard-foot-item {
+  display: flex;
   align-items: baseline;
   gap: 6px;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 5px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.inst-val-lbl {
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  opacity: 0.92;
+.inst-foot-lbl {
+  font-size: 0.74rem;
+  opacity: 0.85;
 }
 
-.inst-cash {
-  color: #6ee7b7;
-  font-weight: 900;
-  font-size: 1.25rem;
-  letter-spacing: -0.01em;
-}
-
-.inst-cps {
-  color: #fde047;
-  font-weight: 900;
-  font-size: 1.15rem;
-  letter-spacing: -0.01em;
-}
-
-.inst-math-sign {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 1.15rem;
+.inst-foot-val {
   font-weight: 800;
+  font-size: 0.95rem;
 }
 
-.inst-val-box--total {
-  background: rgba(0, 0, 0, 0.42);
+.inst-cps-val {
+  color: #fde047;
+}
+
+.inst-tot-val {
+  color: #ffffff;
+}
+
+.inst-foot-divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.25);
+}
   padding: 6px 14px;
   border-radius: 8px;
   border: 1.5px solid rgba(255, 255, 255, 0.38);
