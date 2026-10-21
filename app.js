@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cardCpsVal = document.getElementById('cardCpsVal');
   const cardCashLabel = document.getElementById('cardCashLabel');
   const cardCashVal = document.getElementById('cardCashVal');
+  const cardInstallWrapper = document.getElementById('cardInstallWrapper');
   const cardInstallSplit = document.getElementById('cardInstallSplit');
   const cardInstallIcon = document.getElementById('cardInstallIcon');
   const cardInstallTitle = document.getElementById('cardInstallTitle');
@@ -871,20 +872,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Monthly Installments for CPS Employees ONLY (33 installments for DA 1, 27 installments for DA 2)
     // GPF Employees have NO installments; their 100% full DA arrears are directly credited / adjusted to GPF!
-    const da1InstDiff = Math.round(da1TotDiff / 33);
-    const da1InstCps = isCPS ? Math.round(da1TotCps / 33) : 0;
-    const da1InstCash = isCPS ? (da1InstDiff - da1InstCps) : da1InstDiff;
-
-    const da2InstDiff = Math.round(da2TotDiff / 27);
-    const da2InstCps = isCPS ? Math.round(da2TotCps / 27) : 0;
-    const da2InstCash = isCPS ? (da2InstDiff - da2InstCps) : da2InstDiff;
-
     if (isCPS) {
+      if (cardInstallWrapper) cardInstallWrapper.style.display = 'flex';
+
+      const da1InstDiff = Math.round(da1TotDiff / 33);
+      const da1InstCps = Math.round(da1TotCps / 33);
+      const da1InstCash = da1InstDiff - da1InstCps;
+
+      const da2InstDiff = Math.round(da2TotDiff / 27);
+      const da2InstCps = Math.round(da2TotCps / 27);
+      const da2InstCash = da2InstDiff - da2InstCps;
+
+      const combInstCash = da1InstCash + da2InstCash;
+      const combInstCps = da1InstCps + da2InstCps;
+      const combInstDiff = da1InstDiff + da2InstDiff;
+
       if (cardInstallIcon) cardInstallIcon.textContent = '📅';
-      if (cardInstallTitle) cardInstallTitle.textContent = 'DA Wise Installments (వాయిదాల వివరాలు)';
+      if (cardInstallTitle) cardInstallTitle.textContent = 'DA Wise Monthly Installments (నెలవారీ వాయిదాల వివరాలు)';
       if (cardInstallBadge) {
         cardInstallBadge.textContent = '1/33 & 1/27 వాయిదాలు (CPS 90% Net Cash)';
-        cardInstallBadge.style.background = 'rgba(255, 255, 255, 0.2)';
+        cardInstallBadge.style.background = 'rgba(255, 255, 255, 0.22)';
       }
 
       cardInstallSplit.innerHTML = `
@@ -893,16 +900,16 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="install-row-item">
             <div class="install-row-header">
               <span class="install-tag tag-da1">1st DA (1/33 వాయిదా)</span>
-              <span class="install-period">33 నెలలు (33 Installments)</span>
+              <span class="install-period">33 నెలలు (G.O. 128 • Jan 2024 to Sep 2026)</span>
             </div>
             <div class="install-row-values">
               <span class="inst-val-box">
-                <span class="inst-val-lbl">Cash:</span>
+                <span class="inst-val-lbl">Cash 90%:</span>
                 <strong class="inst-cash">₹${formatINR(da1InstCash)}</strong>
               </span>
               <span class="inst-math-sign">+</span>
               <span class="inst-val-box">
-                <span class="inst-val-lbl">CPS:</span>
+                <span class="inst-val-lbl">CPS 10%:</span>
                 <strong class="inst-cps">₹${formatINR(da1InstCps)}</strong>
               </span>
               <span class="inst-math-sign">=</span>
@@ -917,16 +924,16 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="install-row-item">
             <div class="install-row-header">
               <span class="install-tag tag-da2">2nd DA (1/27 వాయిదా)</span>
-              <span class="install-period">27 నెలలు (27 Installments)</span>
+              <span class="install-period">27 నెలలు (G.O. 130 • Jul 2024 to Sep 2026)</span>
             </div>
             <div class="install-row-values">
               <span class="inst-val-box">
-                <span class="inst-val-lbl">Cash:</span>
+                <span class="inst-val-lbl">Cash 90%:</span>
                 <strong class="inst-cash">₹${formatINR(da2InstCash)}</strong>
               </span>
               <span class="inst-math-sign">+</span>
               <span class="inst-val-box">
-                <span class="inst-val-lbl">CPS:</span>
+                <span class="inst-val-lbl">CPS 10%:</span>
                 <strong class="inst-cps">₹${formatINR(da2InstCps)}</strong>
               </span>
               <span class="inst-math-sign">=</span>
@@ -936,65 +943,40 @@ document.addEventListener('DOMContentLoaded', () => {
               </span>
             </div>
           </div>
+
+          <!-- Combined Total Monthly Installment (Jul 2024 to Sep 2026) -->
+          <div class="install-combined-banner">
+            <div class="combined-desc">
+              <div>
+                <span class="combined-title">⚡ రెండు DA ల వాయిదాలు కలిపి (Combined 1st &amp; 2nd DA):</span>
+                <span class="combined-sub">Jul 2024 నుండి Sep 2026 వరకు ప్రతి నెలా చేతికి అందే మొత్తం వాయిదా</span>
+              </div>
+              <div class="combined-vals">
+                <span class="inst-val-box">
+                  <span class="inst-val-lbl">Cash 90%:</span>
+                  <strong class="inst-cash">₹${formatINR(combInstCash)}</strong>
+                </span>
+                <span class="inst-math-sign">+</span>
+                <span class="inst-val-box">
+                  <span class="inst-val-lbl">CPS 10%:</span>
+                  <strong class="inst-cps">₹${formatINR(combInstCps)}</strong>
+                </span>
+                <span class="inst-math-sign">=</span>
+                <span class="inst-val-box inst-val-box--total">
+                  <span class="inst-val-lbl">నెలకు కలిపి:</span>
+                  <strong class="inst-tot">₹${formatINR(combInstDiff)}</strong>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       `;
     } else {
-      // GPF EMPLOYEES: NO INSTALLMENTS! 100% Total Amount directly credited / adjusted to GPF
-      if (cardInstallIcon) cardInstallIcon.textContent = '🏛️';
-      if (cardInstallTitle) cardInstallTitle.textContent = 'GPF ఖాతాకు మొత్తం సర్దుబాటు (GPF Total Adjustment)';
-      if (cardInstallBadge) {
-        cardInstallBadge.textContent = 'వాయిదాలు ఉండవు (No Installments - 100% GPF Credit)';
-        cardInstallBadge.style.background = '#047857';
+      // GPF EMPLOYEES: Completely remove / hide DA Wise Installments!
+      // GPF has NO installments; 100% full DA arrears is adjusted directly to GPF.
+      if (cardInstallWrapper) {
+        cardInstallWrapper.style.display = 'none';
       }
-
-      cardInstallSplit.innerHTML = `
-        <div class="install-split-grid gpf-split-grid">
-          <!-- 1st DA Total Adjustment -->
-          <div class="install-row-item gpf-item">
-            <div class="install-row-header">
-              <span class="install-tag tag-da1" style="background: #0284c7; color: #fff;">1st DA Total GPF Adjustment</span>
-              <span class="install-period" style="color: #ffffff; font-weight: 700;">G.O.Ms.No. 128 (Jan 24 - Sep 26 • 33 నెలలు)</span>
-            </div>
-            <div class="install-row-values">
-              <span class="inst-val-box inst-val-box--total" style="background: rgba(255, 255, 255, 0.22); border: 1.5px solid rgba(255, 255, 255, 0.4); padding: 8px 14px;">
-                <span class="inst-val-lbl" style="color: #ffffff; font-size: 0.82rem; font-weight: 700;">1st DA మొత్తం GPF ఖాతాలో జమా:</span>
-                <strong class="inst-tot" style="font-size: 1.25rem; color: #ffffff;">₹${formatINR(da1TotDiff)}</strong>
-              </span>
-            </div>
-          </div>
-
-          <!-- 2nd DA Total Adjustment -->
-          <div class="install-row-item gpf-item">
-            <div class="install-row-header">
-              <span class="install-tag tag-da2" style="background: #059669; color: #fff;">2nd DA Total GPF Adjustment</span>
-              <span class="install-period" style="color: #ffffff; font-weight: 700;">G.O.Ms.No. 130 (Jul 24 - Sep 26 • 27 నెలలు)</span>
-            </div>
-            <div class="install-row-values">
-              <span class="inst-val-box inst-val-box--total" style="background: rgba(255, 255, 255, 0.22); border: 1.5px solid rgba(255, 255, 255, 0.4); padding: 8px 14px;">
-                <span class="inst-val-lbl" style="color: #ffffff; font-size: 0.82rem; font-weight: 700;">2nd DA మొత్తం GPF ఖాతాలో జమా:</span>
-                <strong class="inst-tot" style="font-size: 1.25rem; color: #ffffff;">₹${formatINR(da2TotDiff)}</strong>
-              </span>
-            </div>
-          </div>
-
-          <!-- Grand Total GPF Adjustment Banner -->
-          <div class="gpf-banner" style="background: rgba(255, 255, 255, 0.25); border: 1.5px solid rgba(255, 255, 255, 0.5); border-radius: 8px; padding: 12px 16px; margin-top: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-            <div>
-              <div style="font-size: 0.92rem; font-weight: 900; color: #ffffff; display: flex; align-items: center; gap: 6px;">
-                <span>🎯</span>
-                <span>2 DA లు కలిపి Grand Total GPF Adjustment:</span>
-              </div>
-              <div style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.95); margin-top: 3px; font-weight: 600;">
-                * GPF ఉద్యోగులకు వాయిదాలు ఉండవు • 100% పూర్తి మొత్తం నేరుగా GPF ఖాతాకు సర్దుబాటు (Adjustment) చేయబడుతుంది.
-              </div>
-            </div>
-            <div style="text-align: right;">
-              <span style="font-size: 0.70rem; color: rgba(255, 255, 255, 0.85); display: block; font-weight: 700;">మొత్తం GPF జమ:</span>
-              <strong style="font-size: 1.45rem; font-weight: 900; color: #ffffff;">₹${formatINR(grandDiff)}</strong>
-            </div>
-          </div>
-        </div>
-      `;
     }
 
     // Update table headers for CPS vs GPF
