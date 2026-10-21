@@ -673,13 +673,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <th>
               <div class="month-cell">
                 <span class="month-cell-title" style="color:#b45309;">${mObj.name}</span>
-                <span class="badge-sl">🏖️ Surrender Leave (${slEntry.days}d)</span>
+                <span class="badge-sl">SL (${slEntry.days}d)</span>
               </div>
             </th>
-            <td style="font-weight:800; color:#92400e;">
-              ${formatINR(slBp)}
-              <span style="font-size:0.68rem; color:#b45309; display:block; font-weight:700;">${isHalf ? '(Half Basic - 15d)' : '(Full Basic - 30d)'}</span>
-            </td>
+            <td>${formatINR(slBp)}</td>
             <td>${formatINR(slEligible)}</td>
             <td>${formatINR(slDrawn)}</td>
             <td style="color:#b45309; font-weight:800;">₹${formatINR(slDiff)}</td>
@@ -786,13 +783,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <th>
               <div class="month-cell">
                 <span class="month-cell-title" style="color:#b45309;">${mObj.name}</span>
-                <span class="badge-sl">🏖️ Surrender Leave (${slEntry.days}d)</span>
+                <span class="badge-sl">SL (${slEntry.days}d)</span>
               </div>
             </th>
-            <td style="font-weight:800; color:#92400e;">
-              ${formatINR(slBp)}
-              <span style="font-size:0.68rem; color:#b45309; display:block; font-weight:700;">${isHalf ? '(Half Basic - 15d)' : '(Full Basic - 30d)'}</span>
-            </td>
+            <td>${formatINR(slBp)}</td>
             <td>${formatINR(slEligible2)}</td>
             <td>${formatINR(slDrawn2)}</td>
             <td style="color:#b45309; font-weight:800;">₹${formatINR(slDiff2)}</td>
