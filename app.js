@@ -58,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Tables
   const da1TableBody = document.getElementById('da1TableBody');
   const da2TableBody = document.getElementById('da2TableBody');
+  const aasProRataSection = document.getElementById('aasProRataSection');
+  const aasProRataTableBody = document.getElementById('aasProRataTableBody');
   const gtBasic = document.getElementById('gtBasic');
   const gtEligible = document.getElementById('gtEligible');
   const gtDrawn = document.getElementById('gtDrawn');
@@ -401,22 +403,88 @@ document.addEventListener('DOMContentLoaded', () => {
     const aasM = parseInt(aasmonth.value, 10) || 0;
     const aasD = parseInt(aasday.value, 10) || 1;
 
+    let aasProRataRowsHtml = '';
+    let showAasProRataTable = false;
+
     if (hasAas && aasM >= 1 && aasM <= 33) {
-      // AAS gives 1 additional stage upgrade starting from aasM & aasD
-      // That means prior to aasM, the employee was 1 stage lower than normal
-      for (let m = 1; m <= 33; m++) {
-        if (m < aasM) {
-          monthBasics[m] = getPreviousPayStage(monthBasics[m]);
-        } else if (m === aasM) {
-          if (aasD > 1) {
-            const daysInM = MONTHS_33[m - 1].days;
-            const oldStage = getPreviousPayStage(monthBasics[m]);
-            const newStage = monthBasics[m];
-            const oldDays = aasD - 1;
-            const newDays = daysInM - oldDays;
-            monthBasics[m] = Math.round((oldStage * oldDays + newStage * newDays) / daysInM);
-          }
-        }
+      // Prior to aasM, employee was 1 stage lower
+      for (let m = 1; m < aasM; m++) {
+        monthBasics[m] = getPreviousPayStage(monthBasics[m]);
+      }
+
+      // If AAS date > 1 (e.g. 10th of the month):
+      // The transition month aasM has:
+      // Part 1: Days 1 to (aasD - 1) on Old Stage
+      // Part 2: Days aasD to Month End on New Stage (eligible for +1 increment)
+      // Next month onwards (aasM + 1..33): Fully draws New Stage (+1 increment)
+      if (aasD > 1) {
+        showAasProRataTable = true;
+        const mObj = MONTHS_33[aasM - 1];
+        const daysInM = mObj.days;
+        const newStage = monthBasics[aasM]; // Stage after AAS
+        const oldStage = getPreviousPayStage(newStage); // Stage before AAS
+
+        const oldDays = aasD - 1;
+        const newDays = daysInM - oldDays;
+
+        // Weighted basic pay for the month
+        monthBasics[aasM] = Math.round((oldStage * oldDays + newStage * newDays) / daysInM);
+
+        // Calculate detailed breakdown for the separate AAS table
+        // Rates active in aasM:
+        const rate1 = DA_RATES.DA_1_RATE;
+        const drawnRate = DA_RATES.DRAWN_DA_RATE;
+        const hasRate2 = mObj.hasDa2;
+        const rate2 = DA_RATES.DA_2_RATE;
+
+        // Part 1: Before AAS Date (1 to aasD-1)
+        const oldEligible = Math.round((oldStage * (hasRate2 ? rate2 : rate1) * oldDays) / daysInM);
+        const oldDrawn = Math.round((oldStage * drawnRate * oldDays) / daysInM);
+        const oldDiff = oldEligible - oldDrawn;
+
+        // Part 2: From AAS Date to Month End (aasD to daysInM)
+        const newEligible = Math.round((newStage * (hasRate2 ? rate2 : rate1) * newDays) / daysInM);
+        const newDrawn = Math.round((oldStage * drawnRate * newDays) / daysInM); // Drawn on previous salary
+        const newDiff = newEligible - newDrawn;
+
+        const totProRataDiff = oldDiff + newDiff;
+
+        aasProRataRowsHtml = `
+          <tr>
+            <td><strong>${mObj.name} (1st to ${oldDays}th)</strong><br><span style="font-size:0.75rem; color:#64748b;">Before AAS Sanction</span></td>
+            <td>₹${formatINR(oldStage)}</td>
+            <td>${oldDays} Days</td>
+            <td>₹${formatINR(oldDrawn)}</td>
+            <td>₹${formatINR(oldEligible)}</td>
+            <td style="color:#047857; font-weight:700;">₹${formatINR(oldDiff)}</td>
+          </tr>
+          <tr style="background:#f0fdf4;">
+            <td><strong>${mObj.name} (${aasD}th to ${daysInM}th)</strong><br><span style="font-size:0.75rem; color:#059669; font-weight:700;">★ AAS Eligible Period (+1 Incr)</span></td>
+            <td>₹${formatINR(newStage)}</td>
+            <td>${newDays} Days</td>
+            <td>₹${formatINR(newDrawn)}</td>
+            <td>₹${formatINR(newEligible)}</td>
+            <td style="color:#047857; font-weight:800; font-size:1.05rem;">₹${formatINR(newDiff)}</td>
+          </tr>
+          <tr class="total-row" style="background:#eef2ff;">
+            <th>${mObj.name} Net Pro-rata Total</th>
+            <td>₹${formatINR(monthBasics[aasM])} (Weighted)</td>
+            <td>${daysInM} Days</td>
+            <td>₹${formatINR(oldDrawn + newDrawn)}</td>
+            <td>₹${formatINR(oldEligible + newEligible)}</td>
+            <th style="color:#1e3a8a;">₹${formatINR(totProRataDiff)}</th>
+          </tr>
+        `;
+      }
+    }
+
+    if (aasProRataSection && aasProRataTableBody) {
+      if (showAasProRataTable) {
+        aasProRataSection.style.display = 'block';
+        aasProRataTableBody.innerHTML = aasProRataRowsHtml;
+      } else {
+        aasProRataSection.style.display = 'none';
+        aasProRataTableBody.innerHTML = '';
       }
     }
 
