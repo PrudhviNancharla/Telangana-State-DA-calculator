@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 1. Populate Dropdowns ---
   function populateDropdowns() {
     // Populate Basic Pay Select with RPS-2020 stages (No default pre-selected)
-    basicpay.innerHTML = '<option value="" selected>-- SELECT BASIC PAY --</option>';
+    basicpay.innerHTML = '<option value="" selected>-- మీ Basic Pay సెలెక్ట్ చేసుకోండి (Select Your Basic Pay) --</option>';
     RPS_2020_STAGES.forEach(st => {
       const opt = document.createElement('option');
       opt.value = st;
