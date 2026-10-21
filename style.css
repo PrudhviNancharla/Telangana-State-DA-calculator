@@ -1061,6 +1061,34 @@ body {
     line-height: 1.15;
 }
 
+.badge-sl {
+    font-size: 0.60rem;
+    font-weight: 800;
+    background: #d97706;
+    color: #ffffff;
+    padding: 1px 5px;
+    border-radius: 3px;
+    display: inline-block;
+    letter-spacing: 0.2px;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+.sl-table-row {
+    background: #fffbeb !important;
+}
+
+.sl-table-row th {
+    background: #fef3c7 !important;
+    border-left: 3px solid #d97706;
+}
+
+.sl-table-row td {
+    background: #fffbeb !important;
+    color: #78350f !important;
+    font-weight: 700;
+}
+
 .results-table--main th:nth-child(1),
 .results-table--main td:nth-child(1),
 .results-table--main thead th:first-child,

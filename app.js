@@ -58,8 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Tables
   const da1TableBody = document.getElementById('da1TableBody');
   const da2TableBody = document.getElementById('da2TableBody');
-  const gtSlDiff = document.getElementById('gtSlDiff');
-  const gtCombinedDiff = document.getElementById('gtCombinedDiff');
   const aasProRataSection = document.getElementById('aasProRataSection');
   const aasProRataTableBody = document.getElementById('aasProRataTableBody');
   const gtBasic = document.getElementById('gtBasic');
@@ -594,7 +592,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let da1TotEligible = 0;
     let da1TotDrawn = 0;
     let da1TotDiff = 0;
-    let da1TotSlDiff = 0;
     let da1TotCps = 0;
     let da1TotCash = 0;
 
@@ -612,7 +609,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Surrender Leave for this month (if any)
       const slEntry = slMonthMap[mIdx];
-      const slDiff = slEntry ? slEntry.amount : 0;
 
       // Check if AGI or AAS occurred in this month
       const isAgiMonth = (incM >= 1 && incM <= 12 && mObj.month === incM);
@@ -637,11 +633,8 @@ document.addEventListener('DOMContentLoaded', () => {
       da1TotEligible += eligible;
       da1TotDrawn += drawn;
       da1TotDiff += diff;
-      da1TotSlDiff += slDiff;
       da1TotCps += cps;
       da1TotCash += cash;
-
-      const rowNetDiff = diff + slDiff;
 
       da1RowsHtml += `
         <tr>
@@ -650,15 +643,44 @@ document.addEventListener('DOMContentLoaded', () => {
           <td>${formatINR(eligible)}</td>
           <td>${formatINR(drawn)}</td>
           <td>${formatINR(diff)}</td>
-          <td style="color:#0f766e; font-weight:700;">${slEntry ? `+₹${formatINR(slEntry.amount)} <span style="font-size:0.72rem; color:#475569;">(${slEntry.days}d)</span>` : '—'}</td>
-          <td style="color:#1e3a8a; font-weight:800;">₹${formatINR(rowNetDiff)}</td>
           <td class="col-cps">${isCPS ? formatINR(cps) : '—'}</td>
           <td class="col-cash">${formatINR(cash)}</td>
         </tr>
       `;
-    }
 
-    const da1CombinedTotal = da1TotDiff + da1TotSlDiff;
+      // If Surrender Leave taken in this month, display as a dedicated highlighted row
+      if (slEntry) {
+        const isHalf = (slEntry.days === 15);
+        const slEligible = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_1_RATE) / 2) : Math.round(bp * DA_RATES.DA_1_RATE);
+        const slDrawn = isHalf ? Math.round(Math.round(bp * DA_RATES.DRAWN_DA_RATE) / 2) : Math.round(bp * DA_RATES.DRAWN_DA_RATE);
+        const slDiff = slEligible - slDrawn;
+        const slCps = isCPS ? Math.round(slDiff * DA_RATES.CPS_RATE) : 0;
+        const slCash = isCPS ? (slDiff - slCps) : slDiff;
+
+        da1TotEligible += slEligible;
+        da1TotDrawn += slDrawn;
+        da1TotDiff += slDiff;
+        da1TotCps += slCps;
+        da1TotCash += slCash;
+
+        da1RowsHtml += `
+          <tr class="sl-table-row">
+            <th>
+              <div class="month-cell">
+                <span class="month-cell-title" style="color:#b45309;">${mObj.name}</span>
+                <span class="badge-sl">🏖️ Surrender Leave (${slEntry.days}d)</span>
+              </div>
+            </th>
+            <td>${formatINR(bp)}</td>
+            <td>${formatINR(slEligible)}</td>
+            <td>${formatINR(slDrawn)}</td>
+            <td style="color:#b45309; font-weight:800;">₹${formatINR(slDiff)}</td>
+            <td class="col-cps">${isCPS ? formatINR(slCps) : '—'}</td>
+            <td class="col-cash" style="font-weight:700;">${formatINR(slCash)}</td>
+          </tr>
+        `;
+      }
+    }
 
     da1RowsHtml += `
       <tr class="total-row">
@@ -666,9 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${formatINR(da1TotBasic)}</td>
         <td>${formatINR(da1TotEligible)}</td>
         <td>${formatINR(da1TotDrawn)}</td>
-        <td>${formatINR(da1TotDiff)}</td>
-        <td style="color:#0f766e; font-weight:800;">${da1TotSlDiff > 0 ? `+₹${formatINR(da1TotSlDiff)}` : '—'}</td>
-        <td style="color:#1e3a8a; font-weight:900; font-size:1.05rem;">₹${formatINR(da1CombinedTotal)}</td>
+        <td style="font-weight:800; color:#1e3a8a;">₹${formatINR(da1TotDiff)}</td>
         <td class="col-cps">${isCPS ? formatINR(da1TotCps) : '—'}</td>
         <td class="col-cash">${formatINR(da1TotCash)}</td>
       </tr>
@@ -680,7 +700,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let da2TotEligible = 0;
     let da2TotDrawn = 0;
     let da2TotDiff = 0;
-    let da2TotSlDiff = 0;
     let da2TotCps = 0;
     let da2TotCash = 0;
 
@@ -698,7 +717,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Surrender Leave for this month (if any)
       const slEntry = slMonthMap[mIdx];
-      const slDiff = slEntry ? slEntry.amount : 0;
 
       // Check if AGI or AAS occurred in this month
       const isAgiMonth = (incM >= 1 && incM <= 12 && mObj.month === incM);
@@ -723,11 +741,8 @@ document.addEventListener('DOMContentLoaded', () => {
       da2TotEligible += eligible;
       da2TotDrawn += drawn;
       da2TotDiff += diff;
-      da2TotSlDiff += slDiff;
       da2TotCps += cps;
       da2TotCash += cash;
-
-      const rowNetDiff2 = diff + slDiff;
 
       da2RowsHtml += `
         <tr>
@@ -736,15 +751,44 @@ document.addEventListener('DOMContentLoaded', () => {
           <td>${formatINR(eligible)}</td>
           <td>${formatINR(drawn)}</td>
           <td>${formatINR(diff)}</td>
-          <td style="color:#0f766e; font-weight:700;">${slEntry ? `+₹${formatINR(slEntry.amount)} <span style="font-size:0.72rem; color:#475569;">(${slEntry.days}d)</span>` : '—'}</td>
-          <td style="color:#1e3a8a; font-weight:800;">₹${formatINR(rowNetDiff2)}</td>
           <td class="col-cps">${isCPS ? formatINR(cps) : '—'}</td>
           <td class="col-cash">${formatINR(cash)}</td>
         </tr>
       `;
-    }
 
-    const da2CombinedTotal = da2TotDiff + da2TotSlDiff;
+      // If Surrender Leave taken in this month, display as a dedicated highlighted row
+      if (slEntry) {
+        const isHalf = (slEntry.days === 15);
+        const slEligible2 = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_2_RATE) / 2) : Math.round(bp * DA_RATES.DA_2_RATE);
+        const slDrawn2 = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_1_RATE) / 2) : Math.round(bp * DA_RATES.DA_1_RATE);
+        const slDiff2 = slEligible2 - slDrawn2;
+        const slCps2 = isCPS ? Math.round(slDiff2 * DA_RATES.CPS_RATE) : 0;
+        const slCash2 = isCPS ? (slDiff2 - slCps2) : slDiff2;
+
+        da2TotEligible += slEligible2;
+        da2TotDrawn += slDrawn2;
+        da2TotDiff += slDiff2;
+        da2TotCps += slCps2;
+        da2TotCash += slCash2;
+
+        da2RowsHtml += `
+          <tr class="sl-table-row">
+            <th>
+              <div class="month-cell">
+                <span class="month-cell-title" style="color:#b45309;">${mObj.name}</span>
+                <span class="badge-sl">🏖️ Surrender Leave (${slEntry.days}d)</span>
+              </div>
+            </th>
+            <td>${formatINR(bp)}</td>
+            <td>${formatINR(slEligible2)}</td>
+            <td>${formatINR(slDrawn2)}</td>
+            <td style="color:#b45309; font-weight:800;">₹${formatINR(slDiff2)}</td>
+            <td class="col-cps">${isCPS ? formatINR(slCps2) : '—'}</td>
+            <td class="col-cash" style="font-weight:700;">${formatINR(slCash2)}</td>
+          </tr>
+        `;
+      }
+    }
 
     da2RowsHtml += `
       <tr class="total-row">
@@ -752,28 +796,19 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${formatINR(da2TotBasic)}</td>
         <td>${formatINR(da2TotEligible)}</td>
         <td>${formatINR(da2TotDrawn)}</td>
-        <td>${formatINR(da2TotDiff)}</td>
-        <td style="color:#0f766e; font-weight:800;">${da2TotSlDiff > 0 ? `+₹${formatINR(da2TotSlDiff)}` : '—'}</td>
-        <td style="color:#1e3a8a; font-weight:900; font-size:1.05rem;">₹${formatINR(da2CombinedTotal)}</td>
+        <td style="font-weight:800; color:#1e3a8a;">₹${formatINR(da2TotDiff)}</td>
         <td class="col-cps">${isCPS ? formatINR(da2TotCps) : '—'}</td>
         <td class="col-cash">${formatINR(da2TotCash)}</td>
       </tr>
     `;
     da2TableBody.innerHTML = da2RowsHtml;
 
-    // 5.8 Grand Total (DA Arrears only - Surrender Leave shown in its column)
+    // 5.8 Grand Total (All DA Arrears + Surrender Leave included)
     const grandDiff = da1TotDiff + da2TotDiff;
-    const grandCombinedDiff = grandDiff + totalSlAmount;
     const grandCps = da1TotCps + da2TotCps;
     const grandCash = isCPS ? (grandDiff - grandCps) : grandDiff;
 
     gtDiff.textContent = `₹${formatINR(grandDiff)}`;
-    if (gtSlDiff) {
-      gtSlDiff.textContent = (totalSlAmount > 0) ? `+₹${formatINR(totalSlAmount)}` : '—';
-    }
-    if (gtCombinedDiff) {
-      gtCombinedDiff.textContent = `₹${formatINR(grandCombinedDiff)}`;
-    }
     gtCps.textContent = isCPS ? `₹${formatINR(grandCps)}` : '—';
     gtCash.textContent = `₹${formatINR(grandCash)}`;
 
