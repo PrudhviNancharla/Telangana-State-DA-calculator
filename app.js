@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const opt = document.createElement('option');
       opt.value = m.id;
       opt.dataset.month = m.ym;
-      opt.textContent = `${m.name} (${m.days} days)`;
+      opt.textContent = `${m.name}`;
       aasmonth.appendChild(opt);
     });
 
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const opt = document.createElement('option');
         opt.value = m.id;
         opt.dataset.month = m.ym;
-        opt.textContent = `${m.name} (${m.days} days)`;
+        opt.textContent = `${m.name}`;
         aasmonth.appendChild(opt);
       });
       aasMonthDiv.style.display = 'block';
