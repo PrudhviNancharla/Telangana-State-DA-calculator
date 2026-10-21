@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const da1TableBody = document.getElementById('da1TableBody');
   const da2TableBody = document.getElementById('da2TableBody');
   const gtSlDiff = document.getElementById('gtSlDiff');
+  const gtCombinedDiff = document.getElementById('gtCombinedDiff');
   const aasProRataSection = document.getElementById('aasProRataSection');
   const aasProRataTableBody = document.getElementById('aasProRataTableBody');
   const gtBasic = document.getElementById('gtBasic');
@@ -633,6 +634,8 @@ document.addEventListener('DOMContentLoaded', () => {
       da1TotCps += cps;
       da1TotCash += cash;
 
+      const rowNetDiff = diff + slDiff;
+
       da1RowsHtml += `
         <tr>
           <th>${mObj.name}${tagsHtml}</th>
@@ -641,11 +644,14 @@ document.addEventListener('DOMContentLoaded', () => {
           <td>${formatINR(drawn)}</td>
           <td>${formatINR(diff)}</td>
           <td style="color:#0f766e; font-weight:700;">${slEntry ? `+₹${formatINR(slEntry.amount)} <span style="font-size:0.72rem; color:#475569;">(${slEntry.days}d)</span>` : '—'}</td>
+          <td style="color:#1e3a8a; font-weight:800;">₹${formatINR(rowNetDiff)}</td>
           <td class="col-cps">${isCPS ? formatINR(cps) : '—'}</td>
           <td class="col-cash">${formatINR(cash)}</td>
         </tr>
       `;
     }
+
+    const da1CombinedTotal = da1TotDiff + da1TotSlDiff;
 
     da1RowsHtml += `
       <tr class="total-row">
@@ -655,6 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${formatINR(da1TotDrawn)}</td>
         <td>${formatINR(da1TotDiff)}</td>
         <td style="color:#0f766e; font-weight:800;">${da1TotSlDiff > 0 ? `+₹${formatINR(da1TotSlDiff)}` : '—'}</td>
+        <td style="color:#1e3a8a; font-weight:900; font-size:1.05rem;">₹${formatINR(da1CombinedTotal)}</td>
         <td class="col-cps">${isCPS ? formatINR(da1TotCps) : '—'}</td>
         <td class="col-cash">${formatINR(da1TotCash)}</td>
       </tr>
@@ -706,6 +713,8 @@ document.addEventListener('DOMContentLoaded', () => {
       da2TotCps += cps;
       da2TotCash += cash;
 
+      const rowNetDiff2 = diff + slDiff;
+
       da2RowsHtml += `
         <tr>
           <th>${mObj.name}${tagsHtml}</th>
@@ -714,11 +723,14 @@ document.addEventListener('DOMContentLoaded', () => {
           <td>${formatINR(drawn)}</td>
           <td>${formatINR(diff)}</td>
           <td style="color:#0f766e; font-weight:700;">${slEntry ? `+₹${formatINR(slEntry.amount)} <span style="font-size:0.72rem; color:#475569;">(${slEntry.days}d)</span>` : '—'}</td>
+          <td style="color:#1e3a8a; font-weight:800;">₹${formatINR(rowNetDiff2)}</td>
           <td class="col-cps">${isCPS ? formatINR(cps) : '—'}</td>
           <td class="col-cash">${formatINR(cash)}</td>
         </tr>
       `;
     }
+
+    const da2CombinedTotal = da2TotDiff + da2TotSlDiff;
 
     da2RowsHtml += `
       <tr class="total-row">
@@ -728,6 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${formatINR(da2TotDrawn)}</td>
         <td>${formatINR(da2TotDiff)}</td>
         <td style="color:#0f766e; font-weight:800;">${da2TotSlDiff > 0 ? `+₹${formatINR(da2TotSlDiff)}` : '—'}</td>
+        <td style="color:#1e3a8a; font-weight:900; font-size:1.05rem;">₹${formatINR(da2CombinedTotal)}</td>
         <td class="col-cps">${isCPS ? formatINR(da2TotCps) : '—'}</td>
         <td class="col-cash">${formatINR(da2TotCash)}</td>
       </tr>
@@ -759,12 +772,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5.8 Grand Total (DA Arrears only - Surrender Leave shown in its column)
     const grandDiff = da1TotDiff + da2TotDiff;
+    const grandCombinedDiff = grandDiff + totalSlAmount;
     const grandCps = da1TotCps + da2TotCps;
     const grandCash = isCPS ? (grandDiff - grandCps) : grandDiff;
 
     gtDiff.textContent = `₹${formatINR(grandDiff)}`;
     if (gtSlDiff) {
       gtSlDiff.textContent = (totalSlAmount > 0) ? `+₹${formatINR(totalSlAmount)}` : '—';
+    }
+    if (gtCombinedDiff) {
+      gtCombinedDiff.textContent = `₹${formatINR(grandCombinedDiff)}`;
     }
     gtCps.textContent = isCPS ? `₹${formatINR(grandCps)}` : '—';
     gtCash.textContent = `₹${formatINR(grandCash)}`;

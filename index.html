@@ -472,32 +472,6 @@
         </button>
       </div>
 
-      <!-- AAS PARTIAL MONTH / PRO-RATA ARREARS BREAKDOWN TABLE (Displayed only when AAS date > 1) -->
-      <section class="da-rate-table-block" id="aasProRataSection" style="display: none; margin-top: 18px;">
-        <p class="results-table-label da-rate-banner" style="background: linear-gradient(135deg, #4338ca, #3730a3); color: #fff;">
-          ⚖️ Automatic Advancement Scheme (AAS) — Day-wise Pro-rata Arrears Breakdown
-        </p>
-        <div class="table-scroll-wrap">
-          <div class="table-scroll">
-            <table class="results-table results-table--main" id="aasProRataTable">
-              <thead>
-                <tr>
-                  <th>Period / Month</th>
-                  <th>Eligible Basic Pay</th>
-                  <th>Eligible Days</th>
-                  <th>Pro-rata Drawn DA</th>
-                  <th>Pro-rata Eligible DA</th>
-                  <th>Net DA Arrears Diff</th>
-                </tr>
-              </thead>
-              <tbody id="aasProRataTableBody">
-                <!-- Dynamically populated via app.js -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
       <!-- TABLE 1: DA Rate 1 (37.31%) — Jan 2024 to Sep 2026 (33 Months) -->
       <section class="da-rate-table-block" style="margin-top: 18px;">
         <p class="results-table-label da-rate-banner tone-0">
@@ -513,10 +487,11 @@
                   <th>Basic Pay</th>
                   <th>Eligible DA</th>
                   <th>DA Drawn</th>
-                  <th>DA Diff<br>(GPF Credit)</th>
+                  <th>DA Diff</th>
                   <th style="background:#0f766e; color:#fff;">Surrender Leave<br>Difference</th>
+                  <th style="background:#1e3a8a; color:#fff;">Total Net<br>Difference</th>
                   <th class="col-cps">To CPS<br>Account</th>
-                  <th class="col-cash">CPS<br>Net Cash 90%</th>
+                  <th class="col-cash">Net Cash<br>(90%/100%)</th>
                 </tr>
               </thead>
               <tbody id="da1TableBody">
@@ -542,10 +517,11 @@
                   <th>Basic Pay</th>
                   <th>Eligible DA</th>
                   <th>DA Drawn</th>
-                  <th>DA Diff<br>(GPF Credit)</th>
+                  <th>DA Diff</th>
                   <th style="background:#0f766e; color:#fff;">Surrender Leave<br>Difference</th>
+                  <th style="background:#1e3a8a; color:#fff;">Total Net<br>Difference</th>
                   <th class="col-cps">To CPS<br>Account</th>
-                  <th class="col-cash">CPS<br>Net Cash 90%</th>
+                  <th class="col-cash">Net Cash<br>(90%/100%)</th>
                 </tr>
               </thead>
               <tbody id="da2TableBody">
@@ -569,10 +545,11 @@
                   <th>Basic Pay</th>
                   <th>Eligible DA</th>
                   <th>DA Drawn</th>
-                  <th>DA Diff<br>(GPF Credit)</th>
+                  <th>DA Diff</th>
                   <th style="background:#0f766e; color:#fff;">Surrender Leave<br>Difference</th>
+                  <th style="background:#1e3a8a; color:#fff;">Total Net<br>Difference</th>
                   <th class="col-cps">To CPS<br>Account</th>
-                  <th class="col-cash">CPS<br>Net Cash 90%</th>
+                  <th class="col-cash">Net Cash<br>(90%/100%)</th>
                 </tr>
               </thead>
               <tbody>
@@ -583,6 +560,7 @@
                   <td id="gtDrawn">—</td>
                   <td id="gtDiff">₹39,312</td>
                   <td id="gtSlDiff" style="color: #0f766e; font-weight: 800;">₹0</td>
+                  <td id="gtCombinedDiff" style="color: #1e3a8a; font-weight: 900; font-size: 1.05rem;">₹39,312</td>
                   <td class="col-cps" id="gtCps">₹3,927</td>
                   <td class="col-cash" id="gtCash">₹35,385</td>
                 </tr>
