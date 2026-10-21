@@ -450,14 +450,17 @@ document.addEventListener('DOMContentLoaded', () => {
           const hasRate2 = mObj.hasDa2;
           const effRate = hasRate2 ? DA_RATES.DA_2_RATE : rate1;
 
+          // In Treasury rules, the DA actually drawn by the employee before revision was based on their pre-increment/pre-AAS stage:
+          const stageActuallyDrawn = (aasM > 1) ? monthBasics[aasM - 1] : getPreviousPayStage(stageWithAnnualOnly);
+
           // Part 1: Days 1 to (aasD-1) -> Has Annual Increment (+1 increment)
           const p1Eligible = Math.round((stageWithAnnualOnly * effRate * oldDays) / daysInM);
-          const p1Drawn = Math.round((stageWithAnnualOnly * drawnRate * oldDays) / daysInM);
+          const p1Drawn = Math.round((stageActuallyDrawn * drawnRate * oldDays) / daysInM);
           const p1Diff = p1Eligible - p1Drawn;
 
           // Part 2: Days aasD to Month End -> Has BOTH Annual + AAS Increments (+2 increments!)
           const p2Eligible = Math.round((stageWithBoth * effRate * newDays) / daysInM);
-          const p2Drawn = Math.round((stageWithAnnualOnly * drawnRate * newDays) / daysInM);
+          const p2Drawn = Math.round((stageActuallyDrawn * drawnRate * newDays) / daysInM);
           const p2Diff = p2Eligible - p2Drawn;
 
           const totDiff = p1Diff + p2Diff;
