@@ -400,16 +400,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5.4 AAS Effect (if taken)
     // Rule:
-    // Regular annual increment is in incM.
-    // AAS gives an ADDITIONAL increment starting from aasM & aasD.
-    // If AAS month is the SAME as the annual increment month:
-    // - From 1st to (aasD-1): Employee draws normal Annual Increment (+1 increment)
-    // - From aasD to Month End: Employee draws BOTH Annual Increment + AAS Increment (TOTAL +2 increments!)
-    // - Next month onwards: Fully draws TOTAL +2 increments!
-    // If AAS month is DIFFERENT:
-    // - Before AAS month: normal progression
-    // - From aasD to Month End: draws AAS (+1 increment over normal)
-    // - From next month onwards: continues with AAS (+1 increment)
+    // User selected "Select Basic Pay As On 30-Sep-2026" = activeBasic.
+    // If AAS happened on or before Sep 2026, activeBasic ALREADY INCLUDES AAS!
+    // Specifically:
+    // If Annual Increment is in the SAME month as AAS (e.g. Sep 2026):
+    // - Before Sep 2026: Employee was at previous stage (stage2025).
+    // - On 1st Sep 2026: Employee gets Annual Grade Increment -> reaches stageWithoutAas = activeBasic - 1 stage (e.g. 37780 if activeBasic is 38890).
+    // - On 11th Sep 2026: AAS is sanctioned -> Employee reaches activeBasic = 38890 (+1 extra increment for AAS).
+    // - From 1st to 10th (10 days): Drawn & Eligible based on stageWithoutAas (Annual Increment stage).
+    // - From 11th to 30th (20 days): Drawn on stageWithoutAas, Eligible on activeBasic (+2 increments stage).
+    //   Diff = (activeBasic * effRate * 20/30) - (stageWithoutAas * drawnRate * 20/30) ... or pure DA difference!
+    // Next month (Oct 2026 onwards): Full month with AAS (activeBasic).
     const hasAas = (aas.value === '2');
     const aasM = parseInt(aasmonth.value, 10) || 0;
     const aasD = parseInt(aasday.value, 10) || 1;
@@ -420,62 +421,58 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hasAas && aasM >= 1 && aasM <= 33) {
       const isSameMonthAsIncrement = (incM >= 1 && incM <= 12 && MONTHS_33[aasM - 1].month === incM);
 
-      // In government treasury, the baseline activeBasic is set at Sep 2026.
-      // If AAS occurred within the 33 months:
-      // Starting from aasM (from date aasD), the employee gets the AAS increment.
+      // Prior to aasM, employee did not have AAS:
+      for (let m = 1; m < aasM; m++) {
+        monthBasics[m] = getPreviousPayStage(monthBasics[m]);
+      }
+
       if (isSameMonthAsIncrement) {
-        // Employee gets ANNUAL INCREMENT on 1st of month, and AAS INCREMENT from aasD!
-        // That means from aasM onwards, employee moves +1 stage UP due to AAS!
-        // (Or if activeBasic already includes AAS, prior to aasD they were without AAS).
+        // AAS and Annual Increment are in the EXACT SAME MONTH!
         const mObj = MONTHS_33[aasM - 1];
         const daysInM = mObj.days;
 
-        // Base stage in this month without AAS (already has normal annual increment):
-        const stageWithAnnualIncr = monthBasics[aasM];
-        // Stage with BOTH Annual Increment + AAS Increment:
-        const stageWithBoth = getNextPayStage(stageWithAnnualIncr);
+        // activeBasic at Sep 2026 is the final stage WITH both increments.
+        // Stage with Annual Increment only (before AAS on 11th):
+        const stageWithAnnualOnly = getPreviousPayStage(monthBasics[aasM]);
+        // Final stage with both Annual + AAS:
+        const stageWithBoth = monthBasics[aasM];
 
         if (aasD > 1) {
           showAasProRataTable = true;
-          const oldDays = aasD - 1;
-          const newDays = daysInM - oldDays;
+          const oldDays = aasD - 1; // e.g. 1st to 10th = 10 days
+          const newDays = daysInM - oldDays; // e.g. 11th to 30th = 20 days
 
-          // From aasM+1 onwards: draws stageWithBoth
-          for (let m = aasM + 1; m <= 33; m++) {
-            monthBasics[m] = getNextPayStage(monthBasics[m]);
-          }
-
-          // In aasM: weighted basic
-          monthBasics[aasM] = Math.round((stageWithAnnualIncr * oldDays + stageWithBoth * newDays) / daysInM);
+          // Weighted basic pay for aasM
+          monthBasics[aasM] = Math.round((stageWithAnnualOnly * oldDays + stageWithBoth * newDays) / daysInM);
 
           const rate1 = DA_RATES.DA_1_RATE;
           const drawnRate = DA_RATES.DRAWN_DA_RATE;
           const hasRate2 = mObj.hasDa2;
           const effRate = hasRate2 ? DA_RATES.DA_2_RATE : rate1;
 
-          // Part 1: 1st to (aasD-1) (Has Annual Increment, Drawn on previous drawn rate)
-          const p1Eligible = Math.round((stageWithAnnualIncr * effRate * oldDays) / daysInM);
-          const p1Drawn = Math.round((stageWithAnnualIncr * drawnRate * oldDays) / daysInM);
+          // Part 1: Days 1 to (aasD-1) -> Has Annual Increment (+1 increment)
+          const p1Eligible = Math.round((stageWithAnnualOnly * effRate * oldDays) / daysInM);
+          const p1Drawn = Math.round((stageWithAnnualOnly * drawnRate * oldDays) / daysInM);
           const p1Diff = p1Eligible - p1Drawn;
 
-          // Part 2: aasD to Month End (Has BOTH Annual Incr + AAS Incr!)
+          // Part 2: Days aasD to Month End -> Has BOTH Annual + AAS Increments (+2 increments!)
           const p2Eligible = Math.round((stageWithBoth * effRate * newDays) / daysInM);
-          const p2Drawn = Math.round((stageWithAnnualIncr * drawnRate * newDays) / daysInM);
+          const p2Drawn = Math.round((stageWithAnnualOnly * drawnRate * newDays) / daysInM);
           const p2Diff = p2Eligible - p2Drawn;
 
           const totDiff = p1Diff + p2Diff;
 
           aasProRataRowsHtml = `
             <tr>
-              <td><strong>${mObj.name} (1st to ${oldDays}th)</strong><br><span style="font-size:0.75rem; color:#2563eb; font-weight:700;">★ Annual Increment Eligible (+1 Incr)</span></td>
-              <td>₹${formatINR(stageWithAnnualIncr)}</td>
+              <td><strong>${mObj.name} (1st to ${oldDays}th)</strong><br><span style="font-size:0.75rem; color:#2563eb; font-weight:700;">★ Annual Grade Increment (+1 Incr)</span></td>
+              <td>₹${formatINR(stageWithAnnualOnly)}</td>
               <td>${oldDays} Days</td>
               <td>₹${formatINR(p1Drawn)}</td>
               <td>₹${formatINR(p1Eligible)}</td>
               <td style="color:#047857; font-weight:700;">₹${formatINR(p1Diff)}</td>
             </tr>
             <tr style="background:#f0fdf4;">
-              <td><strong>${mObj.name} (${aasD}th to ${daysInM}th)</strong><br><span style="font-size:0.75rem; color:#059669; font-weight:800;">★★ Annual Increment + AAS Eligible (+2 Increments!)</span></td>
+              <td><strong>${mObj.name} (${aasD}th to ${daysInM}th)</strong><br><span style="font-size:0.75rem; color:#059669; font-weight:800;">★★ AAS Sanctioned (+2 Increments)</span></td>
               <td>₹${formatINR(stageWithBoth)}</td>
               <td>${newDays} Days</td>
               <td>₹${formatINR(p2Drawn)}</td>
@@ -483,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <td style="color:#047857; font-weight:800; font-size:1.05rem;">₹${formatINR(p2Diff)}</td>
             </tr>
             <tr class="total-row" style="background:#eef2ff;">
-              <th>${mObj.name} Net Month Total</th>
+              <th>${mObj.name} Net Pro-rata Total</th>
               <td>₹${formatINR(monthBasics[aasM])} (Weighted)</td>
               <td>${daysInM} Days</td>
               <td>₹${formatINR(p1Drawn + p2Drawn)}</td>
@@ -491,19 +488,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <th style="color:#1e3a8a;">₹${formatINR(totDiff)}</th>
             </tr>
           `;
-        } else {
-          // 1st of month: gets both increments from day 1
-          for (let m = aasM; m <= 33; m++) {
-            monthBasics[m] = getNextPayStage(monthBasics[m]);
-          }
         }
       } else {
         // AAS is in a DIFFERENT month than Annual Increment
-        // Prior to aasM, employee was 1 stage lower
-        for (let m = 1; m < aasM; m++) {
-          monthBasics[m] = getPreviousPayStage(monthBasics[m]);
-        }
-
         if (aasD > 1) {
           showAasProRataTable = true;
           const mObj = MONTHS_33[aasM - 1];
