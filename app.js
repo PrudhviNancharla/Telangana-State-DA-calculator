@@ -651,12 +651,14 @@ document.addEventListener('DOMContentLoaded', () => {
       // If Surrender Leave taken in this month, display as a dedicated highlighted row
       if (slEntry) {
         const isHalf = (slEntry.days === 15);
+        const slBp = isHalf ? Math.round(bp / 2) : bp;
         const slEligible = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_1_RATE) / 2) : Math.round(bp * DA_RATES.DA_1_RATE);
         const slDrawn = isHalf ? Math.round(Math.round(bp * DA_RATES.DRAWN_DA_RATE) / 2) : Math.round(bp * DA_RATES.DRAWN_DA_RATE);
         const slDiff = slEligible - slDrawn;
         const slCps = isCPS ? Math.round(slDiff * DA_RATES.CPS_RATE) : 0;
         const slCash = isCPS ? (slDiff - slCps) : slDiff;
 
+        da1TotBasic += slBp;
         da1TotEligible += slEligible;
         da1TotDrawn += slDrawn;
         da1TotDiff += slDiff;
@@ -671,7 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="badge-sl">🏖️ Surrender Leave (${slEntry.days}d)</span>
               </div>
             </th>
-            <td>${formatINR(bp)}</td>
+            <td>${formatINR(slBp)}</td>
             <td>${formatINR(slEligible)}</td>
             <td>${formatINR(slDrawn)}</td>
             <td style="color:#b45309; font-weight:800;">₹${formatINR(slDiff)}</td>
@@ -759,12 +761,14 @@ document.addEventListener('DOMContentLoaded', () => {
       // If Surrender Leave taken in this month, display as a dedicated highlighted row
       if (slEntry) {
         const isHalf = (slEntry.days === 15);
+        const slBp = isHalf ? Math.round(bp / 2) : bp;
         const slEligible2 = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_2_RATE) / 2) : Math.round(bp * DA_RATES.DA_2_RATE);
         const slDrawn2 = isHalf ? Math.round(Math.round(bp * DA_RATES.DA_1_RATE) / 2) : Math.round(bp * DA_RATES.DA_1_RATE);
         const slDiff2 = slEligible2 - slDrawn2;
         const slCps2 = isCPS ? Math.round(slDiff2 * DA_RATES.CPS_RATE) : 0;
         const slCash2 = isCPS ? (slDiff2 - slCps2) : slDiff2;
 
+        da2TotBasic += slBp;
         da2TotEligible += slEligible2;
         da2TotDrawn += slDrawn2;
         da2TotDiff += slDiff2;
@@ -779,7 +783,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="badge-sl">🏖️ Surrender Leave (${slEntry.days}d)</span>
               </div>
             </th>
-            <td>${formatINR(bp)}</td>
+            <td>${formatINR(slBp)}</td>
             <td>${formatINR(slEligible2)}</td>
             <td>${formatINR(slDrawn2)}</td>
             <td style="color:#b45309; font-weight:800;">₹${formatINR(slDiff2)}</td>
